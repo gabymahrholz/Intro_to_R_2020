@@ -439,7 +439,11 @@ sequence1 == sequence2
 
 ### What the heck is a tibble? Do you mean table?
 
-First of all, tibble is not a spelling error; it's the way r refers to its newest form of data table or dataframe. You can create a dataframe either by using the `tibble()` function or a function called `data.frame()`. `tibble()` is part of the package `tidyverse` whereas `data.frame` can be found in base R and does not need an additional package read into the library. Tibbles are slightly different to dataframes in that
+First of all, tibble is not a spelling error; it's the way r refers to its newest form of data table or dataframe. Strictly speaking, a tibble is a list of vectors.
+
+![Source: https://dcl-prog.stanford.edu/data-structure-basics.html#tibbles](images/tibble.png)
+
+You can create a dataframe either by using the `tibble()` function or a function called `data.frame()`. `tibble()` is part of the package `tidyverse` whereas `data.frame` can be found in base R and does not need an additional package read into the library. Tibbles are slightly different to dataframes in that
 
 * they have better print properties (Dataframes print ALL data when you call the data whereas tibbles only print the first 10 rows of data)
 * character vectors are not coerced into factors (which you will be thankful for later on in your programming life)

@@ -1,0 +1,362 @@
+# Data Visualisation 1
+
+## Intended Learning Outcomes {-}
+
+1. Develop an understanding of the basics of ggplot2 and how layering works
+2. Learn how to make simple two layer plots
+3. Learn how to make plots with more than 2 layers
+4. Learn how to create groups in plots
+5. Learn how to make a variety of plots based on the type of variables we have
+
+
+## Pre-steps
+
+Today, we will be working with `ggplot2` which is part of `tidyverse` and data from the Scottish Government saved in the file `free_movement_uk.csv`. Load `tidyverse` into the library and read the data into our `Global Environment` as `migration_scot`. 
+
+```{r L7, message=FALSE}
+#load your library here and the read in the data using read_csv()
+
+migration_scot <- NULL
+```
+
+
+## Introduction to the data
+
+This data is openly available from the Scottish Government, and it introduces the flow of people at different ages and sex into and out of the Scotland from the rest of UK (RUK) and Overseas. We have several variables to work with:
+
+FeatureCode = codes given by the Scottish Government
+DateCode = Year of data collected
+Measurement = what type of measurement it is (here we have only counts i.e. the number of people) 
+Units = units (here we have number of people)
+Value = The actual counts (i.e. the number of people)
+Age = Age of the counted people (separate by age, and total (sum of all age groups))
+Sex = Sex of the counted people (separate by sex, and total (sum all sex groups))
+`Migration Source` = Where or from the people are coming from (Overseas, RUK)
+`Migration Type` = Whether people are coming or leaving (In, Out, and Net (people coming in less the people leaving)) 
+
+
+
+The data is a bit messy, so let's clean it a little bit before we can work with it. When we make plots, we want to make sure that the data we are working with contains only data that we are going to include in the plot. This helps us avoid thinks like double counting. For example if we have values for males and females and total, but we do not want to give separate representations for males and females, then we would only keep information that gives us the total number.
+
+## Some warm-up tasks 
+
+Use pipes `%>%` for the following 4 tasks and save your data into the *trafic_scot* variable so that it appears in your `Global Environment`.
+
+1. Select only the necessary variable - `DateCode`, `Value`, `Sex`, `Age`, `Migration Source` & `Migration Type` (notice that some variable names include spaces)
+2. Filter the data in column `DateCode`, and keep only observations from 2016
+3. Keep only the total number of people by `Age` ('All') and `Sex` ('All')
+4. Keep only the information about the number of people that came into and left Scotland (we do not want to know about the net value)
+
+
+
+
+```{r}
+
+traffic_scot <- NULL
+
+```
+
+
+
+
+## The package GGPLOT2
+
+
+We use the `ggplot2` package due to its ease of layering and variety. The `ggplot2` package allows us to create beautiful and various plots that can show us much more than just the simplicity of the base R plots. 
+
+
+## Layering
+
+Plots created with ggplot work by using layers. 
+
+In the simplest form we have two layers. 
+
+ Layer1: what data are we going to use
+ Layer2: how do we want it to look
+
+Layer 1: ggplot(data, aes(x,y, ...)) + 
+Layer 2:   geom_something(...)
+
+
+
+### Layer 1
+
+Plots always start with *ggplot()*. This initialises the plot. It is used to tell *R* what data we are going to use. We can also set the aesthetics of the plot  which will be used to specify the axes we are going to use, any groupings, variables we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this first layer will be inherited in everything else you do.
+
+For now we are going to stick with one global specification - i.e. we are going to specify all our data in this first layer.
+
+If you run just the first command, R is going to show you the first layer - i.e. a blank screen
+
+Let's try it quickly. Uncomment the command bellow and see what appears in the 'Plots' section.
+
+```{r}
+#ggplot()
+
+```
+
+Now let's add some information. Let's include the data and the axes. From our data `traffic_scot` let's put Sex on the x axis and Value on the y axis. This way we can visualise how many people from each sex category came in and left Scotland overall.
+
+What's the difference?
+```{r}
+ggplot(NULL)
+
+```
+
+*Question: What is the difference in the produced plots from the above two lines of code? What does the first layer give you?*
+
+
+### Layer 2 and onward
+
+From the second layer onward, we are specifying how we want our plot to look: from the type of graph to the titles and colours. For now we are going to stick with the basics. 
+
+
+## How do we choose the type of plot?
+
+There are numerous plots we can choose from, and we are going to try several today. 
+
+Before plotting we need to know what types of data we want to portray. 
+
+Depending on whether our data is categorical or continuous the type of plot that is most appropriate will change.
+
+
+
+### Types of data
+
+#### Continuous
+
+Continuous data has no bounds and the distance between any two consecutive points is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, or 5 and 6 etc.
+
+#### Categorical
+
+Categorical data, simply put, groups data. The data in each group or category vary solely on one characteristic and usually those characteristics cannot be ranked - i.e. sex, race, nationality etc.
+
+
+### Number of variables
+
+Next we need to know the relationship between how many variables do we want to show. in a 2D plot we can usually graphically show between 1 and 3 variables with ease. After that more than 2 dimensions are necessary. 
+
+Let's get back to our free movement data that we started with in the section above.
+
+
+Q: What types of data are we trying to plot according to our first layer? Continuous, categorical, or both?
+
+A: 
+
+
+Q: How many variables have we chosen so far?
+
+A:
+
+
+Let's create a column/bar plot to visualise the data using `geom_col()`. What does the data look like?
+
+```{r}
+
+ggplot(NULL) + geom_col()
+
+```
+
+
+Q: Considering what we know from the data description and the different variable in it, do we need another variable to make the plot more informative? If yes, which one?
+
+A: 
+
+
+
+
+### Groupings
+
+When we want to group data to provide a better representation, we can usually use colour, shapes etc. Most of the time this will depend on the type of graph we want to use. If we are using line graphs, then colours are usually best. If we are using dot plots then we can use the shape as well as the colours to differentiate the different groups.
+
+Let's first look at colour.
+
+Depending on the type of graph, colouring in can be done either with `colour` or with `fill`. For our column plots we use fill. If we used colour, then we would get different colours for the outlines. You can find out whether to use colour or fill by typing the name of the geom in the Help search bar or typing `?geom_col()` in the console and looking at the *Aesthetics* section.
+
+```{r}
+ggplot(traffic_scot, aes(x = Sex, y = Value, fill = `Migration Type`)) + geom_col(position = 'dodge')
+
+```
+
+Let's decompose the code above: 
+
+We have our data and our two variables. They are the same as before. This time we are saying that we want the data to be separated even further by Migration Type and we have given two different colours to the 'In' and 'Out' migration types using the additional argument `fill`. 
+
+We have also added `position = 'dodge'` in the `geom_col()`. This makes sure that any groupings we create and create new columns are then presented separately.
+
+Simple task: 
+
+1. Remove `position ='dodge'` from the geom and describe what happens. 
+
+
+```{r}
+#create your plot here
+
+```
+
+
+
+
+
+Simple task: 
+2. Use `position = 'fill'` and describe what happens. 
+
+
+```{r}
+#create your plot here
+
+```
+
+
+
+
+The argument `position` is an argument specific for the `geom_col`. It is just one example of an additional argument that helps us to represent the data better. These types of arguments allow for better control over the plots that we create. To find what arguments each geom has, look for it in the Help section or put *?* in the console in front of the function.
+
+Geoms in `ggplot2` have a large selection of arguments to allow you to adjust your visualisations. This is what makes it one of the most preferred visualisation packages by the R community. 
+
+
+#### More groupings
+
+Now let's imagine that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? Let's try. 
+
+```{r}
+ggplot(NULL) + geom_?
+
+```
+
+Here I have used the argument `colour` to give different borders to the migration sources. As you can see, this makes it much more difficult to see. Next week, we will work on separating the plots.
+
+Q: Would you think there is a better way to represent the data?
+
+
+A: 
+
+## Now let's have a look at different plots with more complexity
+
+Imagine you want to see the difference in the number of people coming into and moving out of Scotland from both the RUK and Overseas throughout the years, but you do not want to know the net flow of people, their age or their sex. 
+
+Q: What Variables would you use?
+
+A:
+
+First, let's get the data we will need. We want our selected variables from above, and the overall data for the rest of the variables i.e. the 'all' categories for Age, Sex. Remember we want to look at people moving in and out, so we do not want the net migration type. Save the output into the variable *trafic_scot2* so that it appears in your Global Environment.
+
+```{r}
+
+traffic_scot2<- NULL
+
+```
+
+
+Q: What type of data are these variables?
+
+q1: DateCode
+q2: Value`
+q3: Sex
+q4: Migration Source`
+q5: Migration Type
+
+Replace the `NULL` with the correct answer in quotes - either 'continuous' or 'categorical'.
+
+```{r}
+a1 <- NULL
+a2 <- NULL
+a3 <- NULL
+a4 <- NULL
+a5 <- NULL
+
+```
+
+So we need to use a different type of plot - one that can portray continuous data well enough.
+
+Good way to portray data like this are point graphs (i.e. scatter plots) and line graphs.
+
+We have several variables again. It will help if we separate them with different aesthetics.
+
+```{r}
+ggplot(NULL) + 
+  geom_point()
+
+```
+
+This seems difficult to look at. Let's make it easier by adding a line that connects the data. We can do this by adding another *Layer*.
+
+
+```{r}
+ggplot(NULL) + 
+  geom_point() + 
+  geom_line()
+
+```
+
+
+Q: How do we know that the line graph is going to connect the Migration Type and not the Migration Source?
+
+
+A:
+
+
+
+
+
+## Other plots
+
+Let's make some more plots. 
+
+*Violin plots and Box plots*
+We need a continuous variable and a categorical variable for both of them. In both of these the categorical variable usually goes on the x-axis and the continuous on the y axis.
+
+Let's get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas, from all ages. For this, we need to tidy the data into what we need and store it into the variable `female_migration`
+
+```{r}
+female_migration <- 
+
+# make box plots
+ggplot(NULL) + 
+  geom_boxplot()
+
+
+#make violin plots
+ggplot(NULL) + 
+  geom_violin()
+
+```
+
+
+##Practice Task 1
+
+Using the data for this class follow the instructions. Remember, you can use `View()` in the console to look at your data, or click on the data variable in your Global Environment. This can help you to make your choices for the steps bellow and with the exact spelling. Start from the original dataset we loaded in the beginning `traffic_scot`. Use pipes `%>%` for the first 5 steps and save the output into a variable `my_data`. Use that data to create three separate plots for steps 6, 7 and 8.
+
+1. Select two different years. 
+2. Select two different age groups. 
+3. Select the total for both sex ( i.e. 'all').
+4. Select migration In and Out of Scotland.
+5. Pick whether you are going to look at `To-from Rest of UK` or `To-from Overseas`.
+6. Plot the overall people, regardless of age and year, that have moved into and left Scotland using `geom_col()`. Save the plot in the variable q6 into your Global Environment.
+7. Create a new plot using `geom_col()` that shows the differences between the two years you have selected, regardless of age. Save the plot in the variable q7 into your Global Environment.
+8. Plot the differences between the two ages, regardless of year.  
+
+
+
+```{r}
+# do any wrangling you need to get the data you have selected.
+
+# Example answer 
+
+traffic_scot <- read_csv("free_movement_uk.csv") 
+
+
+my_data <- NULL
+
+
+
+
+q6 <- ggplot(NULL) + geom_?
+q6
+
+q7 <- ggplot(NULL) + geom_?
+q7 
+
+q8 <-ggplot(NULL) + geom_?
+q8
+```
+

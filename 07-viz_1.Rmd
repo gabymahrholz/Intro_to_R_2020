@@ -51,31 +51,38 @@ Use pipes `%>%` for the following 4 tasks and save your data into the *trafic_sc
 3. Keep only the total number of people by `Age` ('All') and `Sex` ('All')
 4. Keep only the information about the number of people that came into and left Scotland (we do not want to know about the net value)
 
+
+```{r}
+traffic_scot <- NULL
+```
+
+`r hide("Solution")`
 ```{r}
 
 traffic_scot <- migration_scot %>% 
   select(DateCode, Value, Sex, Age, `Migration Source`, `Migration Type`) %>% 
-  filter(DateCode == '2016', Age == 'All', Sex != 'All', `Migration Type` != 'Net')
+  filter(DateCode == '2016', 
+         Age == 'All', 
+         Sex != 'All', 
+         `Migration Type` != 'Net')
 
 ```
-
+`r unhide()`
 
 
 
 ## The package GGPLOT2
 
 
-We use the `ggplot2` package due to its ease of layering and variety. The `ggplot2` package allows us to create beautiful and various plots that can show us much more than just the simplicity of the base R plots. 
-
-
-
+We use the `ggplot2` package due to its ease of layering and variety. With `ggplot2` we can create beautiful and varied plots that can show us much more than just the simplicity of the base R plots. Whereas the plot/graph's job is to visualise the data, how you visualise your data is very important. Sometimes in an attempt to show off our plotting skills, we can make the graph difficult to read. Today and next week, using `ggplot2` we will streamline the process of plot creation. 
 
 
 ## Layering
 
-Plots created with ggplot work by using layers. In the simplest form we have two layers. 
+Plots created with `ggplot2` work in a layering format. In the simplest form we have two layers. 
 
 * Layer 1: what data are we going to use
+  * *+*
 * Layer 2: how do we want it to look
 
 
@@ -86,22 +93,22 @@ Layer 2: geom_something(...)
 
 ### Layer 1
 
-Plots always start with *ggplot()*. This initialises the plot. It is used to tell *R* what data we are going to use. We can also set the aesthetics of the plot which will be used to specify the axes we are going to use, any groupings, variables we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this first layer will be inherited in everything else you do.
+Plots always start with *ggplot()*. This initialises the plot. It is used to tell *R* what data we are going to use. We can also set the aesthetics of the plot which will be used to specify the axes of our plot, any groupings, variables we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this first layer will be inherited in every following layer.
 
 For now we are going to stick with one global specification - i.e. we are going to specify all our data in this first layer.
 
-If you run just the first command, R is going to show you the first layer - i.e. a blank screen.
+If you run just the first command, R is going to show you the first layer - i.e. a blank screen. R has prepared a space for you to create your plot.
 
-Let's try it quickly. 
+Let's try it. 
 
 ```{r}
 ggplot()
 
 ```
 
-Now let's add some information. Let's include the data and the axes. From our data `traffic_scot` let's put `Sex` on the x axis and `Value` on the y axis. This way we can visualise how many people from each sex category came to and left Scotland overall.
+Now let's add some information. Let's include the data and the axes. From our data `traffic_scot` let's put `Sex` on the x-axis and `Value` on the y-axis. This way we can visualise how many people from each sex category came to and left Scotland overall.
 
-What's the difference?
+What's the difference with the empty plot above?
 
 ```{r}
 
@@ -113,6 +120,11 @@ ggplot(traffic_scot, aes(x = Sex, y = Value))
 What is the difference in the produced plots from the above two lines of code? What does the first layer give you?
 ```
 
+`r hide("Solution")`
+```{block, type="solved"}
+If you look closely, new plot we have created with the first layer of `ggplot2` gives us numbers on y-axis and the two sexes on the x-axis. We also now have the titles of the two axes.We do not have any view of the data because we have not told `R` how we wont to visualise the data. R only knows what the data is.
+```
+`r unhide()`
 
 
 ### Layer 2 and onward
@@ -131,25 +143,39 @@ Depending on whether our data is categorical or continuous, the type of plot tha
 
 
 
-### Types of data
+### Data format
 
 #### Continuous
 
-Continuous data has no bounds and the distance between any two consecutive points is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, or 5 and 6 etc.
+In continuous data the distance between any two consecutive points is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, or 5 and 6 etc. If you think back to `L2`, integer and double data types will fall in this category. 
+
 
 #### Categorical
 
-Categorical data, simply put, groups data. The data in each group or category vary solely on one characteristic and usually those characteristics cannot be ranked - i.e. sex, race, nationality etc.
+Categorical data, simply put, groups (categorises) data. The data in each group or category vary solely on one characteristic and usually those characteristics cannot be ranked - i.e. sex, race, nationality etc.  If you think back to `L2`, logical and character data types will fall in this category.
 
+
+```{block, type="question"}
+Can you think of a time when a continuous variable can be used as categorical and/or categorical data can be used as continuous?
+```
+
+
+`r hide("Solution")`
+```{block, type="solved"}
+Continuous that is really categorical: If you have used the numbers 1, 2, 3 ... to label groups in your data, then that data is integer/double, but in reality the difference between 1 and 2 is in no way measurable. In this case you will have to transform that column in your data and change it from continuous to categorical, so R does not misinterpret it. if you do not remember how to do that, go back  to `L2`. 
+
+Categorical that can be used as continuous: Sometimes you have questions where people answer from Strongly Agree to Strongly Disagree, and you have given numeric values to the responses: 1=Strongly Agree, 2=Agree, 3 = Neutral etc. In reality, you cannot say that the distance between Strongly Agree and Agree is the same as the distance between Agree and Neutral. However, we can make the assumption that they represent equal distances and treat the numbers as a continuous scale. In fact, this is often done in Psychology and the Social Sciences. 
+```
+`r unhide()`
 
 ### Number of variables
 
-Next we need to know the relationship between how many variables we want to show. In a 2D plot, we can usually graphically show between 1 and 3 variables with ease. After that, more than 2 dimensions are necessary. 
+Next we need to know the relationship between how many variables we want to show. In a 2D plot, we can usually graphically show between 1 and 3 variables with ease. After that, _usually_ more than 2 dimensions are necessary. 
 
 
 
 ```{block, type="task"}
-See the five plots below. What type of data are used (categorical or continuous, or both? How many variables do we need to create these plots? 
+Look at the five plots below. What type of data are used: categorical or continuous, or both? How many variables do we need to create these plots? 
 ```
 
 
@@ -164,7 +190,8 @@ ggplot(diamonds, aes(depth, colour = cut)) +
 
 `r hide("Solution")`
 ```{block, type = "solved"}
-2 variables: 1 continuous, 1 categorical
+3 variables: 2 continuous (depth & density), 1 categorical (cut)
+ _In reality R only needs depth and cut, as it will calculate density for us._
 ```
 `r unhide()`
 
@@ -180,13 +207,13 @@ ggplot(diamonds, aes(clarity, price)) +
 
 `r hide("Solution")`
 ```{block, type = "solved"}
-3 variables: 2 categorical, 1 continuous
+3 variables: 2 categorical (clarity & cut), 1 continuous (price)
 ```
 `r unhide()`
 
 
 ```{r, echo = FALSE}
-df <- data.frame(group = c("a", "b", "c"), outcome = c(2.3, 1.9, 3.2))
+df <- data.frame(group = c("A", "B", "C"), outcome = c(2.3, 1.9, 3.2))
 ggplot(df, aes(group, outcome, fill = group)) +
   geom_col()+
   theme_bw()
@@ -195,20 +222,21 @@ ggplot(df, aes(group, outcome, fill = group)) +
 
 `r hide("Solution")`
 ```{block, type = "solved"}
-2 variables: 1 categorical, 1 continuous
+2 variables: 1 categorical (group), 1 continuous (outcome)
 ```
 `r unhide()`
 
 ```{r, echo = FALSE}
 ggplot(economics, aes(date, unemploy)) + 
   geom_line()+
-  theme_bw()
+  theme_bw() +
+  labs(y = 'unemployment')
 ```
 
 
 `r hide("Solution")`
 ```{block, type = "solved"}
-2 variables: 2 continuous
+2 variables: 2 continuous (unemployment & date)
 ```
 `r unhide()`
 
@@ -217,28 +245,38 @@ x <- seq(0.01, .99, length.out = 100)
 df <- data.frame(
  x = rep(x, 2),
  y = c(qlogis(x), 2 * qlogis(x)),
- group = rep(c("a","b"),
+ group = rep(c("A","B"),
  each = 100)
 )
 ggplot(df, aes(x=x, y=y, group=group)) + geom_line(aes(colour = group), linetype = 1) +
-  theme_bw()
+  theme_bw() +
+  labs(y = 'Bank balance\n(pos=debit, neg=credit)', 
+       x = 'Probability of being happy')
 
 ```
 
 
 `r hide("Solution")`
 ```{block, type = "solved"}
-3 variables: 2 continuous, 1 categorical
+3 variables: 2 continuous (Net worth & Probability of being happy), 1 categorical (group)
 ```
 `r unhide()`
 
 
 
 ```{block, type = 'info'}
-**Tip**: Most of the time, if you cannot represent a graph in 2D then you are probably trying to show too much, and you should reconsider splitting the graphs
+**Tip**: Most of the time, if you cannot represent a graph in 2D then you are probably trying to show too much, and you should reconsider splitting it into multiple plots.
 ```
 
+
+
 Let's get back to our free movement data that we started with in the section above.
+
+
+```{block, type = "question"}
+How many variables have we chosen so far? Type the number in the box below.
+```
+`r fitb('2')` <br>
 
 ```{block, type="question"}
 What types of data are we trying to plot according to our first layer? Continuous, categorical, or both?
@@ -246,14 +284,29 @@ What types of data are we trying to plot according to our first layer? Continuou
 
 `r hide("Solution")`
 ```{block, type="solved"}
-We are using both continuous (value or count of people) and categorical (sex).
+We are using both continuous (value i.e. count of people) and categorical (sex).
 ```
 `r unhide()`
 
-```{block, type = "question"}
-How many variables have we chosen so far? Type the number in the box below.
-```
-`r fitb('2')` <br>
+
+
+### Types of plots
+
+There is variety of plots that we can create using ggplot2. We select the plot by adding on `geom_???()`. Instead of the *???* we specify the type of plot we want to make. Bellow are some examples, but you can see more here: ggplot2 layers.
+
+| Geom | Plot type  |
+|:-----------------|:---------------------------------------------------------|
+| `geom_col()` `geom_bar()` | Bar plots  |
+| `geom_boxplot()` | Box with whiskers plot |
+| `geom_density()` | Density plot |
+|	`geom_histogram()` | Histogram |
+|	`geom_point()` | Scatter plot|
+|	`geom_jitter()` | Jittered points plot |
+| `geom_line()` | Line plot |
+| `geom_violin()` | Violin plot |
+| `geom_smooth()` | Smoothed conditional means (often used to add a regression line) |
+
+
 
 Let's create a column/bar plot to visualise the data using `geom_col()`. What does the data look like?
 
@@ -281,7 +334,7 @@ If you worked in the immigration office, you would want to know how many people 
 
 ### Groupings
 
-When we want to group data to provide a better representation, we can usually use colour, shapes etc. Most of the time this will depend on the type of graph we want to use. If we are using line graphs, then colours are usually best. If we are using dot plots then we can use the shape as well as the colours to differentiate the different groups.
+When we want to group data to provide a better representation, we can usually use colour, shapes etc. Most of the time, this will depend on the type of graph we want to create. If we are using line graphs, then colours are usually best. If we are using dot plots then we can use the shape as well as the colours to differentiate the different groups.
 
 Let's first look at colour.
 
@@ -297,7 +350,7 @@ Let's decompose the code above:
 
 We have our data and our two variables. They are the same as before. This time we are saying that we want the data to be separated even further by `Migration Type` and we have given two different colours to the 'In' and 'Out' migration types using the additional argument `fill`. 
 
-We have also added the argument `position = 'dodge'` in the `geom_col()`. This makes sure that any groupings we create and create new columns are then presented separately.
+We have also added the argument `position = 'dodge'` in the `geom_col()`. This makes sure that any groupings we create are then presented separately.
 
 ```{block, type = 'task'}
 Simple task: 
@@ -323,6 +376,11 @@ Simple task:
 ggplot(traffic_scot, aes(x = Sex, y = Value, fill = `Migration Type`)) +
   geom_col(position = 'fill')
 ```
+
+```{block, type = 'question'}
+What are the differences between 'dodge', 'fill' and no position argument? (Use `?geom_col()` to help you).
+```
+
 `r hide('Explanation')`
 ```{block, type = 'solved'}
 If we use `position = 'fill'` it stacks our data and it also gives us proportions: check the y-axis between the plot with `position = 'fill'` and the one without any position arguments. Whereas the plot without the position argument just stacks information on top of one another, `position = 'fill'` shows relative proportions. Use the Help menu or put *?* in the console in front of the function you want to know more about, for example `?geom_col()`. 
@@ -337,7 +395,7 @@ Geoms in `ggplot2` have a large selection of arguments to allow you to adjust yo
 
 #### More groupings
 
-Now let's imagine that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? Let's try.
+Now let's imagine that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? Let's try also using colour as a grouping way, based on `Migration Source`.
 
 ```{r}
 ggplot(traffic_scot, aes(x = Sex, y = Value, fill = `Migration Type`, colour =`Migration Source`)) + 
@@ -371,6 +429,13 @@ First, let's get the data we will need. We want our selected variables from abov
 
 ```{r}
 
+traffic_scot2 <- NULL
+
+```
+
+`r hide('Solution')`
+```{r}
+
 traffic_scot2 <- migration_scot %>% 
   filter(Age == 'All', 
          `Migration Type` != 'Net',
@@ -378,7 +443,7 @@ traffic_scot2 <- migration_scot %>%
   select(DateCode, Value,`Migration Source`, `Migration Type`)
 
 ```
-
+`r unhide()`
 
 ```{block, type = 'question'}
 What type of data are these variables?
@@ -397,6 +462,8 @@ So we need to use a different type of plot - one that can portray continuous dat
 Good way to portray data like this are point graphs (i.e. scatter plots) and line graphs.
 
 We have several variables again. It will help if we separate them with different aesthetics.
+
+Let's start with a scatter plot.
 
 ```{r}
 ggplot(traffic_scot2, aes(DateCode, Value, 
@@ -418,13 +485,13 @@ ggplot(traffic_scot2, aes(DateCode, Value,
 ```
 
 ```{block, type = 'question'}
-Question: How do we know that the line graph is going to connect the `Migration Type` and not the `Migration Source`?
+Question: How do we know that the line graph is going to connect the `Migration Type` and not the `Migration Source`? (Think about the aesthetics of geom_line and geom_point)
 ```
 
 
 `r hide('Solution')`
 ```{block, type = 'solved'}
-If we look up `geom_point` and `geom_line` we can see the type of aesthetics that they take. Look them up in the `Help` tab or by typing `?geom_point()` in the console. There you will find a section called aesthetics, which will tell you the aesthetics each of them can have. Because lines cannot use an aesthetic of shape, it will only inherit the colour aesthetic from `ggplot()`. 
+If we look up `geom_point()` and `geom_line()` we can see the type of aesthetics that they take. Look them up in the `Help` tab or by typing `?geom_point()` in the console. There you will find a section called aesthetics, which will tell you the aesthetics each of them can have. Because lines cannot use an aesthetic of shape, it will only inherit the colour aesthetic from `ggplot()`. 
 ```
 `r unhide()`
 
@@ -462,7 +529,7 @@ ggplot(female_migration, aes(x = `Migration Type`, y = Value)) +
 ```
 
 ```{block, type = 'info'}
-These plots show us the distribution of females entering and leaving Scotland. What we can tell that over the yearsis that we haven't had less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data is. We can see from the violin plots that the most common number of females coming into Scotland throughout the years is between 22000 and 18000. Boxplots on the other hand, tell you where the middle 50% of the data are.
+These plots show us the distribution of females entering and leaving Scotland. What we can tell is that over the years is that we haven't had less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data is. We can see from the violin plots that the most common number of females coming into Scotland throughout the years is between 22000 and 18000. Box plots on the other hand, tell you where the middle 50% of the data are.
 ```
 
 
@@ -515,4 +582,4 @@ q8
 
 ## Formative Homework
 
-The formative homework for this week can now be found on moodle.
+The formative homework for this week can now be found on Moodle.
