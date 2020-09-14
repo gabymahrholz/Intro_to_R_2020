@@ -7,7 +7,7 @@ The whole purpose of the next two lecture is to tidy up dataframe and expose you
 1. How to rearrange data from long format into to wide format and vice versa
 2. How to combine and separate columns
 
-This lesson is led by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?id=GM005).
+This lesson is led by Gaby Mahrholz.
 
 ## Pre-steps
 

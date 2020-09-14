@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-09-08" />
+<meta name="date" content="2020-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -117,14 +117,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistance"><i class="fa fa-check"></i>Assistance</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#why-are-these-materials-open"><i class="fa fa-check"></i>Why are these materials open?</a></li>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#acknowledgement"><i class="fa fa-check"></i><b>0.1</b> Acknowledgement</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="before.html"><a href="before.html"><i class="fa fa-check"></i>Assignment before starting the course</a><ul>
-<li class="chapter" data-level="0.1" data-path="before.html"><a href="before.html#accessing"><i class="fa fa-check"></i><b>0.1</b> Access to RStudio</a><ul>
-<li class="chapter" data-level="0.1.1" data-path="before.html"><a href="before.html#install"><i class="fa fa-check"></i><b>0.1.1</b> Installing R and RStudio on Your Own Machine</a></li>
-<li class="chapter" data-level="0.1.2" data-path="before.html"><a href="before.html#accessing-rstudio-on-university-computers"><i class="fa fa-check"></i><b>0.1.2</b> Accessing RStudio on University Computers</a></li>
-<li class="chapter" data-level="0.1.3" data-path="before.html"><a href="before.html#using-rstudio-cloud"><i class="fa fa-check"></i><b>0.1.3</b> Using RStudio Cloud</a></li>
+<li class="chapter" data-level="0.2" data-path="before.html"><a href="before.html#accessing"><i class="fa fa-check"></i><b>0.2</b> Access to RStudio</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="before.html"><a href="before.html#install"><i class="fa fa-check"></i><b>0.2.1</b> Installing R and RStudio on Your Own Machine</a></li>
+<li class="chapter" data-level="0.2.2" data-path="before.html"><a href="before.html#accessing-rstudio-on-university-computers"><i class="fa fa-check"></i><b>0.2.2</b> Accessing RStudio on University Computers</a></li>
+<li class="chapter" data-level="0.2.3" data-path="before.html"><a href="before.html#using-rstudio-cloud"><i class="fa fa-check"></i><b>0.2.3</b> Using RStudio Cloud</a></li>
 </ul></li>
-<li class="chapter" data-level="0.2" data-path="before.html"><a href="before.html#maximising-reproducibility-and-visibility"><i class="fa fa-check"></i><b>0.2</b> Maximising Reproducibility and Visibility</a></li>
+<li class="chapter" data-level="0.3" data-path="before.html"><a href="before.html#maximising-reproducibility-and-visibility"><i class="fa fa-check"></i><b>0.3</b> Maximising Reproducibility and Visibility</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#intended-learning-outcomes-1"><i class="fa fa-check"></i>Intended Learning Outcomes</a></li>
@@ -380,7 +381,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>How to recode cell values based on conditions</li>
 <li>How to obtain unique values from your data</li>
 </ol>
-<p>This lesson is led by <a href="http://www.psy.gla.ac.uk/staff/index.php?id=GM005">Gaby Mahrholz</a>.</p>
+<p>This lesson is led by Gaby Mahrholz.</p>
 </div>
 <div id="pre-steps-4" class="section level2">
 <h2><span class="header-section-number">6.1</span> Pre-steps</h2>
@@ -970,6 +971,11 @@ Solution
 ## $ Grade                 &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;, ...
 ## $ Institution_case_when &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...</code></pre>
 <p>The <code>TRUE</code> statement at the end is similar to the the “else” in the <code>ifelse()</code> function. A further similarity between the two is that arguments are evaluated in order, so you must proceed from the most specific to the most general.</p>
+<p>Allison Horst made a really cute artwork about <code>case_when()</code> which might help. In her example, she is adding a new column called <code>danger</code> with <code>mutate()</code> and wants the danger value to be listed as extreme if the animal is of <code>type</code> kraken. In all other cases, the danger levels should be “just” high.</p>
+<div class="figure">
+<img src="images/dplyr_case_when.png" alt="Artwork by @allison_horst, Source: https://github.com/allisonhorst/stats-illustrations" />
+<p class="caption">Artwork by <code>@allison_horst</code>, Source: <a href="https://github.com/allisonhorst/stats-illustrations" class="uri">https://github.com/allisonhorst/stats-illustrations</a></p>
+</div>
 <div class="task">
 <p>
 <strong>Your turn</strong>

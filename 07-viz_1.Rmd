@@ -8,11 +8,13 @@
 4. Learn how to create groups in plots
 5. Learn how to make a variety of plots based on the type of variables we have
 
-This lesson is led by [Greta Todorova](http://www.psy.gla.ac.uk/staff/index.php?id=GKT01).
+This lesson is led by Greta Todorova.
 
 ## Pre-steps
 
-Today, we will be working with `ggplot2` which is part of `tidyverse` and data from the Scottish Government saved in the file `free_movement_uk.csv`. Load `tidyverse` into the library and read the data into our `Global Environment` as `migration_scot`. 
+Today, we will be working with `ggplot2` which is part of `tidyverse` and data from the Scottish Government saved in the file `free_movement_uk.csv`. 
+
+Firstly, load `tidyverse`, and then read the data into your `Global Environment` as `migration_scot`. 
 
 ```{r L7, message=FALSE}
 library(tidyverse)

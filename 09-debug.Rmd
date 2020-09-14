@@ -4,11 +4,11 @@
 
 By the end of this session you should be:
 
-1. Able to *identify some of the more common errors found in R code*.
-2. Able to *correct some of the more common errors found in R code*.
-3. Know where to go online *to find help and continue your coding journey on your own*.
+1. Able to identify some of the more common errors found in R code.
+2. Able to correct some of the more common errors found in R code.
+3. Know where to go online to find help and continue your coding journey on your own.
 
-This lesson is led by [Rebecca Lai](http://www.psy.gla.ac.uk/staff/index.php?id=RL003).
+This lesson is led by Jaimie Torrance.
 
 ## Errors: How to avoid some and live through the rest
 

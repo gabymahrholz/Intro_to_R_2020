@@ -8,11 +8,13 @@
 3. Learn how to work with themes: adding labels, changing font size, colours and axes ticks. 
 4. Learn to work with legends.
 
-This lesson is led by [Greta Todorova](http://www.psy.gla.ac.uk/staff/index.php?id=GKT01).
+This lesson is led by Greta Todorova.
 
 ## Pre-steps
 
-Today, we will be working with `ggplot2` which is part of `tidyverse` and data from the Scottish Government saved in the file `free_movement_uk.csv`. Load `tidyverse` into the library, and read the data into our `Global Environment` as `migration_scot`. 
+Today, we will continue working with `ggplot2` which is part of `tidyverse`. We will continue working with the data from the Scottish Government saved in the file `free_movement_uk.csv`. 
+
+Firstly, load `tidyverse`, and read the data into your `Global Environment` as `migration_scot`. 
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -156,15 +158,18 @@ Let's look at these plots.
 
 ## Global and Local aesthetics
 
-So far, we have been working with a Global definition of the aesthetics. This allows us to specify the axes and the groupings only once. 
+So far, we have been working with a *Global* definition of the aesthetics. This allows us to specify the axes and the groupings only once. 
 
 Sometimes, we want to use multiple data and put multiple plots on top of each other. For these occasions we can specify the aesthetics at a local level - i.e. in the geoms.
 
-If you remember from last week, we specified both the colour and the shape in our `ggplot()` when we were making the line graph. The `geom_line()` inherited the colour but not the shape argument. However, if we have two geoms that share the same characteristics but we do not want to have the same colours, we can move them to each of the geoms instead of specifying them in `ggplot()`.
+If you remember from last week, we specified both the colour and the shape in our `ggplot()` when we were making the line graph. The `geom_line()` inherited the colour but not the shape argument.
 
-Let's redo the violins and boxplots from last week, and put them together into two separate layers of the same graph. This time, we will give them some colour. We will colour the violins with the `fill` argument and make the boxplots transparent using the `alpha` argument.
+However, if we have two geoms that share the same aesthetics but we do not want to have the same colours, we can move them to each of the geoms instead of specifying them globally in the `ggplot()` function.
+
+Let's redo the violins and box plots from last week, and put them together into two separate layers of the same graph. This time, we will give them some colour. We will colour the violins with the `fill` argument and make the box plots transparent using the `alpha` argument.
 
 ```{r}
+#some data wrangling
 boxes <- migration_scot %>% 
   filter(Sex == 'Female', 
          `Migration Source` == 'To-from Overseas', 
@@ -173,7 +178,7 @@ boxes <- migration_scot %>%
 
 
 
-#make violins and boxplots 
+#make violins and box plots 
 
 ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
   geom_violin(aes(fill = `Migration Type`)) + 
@@ -183,11 +188,31 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
 
 Because `alpha` (the transparency argument) and `fill` are arguments for both box plots and violins, if we had put them in the `ggplot()` layer, they would both be inherited by the two geoms.
 
+Let's see how it would have looked like if we had specified the two arguments globally. 
+
+```{r}
+
+#make violins and box plots 
+
+ggplot(boxes, aes(x = `Migration Type`, y = Value, fill = `Migration Type`, alpha = 0.5)) + 
+  geom_violin() + 
+  geom_boxplot()
+
+```
+
+
+Now the violins and the box plots are both coloured and transparent.
+
+
+```{block, type = 'info'}
+As you know, R works left to right and top to bottom, reading your code line by line. The box plots are on top of the violins because `geom_boxplot()` is after `geom_violin()`. Try it in your console, or make an r chunk in your stub file to see how it would look like.
+```
+
 
 
 ## Themes: Making your plots pretty: looking the way you want them to
 
-The great thing about making your own plots in R is that you can make it look the way you want it to look. Even better, if you are writing a paper, graphs are easy to adjust to match journals' criteria. Let's adjust the look of our graph.
+The great thing about making your own plots in R is that you can make them look the way you want. Even better, if you are writing a paper, graphs are easy to adjust to match journals' criteria. Let's adjust the look of our graph.
 
 
 
@@ -195,8 +220,8 @@ The great thing about making your own plots in R is that you can make it look th
 
 ggplot2 comes with several ready made themes. Some of them are: 
 
-theme_bw(): a white background with major axes and border.
-theme_minimal(): a white background with major axes
+ * theme_bw(): a white background with major axes and border.
+ * theme_minimal(): a white background with major axes
 and  more. Just use the cheetsheet for visualisations with ggplot for some more examples.
 
 Themes are just like any other layer for ggplot. You just add them at the end of your plot with `+`. Let's add one of these theme formats to our plot above. 
@@ -208,11 +233,20 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
   theme_bw()
 ```
 
+```{block, type="question"}
+Can you see the difference from our original plot?
+```
 
+
+`r hide("Explanation")`
+```{block, type="solved"}
+The background is no longer grey, the grid lines are a light grey instead of white, and there is a black border around the plot area.
+```
+`r unhide()`
 
 ### Adding axes titles and headings
 
-Next, let's add some titles and better labels with `labs()`. You need to specify which labels you want to change - x, y or the title, and type in the labels you want.
+Next, let's add some titles and better labels with `labs()`. You need to specify which labels you want to change - x, y or the title, and type in the labels you want. Write `?labs()` in your console to see some examples.
 
 ```{r}
 ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
@@ -224,9 +258,9 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
        y = 'Number of people')
 ```
 
-Sometimes, we need the titles to be a specific size. We can change all of that in an additional `theme()` layer. We specify the argument we want to change and what we need to change. In our case, we want to change the size of the x axis title to 12pt, and the graph title to 20pt. Let's also pretend we do not want the y axis title. We can also specify this in the `theme()` layer. 
+Sometimes, we need the titles to be a specific size. We can change all of that in an additional `theme()` layer. We specify the argument we want to change and what about them we need to change. In our case, I want to change the size of the x-axis title to 12pt, and the graph title to 20pt. Let's also pretend we do not want the y-axis title. We can also specify this in the `theme()` layer. 
 
-We do this by specifying `element_text()` and `element_blank()` for the correct theme arguments (`axis.title.x`, `title`, `axis.title.x`). Simply, for that element of the plot, what do we want to change - text and to make it blank.
+We do this by specifying `element_text()` and `element_blank()` for the correct theme arguments (`axis.title.x`, `title`, `axis.title.x`). Simply put, for that element of the plot, what do we want to change - text and to make it blank.
 
 ```{r}
 ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
@@ -234,23 +268,26 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
   geom_boxplot(aes(alpha = 0.5)) +
   theme_bw()+
   labs(title = 'Female migration to and from\nOverseas into Scotland', 
+       #the addition of \n gives a new line
        x = 'Migration direction', 
        y = 'Number of people') +
   theme(
     axis.title.x = element_text(size = 12), 
     # read this as: change the size of element_text of the 
-    #title of the x axis
+    # x axis title
     title = element_text(size = 20),
     axis.title.y = element_blank() 
     # read this as: change the title of the y axis to blank
   )
 ```
 
-
+```{block, type = 'info'}
+The ready made themes like `theme_bw()` come with an already pre-set size of the titles and and headings. However, since we are putting the `theme()` as a new layer below `theme_bw()` we will override only the specific component that we want. Try putting `theme_bw()` at the bottom instead of above the `theme()` layer.
+```
 
 ## Changing colours
 
-We can rely on the colour schemes automatically, or we can manually specify colours. To change any of the colours, we need to specify which scale we are changing. This is done by specifying the aesthetic. In our case, we are changing the colours of the `fill` aesthetic so we use `scale_fill_manual()`. Instead of using names, you can use any hex colour you want. A hex color is the representation of a color using a 6 digit code. `scale_fill_manual()` works like another layer, which overwrites the automatic colour schemes. Because it overwrites an existing function, it has to be after the geom that uses the `fill` argument.
+We can rely on the colour schemes automatically set by `ggplot2`, or we can manually specify colours we want. To change any of the colours, we need to specify which scale we are changing. This is done by specifying the aesthetic. In our case, we are changing the colours of the `fill` aesthetic so we use `scale_fill_manual()`. Instead of using names, you can use any hex colour you want. A hex colour is the representation of a colour using a 6 digit code. `scale_fill_manual()` works like another layer, which overwrites the automatic colour schemes. Because it overwrites an existing function, it has to be after the geom that uses the `fill` argument.
 
 ```{r}
 ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
@@ -269,18 +306,34 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
   )
 ```
 
+```{block, type = 'info'}
+R really likes order, so it will put everything in alphabetical order. This is why the first colour in the `scale_fill_manual()` layer - `#127d69`, is associated with migration category *In* and the second colour - `#cedc00` is associated with migration category *Out*.
+```
+
+
 ## Legends
 
 We can see that for any additional aesthetic we have put, ggplot has created a legend on the side.
 
-Now let's change what the labels actually say. We do this in the same place we specified the colours `scale_fill_manual` because again, we are overwriting the automatic `fill` labels. 
+Now let's change what the labels actually say. We do this in the same place we specified the colours `scale_fill_manual` because, again, we are overwriting the automatic `fill` labels. 
 
-Let's also: 1) hide the legend associated with the box plots; 2) move the legend to the bottom of the graph using the `legend.position` argument; and 3) change the size of the legend labels (using `legend.title`). We do step 3 in the `theme()` layer as well. Because we have more than one legend, everything we do will be applied to both legends. This is a good idea for consistency. But when we want to hide one of the legends, we have to specify that in the geom itself using the argument `show.legend`.
+Let's also: 
+
+1) hide the legend associated with the box plots (i.e. `alpha`); 
+
+2) move the legend to the bottom of the graph using the `legend.position` argument; and 
+
+3) change the size of the legend titles (using `legend.title`). 
+
+
+We do steps 2 and 3 in the `theme()` layer.
+
+Because we have more than one legend, everything we do will be applied to both legends.This is a good idea for consistency. But when we want to hide one of the legends, we have to specify that in the geom where the legend is created using the argument `show.legend`.
 
 ```{r}
 ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
   geom_violin(aes(fill = `Migration Type`)) + 
-  geom_boxplot(aes(alpha = 0.5), show.legend = FALSE) +
+  geom_boxplot(aes(alpha = 0.5), show.legend = FALSE) + # hide the legend
   scale_fill_manual(values = c('#127d69', '#cedc00'),
                     labels = c('Coming to Scotland',
                                'Leaving Scotland')) +
@@ -300,7 +353,7 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
 
 ## Changing axes ticks
 
-Now, we also need to change what is stated on our x axis to match the legend. We use `scale_x_discrete()` to give new names inside graph, so that we do not have to change our dataset. We specify the labels of the new groups by giving the old name in quotes and then the new name, also in quotes. We use `scale_x_discrete()`, because we have discrete groups - a categorical variable. 
+Now, we also need to change what is stated on our x-axis to match the legend. We use `scale_x_discrete()` to give new names inside the graph, so that we do not have to change our dataset. We specify the labels of the new groups by giving the old name in quotes and then the new name, also in quotes. We use `scale_x_discrete()`, because we have discrete groups - a categorical variable. 
 
 ```{r}
 ggplot(boxes, aes(x = `Migration Type`, y = Value)) + 
@@ -352,7 +405,7 @@ ggplot(traffic_scot2, aes(DateCode, Value,
 
 ## Saving plots
 
-If you want to save your plot to your working directory, you can use the function `ggsave`. First, you have to save your plot into an object in the `Global Environment`. 
+Finally, we have made these lovely plots but we want to be able to put them in reports, papers, on a poster (print it in a large canvas for friends and family to admire). To save your plot to your working directory, you can use the function `ggsave`. First, you have to save your plot into an object in the `Global Environment`. 
 
 ```{r}
 # Save your plot to the Global Environment.
@@ -361,7 +414,8 @@ plot1 <- ggplot(traffic_scot2, aes(DateCode, Value,
                           shape = `Migration Source`, 
                           colour = `Migration Type`)) + 
   geom_point() + 
-  geom_line() 
+  geom_line() +
+  theme_bw()
 
 
 # Then save it to your working directory folder
@@ -371,8 +425,8 @@ ggsave('myplot.png', plot1, width = 9 , height = 6)
 
 ## Summative Homework
 
-The fourth summative assignment is available on moodle now.
+The fourth summative assignment is available on Moodle now.
 
 Good luck.
 
-Check that your Rmd file knits into a html file before submitting. Upload your Rmd file (not the knitted html) to moodle. 
+Check that your Rmd file knits into a html file before submitting. Upload your Rmd file (not the knitted html) to Moodle. 

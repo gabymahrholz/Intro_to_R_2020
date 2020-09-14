@@ -4,11 +4,11 @@
 
 By the end of this session you should be:
 
-1. Familiar enough with a computer to *open, save and access previously saved files*.
-2. Able to *describe R and Studio, the coding environment and the associated file types*.
-3. Able to *install, load and describe the nature of R packages** and **describe the nature and use of functions in general*.
+1. Familiar enough with a computer to open, save and access previously saved files.
+2. Able to describe R and Studio, the coding environment and the associated file types.
+3. Able to install, load and describe the nature of R packages and describe the nature and use of functions in general.
 
-This lesson is led by [Rebecca Lai](http://www.psy.gla.ac.uk/staff/index.php?id=RL003).
+This lesson is led by Wilhelmiina Toivo.
 
 ## Computer Literacy Basics
 

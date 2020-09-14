@@ -152,3 +152,7 @@ You can ask questions on the Microsoft Teams channel that accompanies this cours
 These materials have been adapted from various sources. Some of these materials have been Open Educational Materials with CC-BY-SA licenses. This means that any materials that use them must also be made open (SA means "share alike"). 
 
 We also believe in the value of open educational materials. Your course fees contribute to the development of this course, but also to providing you with lectures, supporting staff and certification and credits at the end of the course.
+
+## Acknowledgement
+
+The materials were initially developed for the University of Glasgow Short Courses for the academic term 2019/20 by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?id=GM005), [Kate Haining](http://www.psy.gla.ac.uk/staff/index.php?id=KH001), [Rebecca Lai](http://www.psy.gla.ac.uk/staff/index.php?id=RL003), [Greta Todorova](http://www.psy.gla.ac.uk/staff/index.php?id=GKT01), and [Wilhelmiina Toivo](http://www.psy.gla.ac.uk/staff/index.php?id=TIWT1), and modified for the academic term 2020/21 by the current tutors.
