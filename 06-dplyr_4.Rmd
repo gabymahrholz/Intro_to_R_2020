@@ -268,7 +268,7 @@ glimpse(fake_data)
 The `TRUE` statement at the end is similar to the the "else" in the `ifelse()` function. A further similarity between the two is that arguments are evaluated in order, so you must proceed from the most specific to the most general.
 
 
-Allison Horst made a really cute artwork about `case_when()` which might help. In her example, she is adding a new column called `danger` with `mutate()` and wants the danger value to be listed as extreme if the animal is of `type` kraken. In all other cases, the danger levels should be "just" high.
+Allison Horst made a really cute artwork about `case_when()` which might help. In her example, she is using the `mutate()` function to add a new column called `danger`, and wants the danger value to be listed as extreme! if the animal is of `type` kraken. In all other cases, the danger levels should be "just" high.
 
 ![Artwork by `@allison_horst`, Source: https://github.com/allisonhorst/stats-illustrations](images/dplyr_case_when.png)
 
