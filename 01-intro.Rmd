@@ -12,13 +12,13 @@ This lesson is led by Wilhelmiina Toivo.
 
 ## Computer Literacy Basics
 
-In order to successfully navigate this course there are a number of things that you need to know about computers more generally. This section here should be everything that you are *required* to know or learn. 
+In order to successfully navigate this course there are a number of things that you need to know about computers more generally. This section includes everything that you are *required* to know or learn. 
 
 We are aware that many people will have been using computers for many years, and in some cases many people will have grown up with them in their household. We have noticed, however, that a number of our incoming students are not familiar with many of the basic concepts that are required to be a successful coder. There is an assumption that "digital native" automatically equates to "computer literate" but in many cases we have found this assumption to be incorrect.
 
-More people than ever before are using some sort of personal computing device, but the type of use differs greatly from what we are going to be doing over the next 10 weeks. Many mobile phones, tablets and (increasingly) PC operating systems hide many of their operations from users. This can create a feeling of compentency with computers that can quickly dissolve when asked to engage with anything slightly more complex.
+More people than ever before are using some sort of personal computing device, but the type of use differs greatly from what we are going to be doing over the next 10 weeks. Many mobile phones, tablets and (increasingly) PC operating systems hide many of their operations from users. This can create a feeling of competency with computers that can quickly dissolve when asked to engage with anything slightly more complex.
 
-If you already know most of this then we apologise, but there may well be people with us who don't. This is a beginner class, so we thought it prudent to start us all off on the same footing.
+If you already know most of this then we apologise, but there may be people with us who don't. This is a beginner class, so we thought it prudent to start us all off on the same footing.
 
 ## R and R Studio
 
@@ -34,7 +34,7 @@ R is a programming language and completely free software, and it is widely used 
 ### RStudio IDE 
 <img src="images/rstudio.png" height="75" width="190" alt="R Studio Logo" align="right" style="margin:10px 10px"> 
 
-RStudio IDE (short for **I**ntegrated **D**evelopment **E**nvironment) is essentially a shiny facade, which sits atop R and gives it all sorts of useful features and makes it much *easier to use*. 
+RStudio IDE (short for **I**ntegrated **D**evelopment **E**nvironment) is essentially a shiny facade, which sits atop R and gives it many useful features and makes it much *easier to use*. 
 
 When you first open it you get 3 main panels, which can be seen in the picture below.
 
@@ -42,7 +42,7 @@ When you first open it you get 3 main panels, which can be seen in the picture b
 
 #### Console
 
-This is essentially the same thing as R commander. You can run code in here, and it can be a useful playground to try out new things and do things that you don't neccessarily want saved into a script because **it's not permanent- anything typed here will be lost when you close R**!
+This is essentially the same thing as R commander. You can run code in here, and it can be a useful playground to try out new things and do things that you don't necessarily want saved into a script because **it's not permanent- anything typed here will be lost when you close R**!
 
 Examples of things you might want to run in the console include, but are not limited to, running new functions and seeing what they do, or installing packages (never EVER done in a script). 
 
@@ -60,7 +60,7 @@ This panel is tabbed, with 2 tabs that you need to pay particular attention to r
 
 - **History**: this is a list of all of the commands that you have run in the past "session", which can be useful to go back to some times if you did run some code in the console that you want to look at again. To scroll through you can put the cursor in the console window and use up and down keys.
 
-At this point you don't really need to worry about the one called connections (it lets you connect to things like online data sources and stuff).
+At this point you don't really need to worry about the one called connections (it lets you connect to things like online data sources).
 
 This is what that panel looks like for me right now... it's empty!
 
@@ -68,9 +68,9 @@ This is what that panel looks like for me right now... it's empty!
 
 #### Files/Plots/Packages/Help/Viewer
 
-This panel set is going to be mega-useful to you throughout the duration of your career as an R user. Viewer is not immediately required, so we'll just cover Files, Plots, Packages and Help.
+This panel set is going to be extremely useful to you throughout the duration of your career as an R user. Viewer is not immediately required, so we'll just cover Files, Plots, Packages and Help.
 
-- **Files**: Shows a file browser that let's you look around in your file structure. helpful hint: click on the more button and "Go to working directory" to see the same files that R can see. **You *can* load files in through this tab, but you should always strive to do it in the script!**
+- **Files**: Shows a file browser that lets you look around in your file structure. helpful hint: click on the more button and "Go to working directory" to see the same files that R can see. **You *can* load files in through this tab, but you should always strive to do it in the script!**
 
 - **Plots**: A tab that displays plots that you have made. You can navigate backwards and forwards between multiple plots- allowing you to test out new things and see the changes in comparison to each other.
 
@@ -96,11 +96,11 @@ When you open a file, the console will shrink and the space taken away in the wi
 
 Opening a new file allows you to write code that can be saved, amended, shared etc. Code sharing is an important aspect of reproducibility!
 
-R can handle a lot of different files types, we will only focus on the two kinds that we learned about in the first semester. These are .r and .Rmd files. Both are saved as plain text files. Many of the files R uses are plain text files at their core. What changes is how R interprets the files, and the types of outputs that you can get from them.
+R can handle a lot of different files types, we will only focus on the two types. These are .r and .Rmd files. Both are saved as plain text files. Many of the files R uses are plain text files at their core. What changes is how R interprets the files, and the types of outputs that you can get from them.
 
 ### File Structure/Directories
 
-Your files should be stored in something called **"directories"**. This is the technical name for a folder. It is a storage space on your computer. Here you can see all of the files contained within the folder for this course document in the **"File Explorer"**, the programme used to view files and folders in Windows:
+Your files should be stored in something called **"directories"**. This is the technical name for a folder. It is a storage space on your computer. Here you can see all of the files contained within the folder for this course document in the **"File Explorer"**, the program used to view files and folders in Windows:
 
 <center> <img src="images/folder.png"> </center> <br>
 
@@ -108,7 +108,7 @@ Each folder and the files within will have a specific **"file path"**, an addres
 
 <center> <img src="images/path.png"> </center> <br>
 
-This will be neccessary later when you start to use RStudio in conjunction with external files, such as data files.
+This will be necessary later when you start to use RStudio in conjunction with external files, such as data files.
 
 ### File Extensions
 
@@ -122,10 +122,10 @@ Files come in different types, and each different type comes with a different **
 
 ### .zip Files
 
-In this course we will often ask you to download a folder with multiple files and this will be stored on the server as a zip file. A zip file is a folder that contains files that have been compressed to make the file size smaller and enables you to download multiple files at once, however, before you use the files from a zip folder you first need to extract them.
+In this course we will often ask you to download a folder with multiple files and this will be stored on Moodle as a zip file. A zip file is a folder that contains files that have been compressed to make the file size smaller and enables you to download multiple files at once, however, before you use the files from a zip folder you first need to extract them.
 
 1. Click on the link to download the compressed folder.
-2. Navgiate to the zip file (probably in your downloads folder) and open it. You will see all the files it contains but don't use these - click "Extract all" on the top ribbon.
+2. Navigate to the zip file (probably in your downloads folder) and open it. You will see all the files it contains but don't use these - click "Extract all" on the top ribbon.
 3. You will be asked to select a location to save the unzipped files. Normally the default location it suggests will be the same folder and so you can just click "Extract". If you want to unzip these files to a different place click browse and select the folder you want to keep it in. I like to keep all the files for one project in the same folder.
 4. You can now delete the zip file and use the unzipped files. This is a really important step - if you use the compressed files your code may not work properly. This usually causes error messages relating to temporary files.
 
@@ -155,7 +155,7 @@ All of the text in an R script will default to being read as **executable code (
 
 ### .Rmd files
 
-These are the types of files that you will mostly be using during this class. You will be given some pre-formatted ones to complete your assessments on also. 
+These are the types of files that you will mostly be using during this class. You will also be given some pre-formatted ones to complete your assessments on. 
 
 When you go to File > New file > R Markdown... you will be prompted to supply some information. You can do this, but don't have to as you can change many of these parameters later:
 
@@ -171,7 +171,7 @@ I like to think of the way this file type is interpreted as being *like a script
 
 Code chunks are bordered by "backticks", which look an awful lot like apostrophes but they are different! These are important as they tell R where it needs to start and stop reading. 
 
-Chunks also contain "curly brackets" at the start which contains various bits of information neccessary to how the computer reads it. This includes what programming language you are writing in there (yes! R can understand other programming languages!), name of the chunk (used for a variety of reasons, such as our marking software and document indexing) and other attributes which are not neccessary to learn about right now. 
+Chunks also contain "curly brackets" at the start which contains various bits of information necessary to how the computer reads it. This includes what programming language you are writing in there (yes! R can understand other programming languages!), name of the chunk (used for a variety of reasons, such as our marking software and document indexing) and other attributes which are not necessary to learn about right now. 
 
 <center> <img src="images/chunk.png"> </center> <br>
 
@@ -182,11 +182,11 @@ You must not add any code or text to the lines which contain backticks other tha
 
 ```
 
-Hastags used inside of code chunks don't result in headers, but rather are ignored as the comments discussed in the section about .r files.
+Hashtags used inside of code chunks don't result in headers, but rather are ignored as the comments discussed in the section about .r files.
 
 ## Comments
 
-Comments can- and should- be used throughout both .r and .Rmd file types. These are anything written *after* a hashtag symbol (and, if using a .Rmd file, within a code chunk). This symbol instructs the computer to disregard this text, letting it know that this is not for it to interpret as exectuable code but rather it is something for the human user to read and interpret.
+Comments can- and should- be used throughout both .r and .Rmd file types. These are anything written *after* a hashtag symbol (and, if using a .Rmd file, within a code chunk). This symbol instructs the computer to disregard this text, letting it know that this is not for it to interpret as executable code but rather it is something for the human user to read and interpret.
 
 These are handy for letting others know what each piece of code was written to do, or to inform your future self of what you were doing.
 
@@ -206,7 +206,7 @@ Make use of comments in the code we write in class and let this function as your
 
 As mentioned before, anything in the console vanishes when you close R. Any objects that you have used code to make (those things that live in the environment) should vanish too.
 
-Your script is a set of instructions on how to make those objects. If you have saved your script or markdown, you can essentially re-run it and get back to where you left off when you last saved your progress. 
+Your script is a set of instructions on how to make those objects. If you have saved your script or markdown, you can just re-run it and get back to where you left off when you last saved your progress. 
 
 Saving your file for the first time is as easy as going to File > Save As and filling in the details in the dialogue box as appropriate:
 
@@ -225,7 +225,7 @@ A session in R is a segment of time/workspace/processor time that is dedicated t
 
 Let's go back to Microsoft Word. We can have an essay open in one window and class notes opened up in another window. Both are instances of Word, but they are dedicated to two different tasks which just so happen to be running concurrently.
 
-You can have multiple sessions open in R, but I wouldn't recommend it because it can become confusing. We can start a new session by going to Session > new session. We Are much more interested in a task which is closely linked to this idea- restarting your current session.
+You can have multiple sessions open in R, but we wouldn't recommend it, because it can become confusing. We can start a new session by going to Session > new session. We are much more interested in a task which is closely linked to this idea- restarting your current session.
 
 <center> <img src="images/session_menu.png"> </center> <br>
 
@@ -248,9 +248,9 @@ These software extensions are referred to as "packages".
 
 ### Installing Packages
 
-There are a number of functions that we will be using in this course that are not part of the original programming language. The most common package we will be using will be one called "Tidyverse".
+There are a number of functions that we will be using in this course that are not part of the original programming language. The most common package we will be using will be one called "tidyverse".
 
-We will use the example of Tidyverse to show you how to install packages that you might need.
+We will use the example of tidyverse to show you how to install packages that you might need.
 
 #### What is Tidyverse? {#install-tidyverse}
 
@@ -278,7 +278,7 @@ Types the following in and then hit "enter":
 
 Note that the name of the package is in quotation marks when used here. This is not always the case!
 
-The console will then fill with a lot of text showing you what is being done. It is not neccessary to understand all of this. 
+The console will then fill with a lot of text showing you what is being done. It is not necessary to understand all of this. 
 
 Look out for this message being printed in the console
 
@@ -294,17 +294,17 @@ We will cover functions shortly.
 
 ### Loading Packages {#load-tidyverse}
 
-Now that we have installed Tidyverse it is on our machine but it is not ready to use yet!
+Now that we have installed tidyverse it is on our machine but it is not ready to use yet!
 
 It is easier to understand if you think about it like this: if you install Instagram on your phone you only do it once and you have to open the app each time you want to use it.
 
-Similarly, once Tidyverse is installed it is on your computer until you remove it. If you want to use it you need to "open it". This is done by using another **function**, `library()`.
+Similarly, once tidyverse is installed it is on your computer until you remove it. If you want to use it you need to "open it". This is done by using another **function**, `library()`.
 
 ```{r library, eval = F}
 library(tidyverse)
 ```
 
-This must be done before you use Tidyverse. We normally do this in the first chunk in the document, essentially gathering our tools before we start working.
+This must be done before you use tidyverse. We normally do this in the first chunk in the document, essentially gathering our tools before we start working.
 
 If you want to load other packages you would reuse the **function** `library()`, replacing "tidyverse" with the name of the package you want to load.
 
@@ -334,30 +334,30 @@ Essentially the function name is the action to perform (jump) and the arguments 
 Think about `install.packages("tidyverse")` and `library(tidyverse)`: what are the function names and what are the arguments? Which part changes when you want to install and load a different package?
 ```
 
-Once your function has taken the input and run the command on it it will produce an output of some sort. 
+Once your function has taken the input and run the command on it, it will produce an output. 
 
-As we progress through this course see if you can spot the functions, the arguments, the inputs and the outputs.
+As we progress through this course, see if you can spot the functions, the arguments, the inputs and the outputs.
 
 
 ## Formative Homework
 
 ### Install R and RStudio on your personal computer
 
-If you haven't done so, please read the chapter [Assignment before starting the course](\@ref(#before)) and either install R and RStudio on your own computer, or familiarise yourself with the R Cloud.
+If you haven't done so, please read the chapter [Assignment before starting the course](\@ref(#before)) and either install R and RStudio on your own computer, or familiarise yourself with the RStudio Cloud.
 
 
-### Installing and Loading Tidyverse
+### Installing and Loading tidyverse
 
-Use the information in the section \@ref(install-tidyverse) above to install the Tidyverse package on your RStudio installation.
+Use the information in the section \@ref(install-tidyverse) above to install the tidyverse package on your RStudio installation.
 
 ```{block, type = "info"}
 If you are using RStudio Cloud you are provided with a completely self-contained computing environment. This means that you can `install.packages()` on your virtual RStudio too as required.
 ```
 
-Load Tidyverse from the using the `library()` function in section \@ref(load-tidyverse). *For now* you can do this in either a new .r file, .Rmd file or even in the console. 
+Load tidyverse from the using the `library()` function in section \@ref(load-tidyverse). *For now* you can do this in either a new .r file, .Rmd file or even in the console. 
 
 If you successfully load it you will see this printed in the console:
 
 <center><img src="images/tidyverse_success.png"></center>
 
-You will be using the Tidyverse package in the next lesson, so don't worry if you struggle with this at the moment.
+You will be using the tidyverse package in the next lesson, so don't worry if you struggle with this at the moment.
