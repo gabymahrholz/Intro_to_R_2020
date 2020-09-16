@@ -8,7 +8,7 @@
 4. Learn how to create groups in plots
 5. Learn how to make a variety of plots based on the type of variables we have
 
-This lesson is led by Greta Todorova.
+This lesson is led by [Greta Todorova](https://www.psy.gla.ac.uk/otherstaff/?id=GKT01).
 
 ## Pre-steps
 

@@ -8,7 +8,9 @@ The whole purpose of this lecture is to expose you to a couple of useful functio
 2. How to recode cell values based on conditions
 3. How to obtain unique values from your data
 
-This lesson is led by Gaby Mahrholz.
+This lesson is led by [Gaby Mahrholz](https://www.psy.gla.ac.uk/otherstaff/?id=GM005).
+
+
 
 ## Pre-steps
 

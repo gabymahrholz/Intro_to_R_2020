@@ -9,7 +9,7 @@ Be able to use the following dplyr one-table verbs:
 * filter()
 * mutate()
 
-This lesson is led by Jaimie Torrance.
+This lesson is led by [Jaimie Torrance](https://www.psy.gla.ac.uk/otherstaff/?id=TJ001).
 
 
 

@@ -53,23 +53,23 @@ These ILOs will be the points that will be covered in the assessments.
 
 ## What will I need to complete this course? {-}
 
-To successfully complete this course you will need access to a computer that either already has, or you can download R and RStudio software on. This computer will need to use a Windows, Mac or Linux based operating system. You *can* run RStudio on a Chromebook sometimes, but the process is more complex (see <a href="https://www.reddit.com/r/chromeos/comments/8r5lwb/r_studio_for_chromebook/">here</a>).
+To successfully complete this course, you will need access to a computer that either already has, or you can download R and RStudio software on. This computer will need to use a Windows, Mac or Linux based operating system. You *can* run RStudio on a Chromebook sometimes, but the process is more complex (see <a href="https://www.reddit.com/r/chromeos/comments/8r5lwb/r_studio_for_chromebook/">here</a>).
 
 If you cannot use RStudio on your computer you might want to consider using <a href="https://rstudio.cloud/">RStudio Cloud</a>.
 
-All University of Glasgow Library computers should have this software installed. If you have enrolled in the University you should have access to these.
+All University of Glasgow Library computers should have this software installed. If you have enrolled in the University, you should have access to these.
 
 Before the first lesson you will be given the task of either installing R and RStudio on your own personal computer, or finding another suitable method of accessing the software. Full instructions will be given in [Chapter 1](\@ref(#accessing)) of this coursebook.
 
 ```{block, type = "info"}
-**If you are having issues with access talk to your tutors via the via the Microsoft Teams channel as soon as possible so that we can help you!** R, like any skill, will get better with practice and we want to ensure you can practice and complete the assessments as easily as possible.
+**If you are having issues with access, talk to your tutors via the via the Microsoft Teams channel as soon as possible so that we can help you!** R, like any skill, will get better with practice and we want to ensure you can practice and complete the assessments as easily as possible.
 ```
 
 ## About the Assessments {-}
 
 ### Formative Assessments {-}
 
-These assessments allow you to revise the concepts that you have learned in class. These do not count towards the course grade and, although we encourage you to, there is no requirement to complete them.
+These assessments allow you to revise the concepts that you have learned in class. They do not count towards the course grade and, although we encourage you to, there is no requirement to complete them.
 
 These may take the form of coding assessments and/or multiple choice questions (MCQs) that will be delivered in the same format as the summative assessments - a downloadable file that you fill in the blanks of.
 
@@ -78,16 +78,16 @@ The answers for each of the formative assessments will be available at 5pm one w
 
 
 ```{block, type = "info"}
-If you encounter something in the formative assessments that you want to ask a question about then please use the Teams channel.
+If you encounter something in the formative assessments that you want to ask a question about, then please use the Teams channel.
 ```
 
 ### Summative Assessments {-}
 
 **These are the assessments that count towards your course grade**.
 
-There will be 5 take-home exercises to complete as you progress through this course. They will be evenly spaced across the entire 10 week span (after L2, L4, L6, L8, and L10), occurring every two weeks. You will have one week from the time of the release of each assessment to submit your answer(s). The solutions of the summative assessments will be released with the grades and feedback (see schedule below), however, we can release solutions earlier once everyone has submitted or we have information that someone is not submitting their assessment for a particular week. So please let us know if you are not planning to submit a specific assessment.
+There will be 5 take-home exercises to complete as you progress through this course. They will be evenly spaced across the entire 10-week span, occurring every two weeks (after L2, L4, L6, L8, and L10). You will have one week from the time of the release of each assessment to submit your answer(s). The solutions of the summative assessments will be released with the grades and feedback (see schedule below), however, we can release solutions earlier once everyone has submitted or we have information that someone is not submitting their assessment for a particular week. So please let us know if you are not planning to submit a specific assessment.
 
-For the summative assessments, we ask you to **complete .Rmd files** (either by answering multiple choice questions, producing code or explaining what a code chunk does), and upload them to Moodle in the assessment submission section. The .Rmd files and data for specific assessments will be provided in a **zip folder within each lecture tile** you are asked to download and unzip before you start an assessment. The questions, whilst readable in the .Rmds, will also be posted in the `Summative Assessment - questions section`. It is strongly recommended to **read the question page in combination with the .Rmd**, as they might provide additional information (such as giving you hints what output to expect, or what a graph may look like etc.).
+For the summative assessments, we ask you to **complete .Rmd files** (either by answering multiple choice questions, producing code or explaining what a code chunk does), and upload them to Moodle in the assessment submission section. The .Rmd files and data for specific assessments will be provided in a **zip folder within each lecture tile** you are asked to download and unzip before you start an assessment. The folder you download will also contain a questions file. It is strongly recommended to **read the questions file in combination with the .Rmd**, as they might provide additional information (such as giving you hints what output to expect, or what a graph may look like etc.).
 
 
 ```{block, type = "warning"}
@@ -123,7 +123,7 @@ We will never ask you to memorise any code as this is not how people produce cod
 
 There will be penalties for late submissions. Your work will be assessed in the usual way, and the primary grade and secondary band will be adjusted to include reductions by two secondary bands for each working day (or part of a working day) the work was submitted late. For example, for submitting an assessment 6 hours after deadline with an assessed grade (had it been submitted on time) of A5, a penalty of 2 secondary bands reduction would result in a final grade of B2.
 
-You can apply for extensions for up to 5 working days. In that case, no grade points will be taken off for your final grade for submitting after the official deadline. Please email Gaby (g.mahrholz.1@research.gla.ac.uk) if you find yourself struggling to submit on time. We are here for you. 
+You can apply for extensions for up to 5 working days. In that case, no grade points will be taken off your final grade for submitting after the official deadline. Please email Gaby (g.mahrholz.1@research.gla.ac.uk) if you find yourself struggling to submit on time. We are here for you. 
 
 For extensions after 5 working days, you have to submit a good cause form. If an extension for good cause has been granted, and the extension is past the date that solutions for the assessment have been released, an alternative assessment will be provided.
 
@@ -135,9 +135,9 @@ Any blank document, or document that was submitted in a format other than an R M
 
 An .Rmd file to complete each summative assessment will be provided to you. In this file, you will be provided with code chunks in which to type your answers.
 
-Once you have provided code in all of the appropriate slots you will then upload this file to the Assessment Submission section on Moodle.
+Once you have provided code in all of the appropriate slots, you will then upload this file to the Assessment Submission section on Moodle.
 
-Formative assessments are not to be uploaded to Moodle. You will be provided an answer key to which you can compare your own answers. If you have questions about either your own answers or those provided by the tutors then please ask about it on the appropriate Teams channel.
+Formative assessments are not to be uploaded to Moodle. You will be provided an answer key to which you can compare your own answers. If you have questions about either your own answers or those provided by the tutors, please ask about it on the appropriate Teams channel.
 
 
 
@@ -155,4 +155,4 @@ We also believe in the value of open educational materials. Your course fees con
 
 ## Acknowledgement {-}
 
-The materials were initially developed for the University of Glasgow Short Courses for the academic term 2019/20 by [Gaby Mahrholz](http://www.psy.gla.ac.uk/staff/index.php?id=GM005), [Kate Haining](http://www.psy.gla.ac.uk/staff/index.php?id=KH001), [Rebecca Lai](http://www.psy.gla.ac.uk/staff/index.php?id=RL003), [Greta Todorova](http://www.psy.gla.ac.uk/staff/index.php?id=GKT01), and [Wilhelmiina Toivo](http://www.psy.gla.ac.uk/staff/index.php?id=TIWT1), and modified for the academic term 2020/21 by the current tutors.
+The materials were initially developed for the University of Glasgow Short Courses for the academic term 2019/20 by [Gaby Mahrholz](https://www.psy.gla.ac.uk/otherstaff/?id=GM005), [Kate Haining](https://www.psy.gla.ac.uk/otherstaff/?id=KH001), [Rebecca Lai](https://www.psy.gla.ac.uk/otherstaff/?id=RL003), [Greta Todorova](https://www.psy.gla.ac.uk/otherstaff/?id=GKT01), and [Wilhelmiina Toivo](https://www.psy.gla.ac.uk/otherstaff/?id=TIWT1), and modified for the academic term 2020/21 by the current tutors.

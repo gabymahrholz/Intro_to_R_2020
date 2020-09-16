@@ -8,7 +8,7 @@ By the end of this session you should be:
 2. Able to correct some of the more common errors found in R code.
 3. Know where to go online to find help and continue your coding journey on your own.
 
-This lesson is led by Jaimie Torrance.
+This lesson is led by [Jaimie Torrance](https://www.psy.gla.ac.uk/otherstaff/?id=TJ001).
 
 ## Errors: How to avoid some and live through the rest
 

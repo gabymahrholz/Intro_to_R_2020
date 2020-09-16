@@ -15,7 +15,7 @@
 * Binding joins: `bind_rows()`, `bind_cols()`
 
 
-This lesson is led by Jaimie Torrance.
+This lesson is led by [Jaimie Torrance](https://www.psy.gla.ac.uk/otherstaff/?id=TJ001).
 
 
 
