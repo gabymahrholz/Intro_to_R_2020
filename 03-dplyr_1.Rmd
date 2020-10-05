@@ -8,6 +8,8 @@ Be able to use the following dplyr one-table verbs:
 * arrange()
 * filter()
 * mutate()
+* group_by()
+* summarise()
 
 This lesson is led by [Jaimie Torrance](https://www.psy.gla.ac.uk/otherstaff/?id=TJ001).
 
@@ -29,7 +31,7 @@ It is estimated that data scientists spend between 50-80% of their time cleaning
 |	group_by() | Organise observations (rows) by variables (columns) |
 |	summarise() | Compute summary statistics for selected variables (columns) |
 
-These are termed **one table verbs** as they only operate on one table at a time. Today we will focus on select(), arrange(), filter(), and mutate().
+These are termed **one table verbs** as they only operate on one table at a time. Today we will examine the Wickham Six; select(), arrange(), filter(), mutate(), group_by(), and summarise().
 
 
 ## Pre-Steps
@@ -38,12 +40,12 @@ Before we can talk about today's data, let's do some house-keeping first.
 
 ### Downloading materials
 
-Download the materials we will be working with today either from <a href="data\L3L4_data.zip" download>here</a> or from moodle. The zip folder that contains an Rmd file called `L3L4_stub`, a data file called `Student_Mental_Health.csv`, a data file called `Anx_Emp.csv` and the paper "A Dataset of Students' Mental Health and Help-Seeking Behaviors in a Multicultural Environment" (Nguyen et al., 2019). Similar to last week, `L3L4_stub` contains all code chunks for today's lesson, and is intended for you to add notes and comments.
+Download the materials we will be working with today either from <a href="data\L3L4_data.zip" download>here</a> or from moodle. The zip folder that contains an Rmd file called `L3L4_stub`, a data file called `CareerStats.csv`, a data file called `wos_rain.csv` and data file called `wos_sun.csv`. Similar to last week, `L3_stub` contains all code chunks for today's lesson, and is intended for you to add notes and comments.
 
 
 ### Unzipping the zip folder
 
-Make sure you **unzip the folder** and check it contains the `L3L4_stub.Rmd`, `Student_Mental_Health.csv`, and the Nguyen paper. 
+Make sure you **unzip the folder** and check it contains the `L3_stub.Rmd`, `CareerStats.csv`, `wos_rain.csn` and `wos_sun.csv`. 
 
 
 ### Setting the working directory
@@ -51,111 +53,107 @@ Make sure you **unzip the folder** and check it contains the `L3L4_stub.Rmd`, `S
 Set that folder as your working directory for today. The files in the folders should now be visible in the `Files pane`.
 
 
-### Load tidyverse into the library
+### Loading in the required packages into the library
 
-As we will be using functions that are part of `tidyverse`, we need to load it into the library.
+As we will be using functions that are part of `tidyverse`, we need to load it into the library. You will also need to load in the new package `babynames`. You will need to have this package installed first before you can load it into the library, if you haven't done that yet use the `install.packages()` function down in your console first.
 
 ```{r L3, message=FALSE}
 library(tidyverse)
+library(babynames)
 ```
 
 
-### 	Reading in the data
+### Read in the data
 
-Today, we will be using the following data file `Student_Mental_Health.csv`. This contains demographic and mental health data for 268 students at an international university in Japan. The full version of this open access dataset and accompanying publication are available at https://www.mdpi.com/2306-5729/4/3/124. There is also a copy of this paper in today's data folder.
+Now, today we will work with two different datasets, one fairly simple dataset, and another more messy complex dataset later one.
+
+The first is a large dataset about babynames (big surprise!). The package you installed and loaded into the library is infact a readymade dataset, that can be read straight into the `Global Environment`. We will deal with the second dataset later.
 
 
-Now, you need to read the .csv file containing your data into your `Global Environment` using the function `read_csv()`. Remember to store your data in an appropriately named object (e.g. `student_MH`).  
 
-```{r, message=FALSE}
-student_MH <- read_csv("Student_Mental_Health.csv")
+```{r}
+Name_Data <- babynames
 ```
 
 
 ### View the data
 
-Either click on `student_MH` in your `Global Environment` to open your data in a new tab on the `Source` pane or call the object in your `Console` (by typing the name of the object `student_MH`) to check that the data was correctly imported into R.
+Click on `Name_Data` in your `Global Environment` to open your data in a new tab on the `Source` pane or call the object in your `Console` (by typing the name of the object `Name_Data`) to check that the data was correctly imported into R.
 
 ```{r}
-student_MH
+Name_Data
 ```
 
 
 ```{block, type="funfact"}
-You could also view the data by using the function `View()`. If you are more of a typer than a mouse-user you can type `View(student_MH)` into your `Console`. This will open the data in a read-only, spreadsheet-like format in a new tab on the `Source` pane.
+You could also view the data by using the function `View()`. If you are more of a typer than a mouse-user you can type `View(Name_Data)` into your `Console`. This will open the data in a read-only, spreadsheet-like format in a new tab on the `Source` pane.
 ```
 
 
 Remember from last week, we can also use `glimpse()` to view the columns and their datatypes.
 
 ```{r}
-glimpse(student_MH)
+glimpse(Name_Data)
 ```
 
 `head()` would be helpful in displaying only the first 6 rows of the dataset, but remember not to get "tricked" by the number of observations shown in the output.
 
 ```{r}
-head(student_MH)
+head(Name_Data)
 ```
 
 
 <span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
 
-How many rows (or observations) does `student_MH` have? `r fitb("268")` <br>
-How many columns (or variables) does `student_MH` have? `r fitb("19")` <br>
+How many rows (or observations) does `Name_Data` have? `r fitb("1924665")` <br>
+How many columns (or variables) does `Name_Data` have? `r fitb("5")` <br>
 
 
 ```{block, type="task"}
-Take 10 minutes to read the `data description` section of the Nguyen publication in order to familiarise yourself with the variables in your dataframe. 
+Take some time to familiarise yourself with the variables in your dataframe. 
 ```
 
 
 ## select()
 
-You may not want to include every single variable in your analysis. In order to include or exclude certain variables (columns), use the `select()` function. The first argument to this function is the object you want to select variables from (i.e. our tibble called `student_MH`), and the subsequent arguments are the variables to keep.
+You may not want to include every single variable in your analysis. In order to include or exclude certain variables (columns), use the `select()` function. The first argument to this function is the object you want to select variables from (i.e. our tibble called `Name_Data`), and the subsequent arguments are the variables to keep.
 
 
-For example, if you wanted to keep all variables except from `ID`, you could type:
+For example, if you wanted to keep all variables except from `prop`, you could type:
 
 ```{r}
-select(student_MH, inter_dom, Region, Gender, Academic, Age, Stay_Cate, Japanese_cate, English_cate, ToDep, ToSC, APD, AHome, APH, Afear, ACS, AGuilt, AMiscell, ToAS)
+select(Name_Data, year, sex, name, n)
 ```
 
-Uuuuiiii. That was long and it would have taken us loads of time typing it out. There are two ways on how we could have done this easier and faster:
+That works fine when you have realtively few variables like this dataset, however this menthod can become very time consuming if you have a lot of varibales in  your dataset. There are two ways on how we could have done this easier and faster:
 
-1. We could use the colon operator `:`. Similar to last week where we used the colon operator for numerical sequences, we can use it here for selecting a sequence of column names. Here, it reads as "take object `student_HM`, and select columns `inter_dom`, `ToAS`, and everything in between".
+1. We could use the colon operator `:`. Similar to last week where we used the colon operator for numerical sequences, we can use it here for selecting a sequence of column names. Here, it reads as "take object `student_HM`, and select columns `year`, and every other column though to `n`".
 
 ```{r}
-select(student_MH, inter_dom:ToAS)
+select(Name_Data, year:n)
 ```
 
 2. We could use "negative selection", i.e. select the variable we wanted to drop by adding a `minus` in front of it.
 
 ```{r}
-select(student_MH, -ID)
+select(Name_Data, -prop)
 ```
 
-We also have the option of "de-selecting" more than one variable. Let's say, we had no interest in any of the seven subscales for `ToAS`, we could exclude them by combining the colon operator `:` with the `minus`. Watch out that you include the `minus` in front of both reference columns.
+We also have the option of "de-selecting" more than one variable. By including the minus sign before each column we can remove as many as we want.
 
 ```{r}
-select(student_MH, -APD:-AMiscell)
-```
-
-This only works, because they are all next to each other in the tibble. If we wanted to exclude columns `ID`, `Academic`, and `ToAS` that are not neighbouring each other, we would need to list the arguments separately, and insert a `minus` before each variable name.
-
-```{r}
-select(student_MH, -ID, -Academic, -ToAS)
+select(Name_Data, -prop, -sex)
 ```
 
 
 ```{block, type="funfact"}
 We can also use `select()` in combination with the `c()` function. Remember, `c()`is "hugging things together". We would put a single `minus` in front of the c rather than each of the column. This will read as exclude every column listed within the brackets.
 
-select(student_MH, -c(ID, Academic, ToAS))
+select(Name_Data, -c(sex, n, prop))
 ```
 
 
-Remember, if you don't save this data to an object (e.g. the original dataframe `student_MH` or under a new name), it won't be saved. We have not saved any of the previous tasks to the `Global Environment`, so there should still be only one object, e.g. the tibble named `student_MH`.
+Remember, if you don't save this data to an object (e.g. the original dataframe `Name_Data` or under a new name), it won't be saved. We have not saved any of the previous tasks to the `Global Environment`, so there should still be only one babynames related object, e.g. the tibble named `Name_Data`.
 
 
 <span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
@@ -163,33 +161,26 @@ Remember, if you don't save this data to an object (e.g. the original dataframe 
 ```{block, type="task"}
 **Your turn**
 
-Create a tibble called `short_MH` that keeps all variables/columns from the data `student_MH` except from `Region`, `Stay_Cate`, `Japanese_cate` and `English_cate`. Your new object `short_MH` should appear in your `Global Environment`.
+Create a tibble called `Name_Short` that keeps all variables/columns from the data `Name_Data` except from `sex` and `n`. Your new object `Name_Short` should appear in your `Global Environment`.
 
 ```
 
 
 `r hide("Solution")`
 ```{r, eval = TRUE}
-# Kate's solution:
-short_MH <- select(student_MH, -Region, -Stay_Cate, -Japanese_cate, -English_cate)
+# Jaimie's solution:
+Name_Short <- select(Name_Data, -sex, -n)
+# OR
+Name_Short <- select(Name_Data, -c(sex, n))
+# OR
+Name_Short <- select(Name_Data, year, name, prop)
 ```
 
-```{block, type="info"}
-But there are plenty of other ways how this could have been done. For example: <br>
-
-* select(student_MH, ID, inter_dom, Gender, Academic, Age, ToDep, ToSC, APD, AHome, APH, Afear, ACS, AGuilt, AMiscell, ToAS) <br>
-* select(student_MH, ID, inter_dom, Gender:Age, ToDep:ToAS) <br>
-* select(student_MH, -c(Region, Stay_Cate, Japanese_cate, English_cate)) <br>
-* select(student_MH, -c(Region, Stay_Cate:English_cate)) <br>
-* select(student_MH, -Region, -Stay_Cate:-English_cate)
-
-This is mainly a matter of personal preference.
-```
 
 ```{block, type="warning"}
 You could also reference the position of column, rather than the actual name.
 
-* select(student_MH,1,2,4:6,10:19)
+* select(Name_Data,1,3,5)
 
 While it works code-wise, and seems a much quicker approach, it is a very bad idea in the name of reproducibility. If you send your code to a fellow researcher, they would have no idea what the code does. Moreover, if at some point, you need to add another column to your data, and/or decide to reorder the sequence of your columns, your code would not run anymore the way you expect it to.
 
@@ -200,82 +191,60 @@ While it works code-wise, and seems a much quicker approach, it is a very bad id
 
 ## arrange()
 
-The `arrange()` function can reorder observations (rows) in ascending (default) or descending order. The first argument to this function is again an object (in this case the tibble `short_MH` we created in the previous section), and the subsequent arguments are the variables (columns) you want to sort by. For example, if you wanted to sort by `Gender` in **ascending** order (which is the default in `arrange()`) you would type:
+The `arrange()` function can reorder observations (rows) in ascending (default) or descending order. The first argument to this function is again an object (in this case the tibble `Name_Data`), and the subsequent arguments are the variables (columns) you want to sort by. For example, if you wanted to sort by `n` in **ascending** order (which is the default in `arrange()`) you would type:
 
 ```{r}
-short_MH <- arrange(short_MH, Gender)
-short_MH
+Name_Arr <- arrange(Name_Data, n)
+Name_Arr
 ```
 
 
 ```{block, type="warning"}
-Since you have assigned this code to the same object as before (i.e. short_MH), the previous version of `short_MH` is overwritten. 
+If you were to assign this code to the same object as before (i.e. Name_Data), the previous version of `Name_Data` would be overwritten. 
 ```
 
 
-Notice how the `Gender` column is now organised in alphabetical order i.e. females followed by males. Suppose you wanted to reverse this order, displaying males before females, you would need to wrap the name of the variable in the `desc()` function (i.e. for **descending**). 
+Notice how the `n` column is now organised in alphabetical order i.e. smallest number to largest. Suppose you wanted to reverse this order, displaying largest, you would need to wrap the name of the variable in the `desc()` function (i.e. for **descending**). 
 
 ```{r}
-short_MH <- arrange(short_MH, desc(Gender))
-short_MH
+Name_Arr2 <- arrange(Name_Data, desc(n))
+Name_Arr2
 ```
 
 
-You can also sort by more than one column. For example, you could sort by `Gender` and `ToAS` (total acculturative stress score) in ascending order: 
+You can also sort by more than one column. For example, you could sort by `name` first, and then `n` second: 
 
 ```{r}
-short_MH <- arrange(short_MH, Gender, ToAS)
-glimpse(short_MH)
+Name_Arr3 <- arrange(Name_Data, name, n)
+Name_Arr3
 ```
 
-Or descending order:
-
-```{r}
-short_MH <- arrange(short_MH, desc(Gender), desc(ToAS))
-glimpse(short_MH)
-```
-
-
-<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
-
-```{block, type="task"}
-
-**Your turn**
-
-Hmmm, I wish we hadn't overwritten our original data `short_MH` repeatedly. Arrange the rows back to the way they were (i.e. sort by `ID`). 
-
-```
-
-
-`r hide("Solution")`
-```{r, eval = TRUE}
-short_MH <- arrange(short_MH, ID)
-```
-`r unhide()`
-
+You can also arrange by multiple columns in desceding order too, or arrange by one column in ascending order and another in descending order if you wanted.
 
 
 ## filter()
 
 ### Single criterion
 
-In order to include or exclude certain observations (rows), use the `filter()` function. The first argument to this function is an object (in this case the tibble `short_MH` we created earlier) and the subsequent argument is the criteria you wish to filter on. For example, if you want only those observations with total acculturative stress scores of more than 72: 
+In order to include or exclude certain observations (rows), use the `filter()` function. The first argument to this function is an object (in this case the tibble `Name_Data`) and the subsequent argument is the criteria you wish to filter on. For example, if you want only those observations from the year of your birth: 
 
 ```{r}
-short_MH72 <- filter(short_MH, ToAS > 72)
-glimpse(short_MH72)
+Name_MyYear <- filter(Name_Data, year == 1988)
+glimpse(Name_MyYear)
 ```
 
+or keep observations of only popular names:
 
-```{block, type="funfact"}
-Since the column `ToAS` has numeric values with no decimal places, we could have coded this as `filter(short_MH, ToAS >= 73)`. Don't believe it? Try it out in your `Console`.
+```{r}
+Name_Pop <- filter(Name_Data, prop >= 0.07)
+glimpse(Name_Pop)
 ```
 
 
 ```{block, type="question"}
-1. Notice how we saved the new data under a different object name (`short_MH72`). When using `filter()`, you should never replace/ overwrite your original data unless you know exactly what you are doing. What could be the consequences?
+1. Notice how we saved the new data under a different object name (`Name_MyYear`). When using `filter()`, you should never replace/ overwrite your original data unless you know exactly what you are doing. What could be the consequences?
 
-2. By the way, what do symbols such `>` and `>=` remind you of??? (hint: something we covered last week?)
+2. By the way, what do symbols such `==` and `>=` remind you of??? (hint: something we covered last week?)
 ```
 
 `r hide("Answers")`
@@ -287,33 +256,39 @@ Remember the relational operators that returned logical values of either `TRUE` 
 `r unhide()`
 
 
-Relational operators (such as `==`, `!=`, `<`, `<=`, `>`, and `>=`) compare two numerical expressions and return a Boolean variable: a variable whose value is either 0 (`FALSE`) or 1 (`TRUE`). So, essentially, `filter()` includes any observations (rows) for which the expression evaluates to `TRUE`, and excludes any for which it evaluates to `FALSE`. In the previous example, `filter()` sifted through 268 observations, keeping rows containing total acculturative stress scores more than 72 and rejecting those with scores less than or equal to 72. 
+Relational operators (such as `==`, `!=`, `<`, `<=`, `>`, and `>=`) compare two numerical expressions and return a Boolean variable: a variable whose value is either 0 (`FALSE`) or 1 (`TRUE`). So, essentially, `filter()` includes any observations (rows) for which the expression evaluates to `TRUE`, and excludes any for which it evaluates to `FALSE`. In the previous example, `filter()` sifted through 1924665 observations, keeping rows containing year that was equal to 1998. 
 
 
-This works as well for columns of the data type `character`. If you want only those observations for international students (as opposed to domestic students), you could use the equivalence operator `==`. Be aware that a single equals sign (`=`) is used to assign a value to a variable whereas a double equals sign (`==`) is used to check whether two values are equal. 
-
-```{r}
-short_MH_inter <- filter(short_MH, inter_dom == "Inter")
-```
-
-Here, the `filter()` function compares every single value in the column `inter_dom` of the data object `short_HM` with the character string written on the right-hand side of the equation ("Inter").
-
-Another way to produce the exact same outcome, would be to exclude domestic students using the 'not equals' operator `!=`. Here `filter()` keeps every row in which the value does not read "Dom". 
+This works as well for columns of the data type `character`. If you want only those observations for a specific name, you could use the equivalence operator `==`. Be aware that a single equals sign (`=`) is used to assign a value to a variable whereas a double equals sign (`==`) is used to check whether two values are equal. 
 
 ```{r}
-short_MH_inter2 <- filter(short_MH, inter_dom != "Dom")
+Name_Me <- filter(Name_Data, name == "Jaimie")
+glimpse(Name_Me)
 ```
 
-You can view `short_MH_inter` and `short_MH_inter2` in a tab, use `glimpse()`, or call the variable in the `Console` to check that  are actually identical.
+Here, the `filter()` function compares every single value in the column `name` of the data object `Name_Data` with the character string written on the right-hand side of the equation ("Jaimie").
+
+You can also use `filter()` to keep data from multiple options of the same variable using the `%in%` operator. In this case we want to filter several different names:
 
 ```{r}
-glimpse(short_MH_inter)
-glimpse(short_MH_inter2)
+Name_J <- filter(Name_Data, name %in% c("Jaimie", "Jamie", "Jaime", "James", "Jayme"))
+glimpse(Name_J)
 ```
+
+
+Because `filter()` evalutes variables against your criteria and keeps observations that are `TRUE`, in essence the function defaults to "filter-in" certain observations. You can however also use it to "filter-out" specific observations, by using the 'not equals' operator `!=`. Here `filter()` keeps every row in which the value DOES NOT read what you have specificed. 
+
+Using `filter()` to exclude certain observations.
+
+```{r}
+Name_J_Short <- filter(Name_J, name !="James")
+glimpse(Name_J_Short)
+```
+
 
 ### Multiple criteria
 
-More often than not, you will need to filter based on multiple criteria. For that you have the options of `AND` and `OR`. `AND`is used if you had two criteria and only wanted data returned when **both** criteria are met. `OR`is used if you had two criteria and wanted data returned for **either** criterion.
+Often you will come across a situation where you will need to filter based on multiple criteria. For that you have the options of `AND` and `OR`. `AND`is used if you had two criteria and only wanted data returned when **both** criteria are met. `OR`is used if you had two criteria and wanted data returned for **either** criterion.
 
 <center> <img src="images/AND_OR.png" height="150"> </center>
 
@@ -331,88 +306,95 @@ Whereas, if you wanted to filter out everyone who has **either** *dark hair* **O
 
 <br>
 
-**What does that mean for our student mental health data?**
+**What does that mean for our babynames data?**
 
-For example, to filter rows containing only international students who have a total acculturative stress score of more than 72, you would code:
+For example, to filter rows containing only your name, of one sex, since your year of birth, you would code:
 
 ```{r}
-short_MH72_inter <- filter(short_MH, inter_dom == "Inter", ToAS > 72)
-glimpse(short_MH72_inter)
+Name_Specific <- filter(Name_Data, name == "Jaimie", year >= 1988, sex == "M")
+glimpse(Name_Specific)
 ```
 
 ```{block, type="funfact"}
-You could have also used the logical operator `&` (AND) instead of the comma. filter(short_MH, inter_dom == "Inter" & ToAS > 72) would have given you the same result as above.
+You could have also used the logical operator `&` (AND) instead of the comma. filterfilter(Name_Data, name == "Jaimie" & year >= 1988 & sex == "M") would have given you the same result as above.
 ```
 
 
-If we wanted to filter the data `short_MH` for either international students **OR** students with total acculturative stress scores of more than 72, we could use the logical operator `|` (OR).
+If we wanted to filter the data `Name_Data` for either names with a very high count **OR** names that account for a very low proportion, we could use the logical operator `|` (OR).
 
 ```{r}
-short_MH72_inter_or <- filter(short_MH, inter_dom == "Inter" | ToAS > 72)
-glimpse(short_MH72_inter_or)
+Data_Or <- filter(Name_Data, n > 90000 | prop < 2.27e-06)
+glimpse(Data_Or)
 ```
 
+As you will have noticed, `Data_Or` has now observations for names that either have a count over 90,000 in a year, or account for a very small proportion in a year. In this instance these are very distinct groups, and no observation would meet both criteria, check for yourself:
 
-As you will have noticed, `short_MH72_inter_or` has now observations for participants that are either international students, or students with a ToAS of larger than 72. Undoubtedly, some will fall into both categories, however, participants that fit neither criterion are excluded.
 
+```{r}
+Data_Or2 <- filter(Name_Data, n > 90000 & prop < 2.27e-06)
+glimpse(Data_Or2)
+```
 
+Here we see `Data_Or2`, returns no observations. However sometimes, you might select multiple criteria, where some observations will only meet one, but other observations may meet both criteria (see below). So always keep in mind what exactly you want to find, and choose the best way to filter. 
+
+```{r}
+Data_Or3 <- filter(Name_Data, n > 90000 | prop > 0.05)
+glimpse(Data_Or3)
+
+Data_Or4 <- filter(Name_Data, n > 90000 & prop > 0.05)
+glimpse(Data_Or4)
+```
 
 <span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
 
-How many rows (or observations) does the object `short_MH72` contain? `r fitb("131")`<br>
-How many participants in this study were international students? `r fitb("201")` <br>
-How many observations would the code `filter(short_MH, inter_dom == "inter")` return? `r fitb("0")` <br>
-How many participants in this study were international students with a ToAS of more than 72? `r fitb("109")` <br>
-How many participants in this study were either international students OR had a ToAS of more than 72? `r fitb("223")` <br>
+How many rows (or observations) does the object `Data_Or3` contain? `r fitb("172")`<br>
+How many different female names are in `Data_Or4`? `r fitb("1")` <br>
 
 <br>
 
-If you need to filter through many **different values from the same column**, you can use the match operator `%in%`. It returns a logical value of `TRUE` when it detects a match and `FALSE` if not. Let's make that a bit more applicable. Say we wanted to make a tibble called `short_MH_age` that takes the data `short_MH` and only keeps information from students when their `Age` is either 17, 20, 25, or 30. 
-
-```{r}
-short_MH_age <- filter(short_MH, Age %in% c(17, 20, 25, 30))
-```
-
-```{block, type="funfact"}
-You could use the OR operator here as well, but it would be pretty tedious to type out.
-```
 
 ```{block, type="task"}
 **Your turn**
 
-Make a tibble called `short_MH_ToDep` that list every participant from `short_MH` with a `ToDep` score of 0, 5, 8, 15, 17, and 25.
+Make a tibble called `Name_Beat` that only shows data from `Name_Data` for the `names` John, Paul, George and Ringo, and just for `sex` males.
 ```
 
 `r hide("Solution")`
 ```{r}
-short_MH_ToDep <- filter(short_MH, ToDep %in% c(0, 5, 8, 15, 17, 25))
+Name_Beat <- filter(Name_Data, name %in% c("John", "Paul", "George", "Ringo"), sex == "M")
+
+# If you have done this correct you should be able to produce a nice simple plot with the code below, to show change in proportional representation of these names over time (don't worry about what this code means, you'll learn more about plots later in the course)
+
+ggplot(Name_Beat, aes(year, prop, colour=name)) + geom_line()
 
 ```
 `r unhide()`
 
+
+
 ## mutate()
 
-The `mutate()` function creates new variables (columns) onto the existing object. The first argument to this function is an object from your `Global Environment` (for example `short_MH` we created earlier) and the subsequent argument is the new column name and what you want it to contain. The following image was downloaded from https://www.sharpsightlabs.com/blog/mutate-in-r/
+The `mutate()` function creates new variables (columns) onto the existing object. The first argument to this function is an object from your `Global Environment` (for example `Name_Data`) and the subsequent argument is the new column name and what you want it to contain. The following image was downloaded from https://www.sharpsightlabs.com/blog/mutate-in-r/
 
 <center> <img src="images/mutate.png" height= "350"> </center>
 
-Let's apply this to this to our `short_MH` data tibble. Say we wanted to create a new column `Age_double` that shows us the age of our participants if they are twice as old as they are now. We will save this as a new object `short_MH_ext` to our `Global Environment` rather than overwriting `short_MH` so that we can compare `short_MH` with the extended `short_MH_ext` later on.
+Let's apply this to this to our `Name_Data` data tibble. Say we wanted to create a new column `Decade` that shows us the relative decade each observation is taken from. Save this as a new object `Name_Ext` to the `Global Environment` rather than overwriting `Name_Data` so that we can compare `Name_Data` with the extended `Name_Ext` later on.
 
 ```{r}
-short_MH_ext <- mutate(short_MH, Age_double = Age*2)
-glimpse(short_MH_ext)
+Name_Ext <- mutate(Name_Data, Decade = floor(year/10)*10)
+glimpse(Name_Ext)
 ```
 
-As we can see, `short_MH_ext` has one column more than `short_MH`. So `mutate()` took the value in the cells for each row of the variable `Age`, multiplied it by 2, and added it to the new column `Age_double`.
+As we can see, `Name_Ext` has one column more than `Name_Data`. So `mutate()` took the value in the cells for each row of the variable `year`, devided it by 10, and using the `floor()` function, rounds that value down to the nearest whole number, before finally multiplying the result by 10, and adding it to a new column called `Decade`.
 
-Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column `Age_double` and store them in a column `Age_double`, the original `Age_double` would be overwritten.
+Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column `Decade` and store them in a column `Decade`, the original `Decade` would be overwritten. To demonstrate we will try doing this and stroring the output in a new object called `Name_Ext2`and save that to our `Global Environment`.
 
 ```{r}
-short_MH_ext <- mutate(short_MH_ext, Age_double = Age_double/2)
-glimpse(short_MH_ext)
+Name_Ext2 <- mutate(Name_Ext, Decade = Decade/2)
+glimpse(Name_Ext2)
 ```
 
-So now, `short_MH_ext` did not gain a column (it still contains 16 variables), and `Age_double` has now the same values as column `Age`. 
+So now, `Name_Ext2` did not gain a column (it still contains 6 variables), and `Decade` now has (unhelpfully) half the numeric value of the decade. (As an aside you could prevent yourself from accidentally doing something like this by converting `Decade` from numeric double type data to character type data, if you had no intention of carrying out any calculations on that variable)
 
 
 ```{block, type="info"}
@@ -420,76 +402,207 @@ The main take-away message here is to always check your data after manipulation 
 ```
 
 
-No need to keep column `Age_double` anymore; we could just drop it. And we are back to 15 variable columns.
+You can also use `mutate()` to drop columns you no longer need, as an alternative to the `select()` function. This would mean that `Name_Ext2` is now identical to `Name_Data`.
 
 ```{r}
-short_MH_ext <- mutate(short_MH_ext, Age_double = NULL)
-glimpse(short_MH_ext)
+Name_Ext2 <- mutate(Name_Ext2, Decade = NULL)
+glimpse(Name_Ext2)
 ```
 
 
 If you want to add more than 2 columns, you can do that in a single `mutate()` statement. You can also add variables that are not numerical values, such as `character` or `logical`. 
 
-Let's have a look at the column `ToDep`. According to the PHQ, the maximum score for that measure is 27, and patients having a score of 20 or above count as severely depressed. More information can be found on
-https://www.ncor.org.uk/wp-content/uploads/2012/12/Patient-Health-Questionnaire.pdf 
+Add two columns to `Name_Ext` and call it `Name_Ext3`.
 
-Say we wanted to add two columns to `short_MH_ext`.
-
-* Column 1 is called `max_PHQ` and contains the maximum score of 27 that can be achieved in the Patient Health Questionnaire
-* Column 2 is called `Dep_Severe` and is of datatype `logical`. It contains a comparison of the value in `ToDep` with the cut off score of 20. Values 20 and above should read `TRUE`, all other values `FALSE`.
+* Column 1 is called `MinName` and is of datatype `logical`. It contains a comparison of the value in `n` with the cut off count of 5 that allows inclusion in the dataset. Values of 5 should read `TRUE`, all other values `FALSE`.
+* Column 2 is called `"20thCent"` and is of datatype `logical`. It contains a comparison of the value in `years` ensuring the value is between 1900 and 1999. Values inside this range should read `TRUE`, all other values `FALSE`.
 
 ```{r}
-short_MH_ext <- mutate(short_MH_ext, max_PHQ = 27,
-                       Dep_Severe = ToDep >= 20)
-glimpse(short_MH_ext)
+Name_Ext3 <- mutate(Name_Ext, MinName = n == 5, "20thCent" = year >= 1900 & year <= 1999)
+glimpse(Name_Ext3)
 ```
 
 ```{block, type="solved"}
-For column `max_PHQ`, we would not have to repeat the number 27 268 times. As it's the same number for all cells, mentioning it once sets all the values in the column to that particular number (similar to "Scotland" last week when we were creating tibbles). 
-
-`Dep_Severe = ToDep >= 20` might look a bit alien to you, but remember that a single equals sign (`=`) is used to assign a value to a variable whereas the relational operator (`>=`) is used to check whether two values are equal. These can actually co-exist in one statement. Here R reads the expression as: "compare for each row whether the cell value in `ToDep` is `equal or larger than` 20. If yes, put `TRUE` in the new column `Dep_Severe`; if not, put `FALSE`.
+You may have noticed we needed to put the name of our new column `"20thCent"` inside quotation marks. This is because that name would begin with numeric values which R will interpret as numeric values to be evaluated as code by default, which will then break our code. By placeing the name within quotation marks this tells R to treat this as a standard character string instead. It is always best to avoid creating variables with names that start with a number for this reason, but if it is necessary this is how you can work around it.
 ```
 
-There are 8 students in this data set who would categorise as severely depressed.
+
 
 ```{block, type="task"}
 **Your turn**
 
-* Add a new column to `short_MH_ext` that is called `Total_Score` that adds together the seven subscales for each observation (row). *Hint: APD + AHome + ... + AMiscell would do the trick. If we have done it correctly, `Total_Score` should have the same values as `ToAS`.
-* Add a second new column that is called `correct` that evaluates whether `Total_Score` and `ToAS` are identical columns.
+* Add a new column to `Name_Ext3` that is called `Prcnt` that gives the percentage each name accounts for of total names that year. *Hint: `prop` is that same stat represented as a proportion. 
 
 ```
 
 
 `r hide("Solution")`
 ```{r}
-short_MH_ext <- mutate(short_MH_ext, Total_Score = APD + AHome + APH + Afear + ACS + AGuilt + AMiscell,
-                       Correct = Total_Score == ToAS)
-glimpse(short_MH_ext)
+Name_Ext4 <- mutate(Name_Ext3, Prcnt = prop * 100)
+glimpse(Name_Ext4)
 ```
 `r unhide()`
 
-```{block, type="task"}
-**Follow-up Question**
+### Read in second dataset
 
-Although the last examples are useful to illustrate how `mutate()` works, you do not need two identical columns. Using one of today's dplyr functions, remove the columns `Total_Score` and `Correct` from the dataset `short_MH_ext`. Save this as a new object `short_MH_ext2` to your `Global Environment`.
-```
+At this point we are reaching the end of the usefulness of the Babynames dataset (there is only so much you can do with 5 basic variables), and this is a good time to bring in the second dataset we mentioned.
 
+The second dataset, is a set of career and performance statistics of MMA athletes. You need to read the file `CareerStats.csv` containing your data into your `Global Environment` using the function `read_csv()`. Remember to store your data in an appropriately named object (e.g. `MMA_Data`). 
 
-`r hide("Solution")`
 ```{r}
-short_MH_ext2 <- mutate(short_MH_ext, Total_Score = NULL,
-                       Correct = NULL)
-glimpse(short_MH_ext2)
+MMA_Data <- read_csv("CareerStats.csv")
 ```
 
 ```{block, type="info"}
-You could have also used the function `select()` to drop or select variable columns. For example:
+As you can see this dataset has a lot more variables, which should make for more interesting ways of manipulating the data.
+```
 
-* select(short_MH_ext, ID:Dep_Severe)  or <br>
-* select(short_MH_ext, -Total_Score, -Correct)
+## summarise()
+
+In order to compute summary statistics such as mean, median and standard deviation, use the `summarise()` function. This function creates a new tibble of your desired summary statistics. The first argument to this function is the data you are interested in summarising; in this case the object `MMA_Data`, and the subsequent argument is the new column name and what mathematical operation you want it to contain. You can add as many summary statistics in one `summarise()` function as you want; just separate them by a comma. 
+
+```{block, type="info"}
+You can use the help function to find out more about the kind of summary stats you can extract.
+
+Some of the most useful however are:
+`sum()` - sum total
+`n()` - count of observations 
+`n_distinct()` - count of distinct (unique) observations
+`mean()` - measure of central tendency; mean
+`median()` - measure of central tendency; median
+`sd()` - standard deviation
+`IQR()` - interquartile range
+`min()` - the maximum available value in observations
+`max()` - the minimum available value in observations
+
+```
+
+
+Lets start generating some summary stats. For example, say you want to work out the average number of total fights (`T_Fights`) among the athletes and accompanying standard deviation for the entire sample:
+
+```{r}
+summarise(MMA_Data, Avg_Mean = mean(T_Fights), SD = sd(T_Fights))
+```
+ 
+
+Therefore, the average number of total fights for all the athletes in our sample is 22.98, with a standard deviation of 9.8.
+
+Let's try another. what is the maximum and minimum hights for the entire sample?
+```{r}
+summarise(MMA_Data, Minimum = min(Height), Maximum = max(Height))
+```
+
+Or maybe we want to know how many different (distinct) weightclasses are there in our dataset?
+
+How would we check that?
+```{r}
+summarise(MMA_Data, WeightClasses = n_distinct(WeightClass))
+```
+
+
+## Adding group_by()
+
+Now that's all well and good, but in research we are most often interested in drawing comparisons and analysing differences (Between different groups of people, between different treatment types, between different countries etc.).
+
+This is where the `group_by()` function comes in handy. It can organise observations (rows) by variables (columns), thereby spliting the data up into subsets that can be analysed independently. The first argument to this function is the data you wish to organise, in this case `MMA_Data` and the subsequent argument is your chosen grouping variable you want to organise by (e.g. group by). Here we are grouping by weightclass, and saving this as a new object `MMA_G_Weight`; 
+
+```{r}
+MMA_G_Weight <- group_by(MMA_Data, WeightClass)
+```
+
+If you view the object `MMA_G_Class`, it will not look any different to the original dataset (`MMA_Data`). However, be aware that the underlying structure has changed. In fact, you could use `glimpse()` to double check this. 
+
+```{r}
+glimpse(MMA_G_Weight)
+```
+
+You can now feed this grouped dataset (`MMA_G_Weight`) into the previous code line to obtain summary statistics by `WeightClass`, the code for finding summary statistics of average number of total fights, has been provided.:
+
+```{r}
+Sum_Fights <- summarise(MMA_G_Weight, Avg_Mean = mean(T_Fights), SD = sd(T_Fights))
+```
+
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+Which weightclass has the highest maximum height?  `r fitb("Heavyweight")`
+
+
+```{block, type="task"}
+**Your turn**
+
+* Try to fill out the code for finding summary stats of minimum and maximum height by `WeightClass`:
+
+```
+
+
+`r hide("Solution")`
+```{r}
+Sum_Height <- summarise(MMA_G_Weight, Minimum = min(Height), Maximum = max(Height))
 ```
 `r unhide()`
+
+
+```{block, type="info"}
+You can technically group by any variable! For example, there is nothing stopping you from grouping by a continuous variable like age or height. R will allow you to group by a numerical variable that is type double, the code will run. 
+
+However you probably want to be more careful in choosing a categorical variable as grouping criteria. These will usually be character, or interger or even logical data types. However interger data type might also actually represent a continuous variable (but might have only been recorded in whole numbers), and a variable that is character type may not represent a useful category (like idividual ID's for example). 
+
+The point is R does not know what your dataset is actually about, and what your variables are meant to represent... R has no idea if your variable *should* be categorical or not. So it's up to you to know what are sensible variables to use in the `group_by()` function.
+
+```
+
+You might also want to calculate and display the number of individuals from your dataset that are in different groups. This can be achieved by adding the summary function `n()` once you have grouped your data. the function `n()`, simply counts the number of observations and takes no arguments. Here we will group by `Stance` and count the number of athelets in each category:
+
+```{r}
+MMA_G_Stance <- group_by(MMA_Data, Stance)
+
+Stance_Ns <- summarise(MMA_G_Stance, N = n())
+Stance_Ns
+```
+
+<span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span>
+
+How many athletes in the dataset have a Southpaw stance?  `r fitb("45")` <br>
+How many athletes in the dataset have an Orthodox stance?  `r fitb("140")`
+
+Finally, it is possible to add multiple grouping variables. For example, the following code groups `MMA_Data` by `ReachClass` and `Stance` and then calculates the mean and standard deviation of average number of strikes landed per minute (`TLpM`) for each group (6 groups). 
+
+```{r}
+MMA_G_RS <- group_by(MMA_Data, ReachClass, Stance)
+MMA_LpM <- summarise(MMA_G_RS, Mean = mean(TLpM), SD = sd(TLpM))
+MMA_LpM
+```
+ 
+
+So far we have not had to calculate any summary statistics with any missing values, denoted by `NA` in R. Missing values are always a bit of a hassle to deal with. Any computation you do that involves `NA` returns an `NA` - which translates as "you will not get a numeric result when your column contains missing values". Missing values can be removed by adding the argument `na.rm = TRUE` to calculation functions like `mean()`, `median()` or `sd()`. For example, lets try to calulate a mean where we have some missing values:
+
+```{r}
+Weight_Reach <- summarise(MMA_G_Weight, Avg_Reach = mean(Reach))
+Weight_Reach
+```
+The code runs without error, however you will notice we have a few stats missing (`NA`). Now lets tell R to remove any missing values when making its calculation.
+
+```{r}
+Weight_Reach <- summarise(MMA_G_Weight, Avg_Reach = mean(Reach, na.rm = T))
+Weight_Reach
+```
+
+
+
+
+```{block, type="info"}
+Finally...
+If you need to return the data to a non-grouped form, use the `ungroup()` function.
+```
+
+```{r}
+MMA_Data <- group_by(MMA_Data, BMI)
+glimpse(MMA_Data)
+MMA_Data <- ungroup(MMA_Data)
+glimpse(MMA_Data)
+```
+
 
 
 ## Formative Homework
