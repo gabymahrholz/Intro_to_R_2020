@@ -40,12 +40,12 @@ Before we can talk about today's data, let's do some house-keeping first.
 
 ### Downloading materials
 
-Download the materials we will be working with today either from <a href="data\L3L4_data.zip" download>here</a> or from moodle. The zip folder that contains an Rmd file called `L3L4_stub`, a data file called `CareerStats.csv`, a data file called `wos_rain.csv` and data file called `wos_sun.csv`. Similar to last week, `L3_stub` contains all code chunks for today's lesson, and is intended for you to add notes and comments.
+Download the materials we will be working with today from moodle. The zip folder that contains an Rmd file called `L3_stub`, and a data file called `CareerStats.csv`. Similar to last week, `L3_stub` contains all code chunks for today's lesson, and is intended for you to add notes and comments.
 
 
 ### Unzipping the zip folder
 
-Make sure you **unzip the folder** and check it contains the `L3_stub.Rmd`, `CareerStats.csv`, `wos_rain.csn` and `wos_sun.csv`. 
+Make sure you **unzip the folder** and check it contains the `L3_stub.Rmd` and `CareerStats.csv`. 
 
 
 ### Setting the working directory
@@ -316,7 +316,7 @@ glimpse(Name_Specific)
 ```
 
 ```{block, type="funfact"}
-You could have also used the logical operator `&` (AND) instead of the comma. filterfilter(Name_Data, name == "Jaimie" & year >= 1988 & sex == "M") would have given you the same result as above.
+You could have also used the logical operator `&` (AND) instead of the comma. `filter(Name_Data, name == "Jaimie" & year >= 1988 & sex == "M")` would have given you the same result as above.
 ```
 
 

@@ -101,7 +101,7 @@ We recommend that you start these early and, if required, seek assistance from t
 
 ```{r, echo=FALSE}
 assessments <- tibble(`Summative assessment` = c("1 (week 2)", "2 (week 4)", "3 (week 6)", "4 (week 8)", "5 (week 10)"),
-                      `Assesses ILOs from lectures` = c("1 and 2", "3 and 4", "5 and 6", "7 and 8", "1-9"),
+                      `Assesses ILOs from lectures` = c("1 and 2", "3 and 4", "5 and 6", "7 and 8", "1-10"),
                       `Assessment released` = c("28/09 at 6pm", "12/10 at 6pm", "26/10 at 6pm", "09/11 at 6pm", "23/11 at 6pm"),
                       `Submission due` = c("05/10 at 5pm", "19/10 at 5pm", "02/11 at 5pm", "16/11 at 5pm", "30/11 at 5pm"),
                       
