@@ -13,10 +13,12 @@ This lesson is led by [Gaby Mahrholz](https://www.psy.gla.ac.uk/otherstaff/?id=G
 
 ## Pre-steps
 
-All the functions for tidying data are within `tidyverse` so we need to make sure to load it into the library. Today's lecture will make use of built-in dataframes which means we do not have to load any data into our `Global Environment` for the minute.
+All the functions for tidying data are within `tidyverse` so we need to make sure to load it into the library. Today's lecture will make use of built-in dataframes but for practice examples, we may want to load in the West of Scotland seasonal sunshine and rain data you encountered last week.
 
 ```{r L5, message=FALSE}
 library(tidyverse)
+sun <- read_csv("wos_seasonal_sun.csv")
+rain <- read_csv("wos_seasonal_rain.csv")
 ```
 
 
@@ -42,14 +44,21 @@ If you want to know more about tidy data, Hadley Wickham's paper can be found on
 
 ## gather() and spread()
 
-`gather()` and `spread()` are part of `tidyr` (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use `gather()`; if you wanted to get your data from long to wide format, you would need `spread()`. Here is a nice gif animation by Garrick Aden-Buie (https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather) that shows you how `gather()` and `spread()` work.
+`gather()` and `spread()` are part of `tidyr` (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use `gather()`; if you wanted to get your data from long to wide format, you would need `spread()`. Here is a representation of data in wide format and in long format.
+
+<center> <img src="images/original-dfs-tidy.png" > </center>
+
+We cannot say "wide format is tidy" or "the data should always be in long format"; how your data needs to be formatted depends on your data (and the meaning). If x, y, and z are separate variables, then the data is tidy in the wide format as shown above; if x, y, and z are levels of a variable (`key` in the image above), you want to shape your data into long format.
+
+
+The gif animation by Garrick Aden-Buie (https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather) shows you how `gather()` and `spread()` work by rearranging your data from wide to long format and vice versa.
 
 <center> <img src="images/tidyr-spread-gather.gif" > </center>
 
 
 
 ### gather()
-We can start this lecture by looking at a practical example in the build-in dataset `table1` to `table5`. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called `who`). The data is part of the `tidyverse` package, so as long as we have `tidyverse` loaded into the library, there should not be an issue in accessing this dataset.
+We can start this lecture by looking at a practical example in the build-in datasets `table1` to `table5`. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called `who`). The data is part of the `tidyverse` package, so as long as we have `tidyverse` loaded into the library, there should not be an issue in accessing this dataset.
 
 
 ```{r}
@@ -112,6 +121,49 @@ gather(table4b, key = year, value = population, `1999`:`2000`)
 ```
 `r unhide()`
 
+```{block, type="task"}
+**Your turn - Second example**
+
+Remember the sunshine and rain data from last week? Let's have a look at one of the datasets (your choice whether to look at `sun` or `rain`). The data for `year`is in a tidy format, but the seasonal data is spread over 4 columns (`win`, `spr`, `sum`, and `aut`) which is not tidy. Use `gather()` to reshape the data into a tidier format. Store the output in the `Global Environment` as an object called `sun_tidy` or `rain_tidy`. 
+```
+
+`r hide("Solution")`
+```{r}
+sun_tidy <- gather(sun, key = season, value = sun, win:aut)
+head(sun_tidy)
+
+rain_tidy <- gather(rain, key = season, value = rain, win:aut)
+head(rain_tidy)
+```
+`r unhide()`
+
+
+```{block, type="info"}
+`gather()` is slowly getting replaced by a function called `pivot_longer()` which is intended to be more intuitive as the arguments `key` and `value` were relabelled `names_to` and `values_to` respectively. Strictly speaking it is the same function but the order of the arguments is slightly different. `gather()` start with the name of the column headers, followed by the name for the values, and lastly addresses which columns need to be reshaped into long format. `pivot_longer()` starts of with the columns to be reshaped, then you are asked to provide a name for the new column in which all column headers are stored into, and then about what you would want to label the column of the values.
+
+```
+
+
+Just as an example, we reshaped the `sun` data from wide to long format with `gather()`...
+
+
+```{r}
+sun_tidy <- gather(sun, key = season, value = sun, win:aut)
+
+head(sun_tidy)
+```
+
+Using `pivot_longer()` will get you the same result, yet the data is arranged by year rather than by season.
+
+```{r}
+sun_tidy_piv <- pivot_longer(sun, cols = win:aut, names_to = "season", values_to = "sun")
+
+head(sun_tidy_piv)
+```
+
+```{block, type="danger"}
+When using `pivot_longer()`, make sure to surround the new column names with quotation marks. `gather()` is more flexible and gets the job done whether you use quotation marks for the new column headers or not.
+```
 
 
 ### spread()
@@ -167,6 +219,13 @@ kable(table1_mod)
 ```
 
 
+The output in `values` looks a bit strange now, but be assured the underlying information (the numbers for `cases`, `population`, and `percent`) is still present. If you want to check this, display the numeric value in column `values` as character.
+
+```{r}
+as.character(table1_mod$values)
+```
+
+
 ```{block, type="task"}
 **Your turn**
 
@@ -190,6 +249,70 @@ table1_mod_corrected <- spread(table1_mod, key = variable, value = values)
 `r unhide()`
 
 
+
+
+```{block, type="task"}
+**Your turn - Second example**
+
+<center> <img src="images/sneaky_fox_untidy.png" > </center>
+
+A sneaky fox came to your house and messed up all your tidy data. Undo the works of the sneaky fox by reshaping the data in `sun_fail` and `rain_fail` into a tidier format. Store the tidier data in your `Global Environment` as `sun_outfoxed` and `rain_outfoxed`. 
+
+Your final datasets should have the columns `year`, `season`, and `sun` or `year`, `season`, and `rain` in exactly that order.
+
+```
+
+This is what the fox did:
+
+```{r sneaky_fox}
+sun_fail <- sun_tidy %>% 
+  mutate(n = 1:408) %>% 
+  gather(col_names, values, c(year, sun))
+rain_fail <- rain_tidy %>% 
+  mutate(n = 1:616) %>% 
+  gather(col_names, values, c(year, rain))
+```
+
+
+
+`r hide("Solution")`
+```{r}
+sun_outfoxed <- spread(sun_fail, key = col_names, value = values) %>% 
+  select(year, season, sun)
+head(sun_outfoxed)
+
+rain_outfoxed <- spread(rain_fail, key = col_names, value = values) %>% 
+  select(year, season, rain)
+head(rain_outfoxed)
+```
+`r unhide()`
+
+
+```{block, type="info"}
+`spread()` is slowly getting replaced by a function called `pivot_wider()` which again is intended to be more intuitive as the arguments `key` and `value` were relabelled `names_from` and `values_from` respectively. As we've seen with `gather()` and `pivot_longer()`, `spread()` and `pivot_wider()` pretty much do the same job.
+```
+
+
+Just as an example, we reshaped the `sun_fail` data from long to wide format with `spread()`...
+
+
+```{r}
+sun_outfoxed <- spread(sun_fail, key = col_names, value = values)
+
+head(sun_outfoxed)
+```
+
+Using `pivot_wider()` will get you the same result, but the data is arranged slightly differently.
+
+```{r}
+sun_outfoxed_piv <- pivot_wider(sun_fail, names_from = col_names, values_from = values)
+
+head(sun_outfoxed_piv)
+```
+
+```{block, type="danger"}
+When using `pivot_wider()`, make sure you do not surround the `names_from` and `values_from` arguments with quotation marks. They refer to existing columns rather than column names we have to create when using `pivot_longer()`.
+```
 
 
 ## separate() and unite()

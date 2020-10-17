@@ -272,7 +272,7 @@ ggplot(df, aes(x=x, y=y, group=group)) + geom_line(aes(colour = group), linetype
 
 
 
-Let's get back to our free movement data that we started with in the section above.
+Let's get back to our free movement data that we started with in the section above. Remember we wanted to visualise how many people from each sex category came to and left Scotland.
 
 
 ```{block, type = "question"}

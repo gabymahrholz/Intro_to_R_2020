@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-11" />
+<meta name="date" content="2020-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -397,8 +397,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="pre-steps-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Pre-steps</h2>
-<p>All the functions for tidying data are within <code>tidyverse</code> so we need to make sure to load it into the library. Today’s lecture will make use of built-in dataframes which means we do not have to load any data into our <code>Global Environment</code> for the minute.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
+<p>All the functions for tidying data are within <code>tidyverse</code> so we need to make sure to load it into the library. Today’s lecture will make use of built-in dataframes but for practice examples, we may want to load in the West of Scotland seasonal sunshine and rain data you encountered last week.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+sun &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;wos_seasonal_sun.csv&quot;</span>)
+rain &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;wos_seasonal_rain.csv&quot;</span>)</code></pre></div>
 </div>
 <div id="tidy-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Tidy data</h2>
@@ -415,13 +417,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="gather-and-spread" class="section level2">
 <h2><span class="header-section-number">5.3</span> gather() and spread()</h2>
-<p><code>gather()</code> and <code>spread()</code> are part of <code>tidyr</code> (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use <code>gather()</code>; if you wanted to get your data from long to wide format, you would need <code>spread()</code>. Here is a nice gif animation by Garrick Aden-Buie (<a href="https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather</a>) that shows you how <code>gather()</code> and <code>spread()</code> work.</p>
+<p><code>gather()</code> and <code>spread()</code> are part of <code>tidyr</code> (also part of the tidyverse package) and help you to rearrange the shape of your data. To get your data into long format, you would use <code>gather()</code>; if you wanted to get your data from long to wide format, you would need <code>spread()</code>. Here is a representation of data in wide format and in long format.</p>
+<center>
+<img src="images/original-dfs-tidy.png" >
+</center>
+<p>We cannot say “wide format is tidy” or “the data should always be in long format”; how your data needs to be formatted depends on your data (and the meaning). If x, y, and z are separate variables, then the data is tidy in the wide format as shown above; if x, y, and z are levels of a variable (<code>key</code> in the image above), you want to shape your data into long format.</p>
+<p>The gif animation by Garrick Aden-Buie (<a href="https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather</a>) shows you how <code>gather()</code> and <code>spread()</code> work by rearranging your data from wide to long format and vice versa.</p>
 <center>
 <img src="images/tidyr-spread-gather.gif" >
 </center>
 <div id="gather" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> gather()</h3>
-<p>We can start this lecture by looking at a practical example in the build-in dataset <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called <code>who</code>). The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
+<p>We can start this lecture by looking at a practical example in the build-in datasets <code>table1</code> to <code>table5</code>. They show the number of Tuberculosis cases documented by the World Health Organization in Afghanistan, Brazil, and China between 1999 and 2000 (the full dataset is called <code>who</code>). The data is part of the <code>tidyverse</code> package, so as long as we have <code>tidyverse</code> loaded into the library, there should not be an issue in accessing this dataset.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
@@ -501,6 +508,77 @@ Solution
 ## 4 Afghanistan 2000    20595360
 ## 5 Brazil      2000   174504898
 ## 6 China       2000  1280428583</code></pre>
+</div>
+<div class="task">
+<p>
+<strong>Your turn - Second example</strong>
+</p>
+<p>
+Remember the sunshine and rain data from last week? Let’s have a look at one of the datasets (your choice whether to look at <code>sun</code> or <code>rain</code>). The data for <code>year</code>is in a tidy format, but the seasonal data is spread over 4 columns (<code>win</code>, <code>spr</code>, <code>sum</code>, and <code>aut</code>) which is not tidy. Use <code>gather()</code> to reshape the data into a tidier format. Store the output in the <code>Global Environment</code> as an object called <code>sun_tidy</code> or <code>rain_tidy</code>.
+</p>
+</div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(sun, <span class="dt">key =</span> season, <span class="dt">value =</span> sun, win<span class="op">:</span>aut)
+<span class="kw">head</span>(sun_tidy)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year season   sun
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  1919 win     NA  
+## 2  1920 win    111. 
+## 3  1921 win    104. 
+## 4  1922 win    102. 
+## 5  1923 win     77.2
+## 6  1924 win    117.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rain_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(rain, <span class="dt">key =</span> season, <span class="dt">value =</span> rain, win<span class="op">:</span>aut)
+<span class="kw">head</span>(rain_tidy)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year season  rain
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  1862 win      NA 
+## 2  1863 win     640.
+## 3  1864 win     421.
+## 4  1865 win     386.
+## 5  1866 win     568.
+## 6  1867 win     481.</code></pre>
+</div>
+<div class="info">
+<p>
+<code>gather()</code> is slowly getting replaced by a function called <code>pivot_longer()</code> which is intended to be more intuitive as the arguments <code>key</code> and <code>value</code> were relabelled <code>names_to</code> and <code>values_to</code> respectively. Strictly speaking it is the same function but the order of the arguments is slightly different. <code>gather()</code> start with the name of the column headers, followed by the name for the values, and lastly addresses which columns need to be reshaped into long format. <code>pivot_longer()</code> starts of with the columns to be reshaped, then you are asked to provide a name for the new column in which all column headers are stored into, and then about what you would want to label the column of the values.
+</p>
+</div>
+<p>Just as an example, we reshaped the <code>sun</code> data from wide to long format with <code>gather()</code>…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(sun, <span class="dt">key =</span> season, <span class="dt">value =</span> sun, win<span class="op">:</span>aut)
+
+<span class="kw">head</span>(sun_tidy)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year season   sun
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  1919 win     NA  
+## 2  1920 win    111. 
+## 3  1921 win    104. 
+## 4  1922 win    102. 
+## 5  1923 win     77.2
+## 6  1924 win    117.</code></pre>
+<p>Using <code>pivot_longer()</code> will get you the same result, yet the data is arranged by year rather than by season.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_tidy_piv &lt;-<span class="st"> </span><span class="kw">pivot_longer</span>(sun, <span class="dt">cols =</span> win<span class="op">:</span>aut, <span class="dt">names_to =</span> <span class="st">&quot;season&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;sun&quot;</span>)
+
+<span class="kw">head</span>(sun_tidy_piv)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year season   sun
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  1919 win      NA 
+## 2  1919 spr     414.
+## 3  1919 sum     524.
+## 4  1919 aut     257.
+## 5  1920 win     111.
+## 6  1920 spr     328.</code></pre>
+<div class="danger">
+<p>
+When using <code>pivot_longer()</code>, make sure to surround the new column names with quotation marks. <code>gather()</code> is more flexible and gets the job done whether you use quotation marks for the new column headers or not.
+</p>
 </div>
 </div>
 <div id="spread" class="section level3">
@@ -676,6 +754,14 @@ Solution
 </tr>
 </tbody>
 </table>
+<p>The output in <code>values</code> looks a bit strange now, but be assured the underlying information (the numbers for <code>cases</code>, <code>population</code>, and <code>percent</code>) is still present. If you want to check this, display the numeric value in column <code>values</code> as character.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(table1_mod<span class="op">$</span>values)</code></pre></div>
+<pre><code>##  [1] &quot;745&quot;                 &quot;2666&quot;                &quot;37737&quot;              
+##  [4] &quot;80488&quot;               &quot;212258&quot;              &quot;213766&quot;             
+##  [7] &quot;19987071&quot;            &quot;20595360&quot;            &quot;172006362&quot;          
+## [10] &quot;174504898&quot;           &quot;1272915272&quot;          &quot;1280428583&quot;         
+## [13] &quot;0.00372740958392553&quot; &quot;0.0129446632639585&quot;  &quot;0.0219393047799011&quot; 
+## [16] &quot;0.0461236337331918&quot;  &quot;0.0166749511667419&quot;  &quot;0.016694878795907&quot;</code></pre>
 <div class="task">
 <p>
 <strong>Your turn</strong>
@@ -747,6 +833,92 @@ Your task is to spread the data back out, so that cases, population, and percent
 Solution
 </button>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1_mod_corrected &lt;-<span class="st"> </span><span class="kw">spread</span>(table1_mod, <span class="dt">key =</span> variable, <span class="dt">value =</span> values)</code></pre></div>
+</div>
+<div class="task">
+<p>
+<strong>Your turn - Second example</strong>
+</p>
+<center>
+<img src="images/sneaky_fox_untidy.png" >
+</center>
+<p>
+A sneaky fox came to your house and messed up all your tidy data. Undo the works of the sneaky fox by reshaping the data in <code>sun_fail</code> and <code>rain_fail</code> into a tidier format. Store the tidier data in your <code>Global Environment</code> as <code>sun_outfoxed</code> and <code>rain_outfoxed</code>.
+</p>
+<p>
+Your final datasets should have the columns <code>year</code>, <code>season</code>, and <code>sun</code> or <code>year</code>, <code>season</code>, and <code>rain</code> in exactly that order.
+</p>
+</div>
+<p>This is what the fox did:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_fail &lt;-<span class="st"> </span>sun_tidy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">408</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(col_names, values, <span class="kw">c</span>(year, sun))
+rain_fail &lt;-<span class="st"> </span>rain_tidy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">616</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(col_names, values, <span class="kw">c</span>(year, rain))</code></pre></div>
+<div class="solution">
+<button>
+Solution
+</button>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_outfoxed &lt;-<span class="st"> </span><span class="kw">spread</span>(sun_fail, <span class="dt">key =</span> col_names, <span class="dt">value =</span> values) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(year, season, sun)
+<span class="kw">head</span>(sun_outfoxed)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year season   sun
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  1919 aut     257.
+## 2  1920 aut     219.
+## 3  1921 aut     222.
+## 4  1922 aut     252.
+## 5  1923 aut     245.
+## 6  1924 aut     221.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rain_outfoxed &lt;-<span class="st"> </span><span class="kw">spread</span>(rain_fail, <span class="dt">key =</span> col_names, <span class="dt">value =</span> values) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(year, season, rain)
+<span class="kw">head</span>(rain_outfoxed)</code></pre></div>
+<pre><code>## # A tibble: 6 x 3
+##    year season  rain
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1  1862 aut     456.
+## 2  1863 aut     494 
+## 3  1864 aut     434.
+## 4  1865 aut     322.
+## 5  1866 aut     483 
+## 6  1867 aut     353.</code></pre>
+</div>
+<div class="info">
+<p>
+<code>spread()</code> is slowly getting replaced by a function called <code>pivot_wider()</code> which again is intended to be more intuitive as the arguments <code>key</code> and <code>value</code> were relabelled <code>names_from</code> and <code>values_from</code> respectively. As we’ve seen with <code>gather()</code> and <code>pivot_longer()</code>, <code>spread()</code> and <code>pivot_wider()</code> pretty much do the same job.
+</p>
+</div>
+<p>Just as an example, we reshaped the <code>sun_fail</code> data from long to wide format with <code>spread()</code>…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_outfoxed &lt;-<span class="st"> </span><span class="kw">spread</span>(sun_fail, <span class="dt">key =</span> col_names, <span class="dt">value =</span> values)
+
+<span class="kw">head</span>(sun_outfoxed)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   season     n   sun  year
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 aut      307  257.  1919
+## 2 aut      308  219.  1920
+## 3 aut      309  222.  1921
+## 4 aut      310  252.  1922
+## 5 aut      311  245.  1923
+## 6 aut      312  221.  1924</code></pre>
+<p>Using <code>pivot_wider()</code> will get you the same result, but the data is arranged slightly differently.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_outfoxed_piv &lt;-<span class="st"> </span><span class="kw">pivot_wider</span>(sun_fail, <span class="dt">names_from =</span> col_names, <span class="dt">values_from =</span> values)
+
+<span class="kw">head</span>(sun_outfoxed_piv)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   season     n  year   sun
+##   &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 win        1  1919  NA  
+## 2 win        2  1920 111. 
+## 3 win        3  1921 104. 
+## 4 win        4  1922 102. 
+## 5 win        5  1923  77.2
+## 6 win        6  1924 117.</code></pre>
+<div class="danger">
+<p>
+When using <code>pivot_wider()</code>, make sure you do not surround the <code>names_from</code> and <code>values_from</code> arguments with quotation marks. They refer to existing columns rather than column names we have to create when using <code>pivot_longer()</code>.
+</p>
 </div>
 </div>
 </div>
