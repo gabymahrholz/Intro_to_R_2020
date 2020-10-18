@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-17" />
+<meta name="date" content="2020-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -251,7 +251,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.3</b> unite()</a></li>
 <li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-arguments-for-unite"><i class="fa fa-check"></i><b>5.4.4</b> additional arguments for unite()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-row-names-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate row names from the mtcars</a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-row-names-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate row names from the <code>mtcars</code></a></li>
 <li class="chapter" data-level="5.6" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-information-1"><i class="fa fa-check"></i><b>5.6</b> Additional information</a></li>
 <li class="chapter" data-level="5.7" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#formative-homework-2"><i class="fa fa-check"></i><b>5.7</b> Formative Homework</a></li>
 </ul></li>
@@ -414,6 +414,7 @@ rain &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <li>Each value must have its own cell.</li>
 </ol>
 <p>If you want to know more about tidy data, Hadley Wickham’s paper can be found on <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a> or check out chapter 12 in the book R for Data Science (<a href="https://r4ds.had.co.nz/tidy-data.html" class="uri">https://r4ds.had.co.nz/tidy-data.html</a>).</p>
+<p>We will see today how <code>gather()</code>, <code>spread()</code>, <code>separate()</code>, and <code>unite()</code> can help us to get our data into a tidy format.</p>
 </div>
 <div id="gather-and-spread" class="section level2">
 <h2><span class="header-section-number">5.3</span> gather() and spread()</h2>
@@ -754,14 +755,7 @@ When using <code>pivot_longer()</code>, make sure to surround the new column nam
 </tr>
 </tbody>
 </table>
-<p>The output in <code>values</code> looks a bit strange now, but be assured the underlying information (the numbers for <code>cases</code>, <code>population</code>, and <code>percent</code>) is still present. If you want to check this, display the numeric value in column <code>values</code> as character.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(table1_mod<span class="op">$</span>values)</code></pre></div>
-<pre><code>##  [1] &quot;745&quot;                 &quot;2666&quot;                &quot;37737&quot;              
-##  [4] &quot;80488&quot;               &quot;212258&quot;              &quot;213766&quot;             
-##  [7] &quot;19987071&quot;            &quot;20595360&quot;            &quot;172006362&quot;          
-## [10] &quot;174504898&quot;           &quot;1272915272&quot;          &quot;1280428583&quot;         
-## [13] &quot;0.00372740958392553&quot; &quot;0.0129446632639585&quot;  &quot;0.0219393047799011&quot; 
-## [16] &quot;0.0461236337331918&quot;  &quot;0.0166749511667419&quot;  &quot;0.016694878795907&quot;</code></pre>
+<p>The output in <code>values</code> looks a bit strange now. This is just because the column <code>values</code> holds very large and very small numbers.</p>
 <div class="task">
 <p>
 <strong>Your turn</strong>
@@ -1118,7 +1112,7 @@ Technically, you would not need a separator argument in the case above, as <code
 ## 6 China        2000 213766 1280428583/200</code></pre>
 <div class="question">
 <p>
-There is still a tiny bit off in the <code>tb_cases</code>. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occurred in the 3 countries within the years 1999, and 2000.
+There is still a tiny bit off in data above. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occurred in the 3 countries within the years 1999, and 2000.
 </p>
 </div>
 <div class="solution">
@@ -1298,8 +1292,8 @@ table5_mod</code></pre></div>
 </div>
 </div>
 <div id="bonus-materials-mutate-row-names-from-the-mtcars" class="section level2">
-<h2><span class="header-section-number">5.5</span> Bonus materials: mutate row names from the mtcars</h2>
-<p>Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather row names? Let’s just read in the data and have another quick look to jog our memories…</p>
+<h2><span class="header-section-number">5.5</span> Bonus materials: mutate row names from the <code>mtcars</code></h2>
+<p>Remember, in lecture 2 when we were talking about the <code>mtcars</code> dataset and how the car types were not in listed as a separate column but rather row names? Let’s just read in the data and have another quick look to jog our memories…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars
 
 <span class="kw">head</span>(df_mtcars)</code></pre></div>

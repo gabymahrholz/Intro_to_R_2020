@@ -40,6 +40,7 @@ There are three interrelated rules which make a dataset tidy:
 
 If you want to know more about tidy data, Hadley Wickham's paper can be found on https://vita.had.co.nz/papers/tidy-data.pdf or check out chapter 12 in the book R for Data Science (https://r4ds.had.co.nz/tidy-data.html).
 
+We will see today how `gather()`, `spread()`, `separate()`, and `unite()` can help us to get our data into a tidy format.
 
 
 ## gather() and spread()
@@ -219,11 +220,7 @@ kable(table1_mod)
 ```
 
 
-The output in `values` looks a bit strange now, but be assured the underlying information (the numbers for `cases`, `population`, and `percent`) is still present. If you want to check this, display the numeric value in column `values` as character.
-
-```{r}
-as.character(table1_mod$values)
-```
+The output in `values` looks a bit strange now. This is just because the column `values` holds very large and very small numbers. 
 
 
 ```{block, type="task"}
@@ -438,6 +435,7 @@ If we are separating the columns and wanted to keep all sets of numbers, one in 
 separate(table3_mod, rate, into = c("cases", "population", "200"), sep = "/")
 ```
 
+
 ```{block, type="funfact"}
 Technically, you would not need a separator argument in the case above, as `separate()` splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
 ```
@@ -450,7 +448,7 @@ separate(table3_mod, rate, into = c("cases", "ID_code"), sep = "/", extra = "mer
 
 
 ```{block, type="question"}
-There is still a tiny bit off in the `tb_cases`. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occurred in the 3 countries within the years 1999, and 2000.
+There is still a tiny bit off in data above. Can you spot what it is? * Hint: Think about if you wanted to sum up all the TB cases occurred in the 3 countries within the years 1999, and 2000.
 ```
 
 
@@ -573,9 +571,9 @@ unite(table5_mod, rate, rate, new, sep = "/", na.rm = TRUE)
 ```
 
 
-## Bonus materials: mutate row names from the mtcars
+## Bonus materials: mutate row names from the `mtcars`
 
-Remember, in lecture 2 when we were talking about the mtcars dataset and how the car types were not in listed as a separate column but rather row names? Let's just read in the data and have another quick look to jog our memories...
+Remember, in lecture 2 when we were talking about the `mtcars` dataset and how the car types were not in listed as a separate column but rather row names? Let's just read in the data and have another quick look to jog our memories...
 
 ```{r}
 df_mtcars <- mtcars

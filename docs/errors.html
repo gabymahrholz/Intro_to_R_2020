@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-17" />
+<meta name="date" content="2020-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -251,7 +251,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.4.3" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#unite"><i class="fa fa-check"></i><b>5.4.3</b> unite()</a></li>
 <li class="chapter" data-level="5.4.4" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-arguments-for-unite"><i class="fa fa-check"></i><b>5.4.4</b> additional arguments for unite()</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-row-names-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate row names from the mtcars</a></li>
+<li class="chapter" data-level="5.5" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#bonus-materials-mutate-row-names-from-the-mtcars"><i class="fa fa-check"></i><b>5.5</b> Bonus materials: mutate row names from the <code>mtcars</code></a></li>
 <li class="chapter" data-level="5.6" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#additional-information-1"><i class="fa fa-check"></i><b>5.6</b> Additional information</a></li>
 <li class="chapter" data-level="5.7" data-path="data-transformation-3-tidy-data.html"><a href="data-transformation-3-tidy-data.html#formative-homework-2"><i class="fa fa-check"></i><b>5.7</b> Formative Homework</a></li>
 </ul></li>
@@ -675,7 +675,7 @@ Solution
 <p><code>ggplot()</code> errors can be difficult to diagnose for the same reason that pipeline errors can be- there are multiple lines of code!</p>
 <p>Let’s get an example of a plot to work with. We’ll use the built in data set called <code>mpg</code>.</p>
 <p>The following plot looks at data on fuel consumption. More specifically it shows the relationship between city fuel consumption (on the x axis) and highway fuel consumption (on the y axis), with a “line of best fit” to demonstrate the correlation between them. Vehicles of different classes are specified in different colours according to the legend on the right of the graph.</p>
-<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-368-1.png" width="672" /></p>
+<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-367-1.png" width="672" /></p>
 <p>Plots are made by code, and like all the other code, it can be subject to the same errors from misplaced or missing brackets, commas and non-existent objects in the environment. We won’t be looking at these here because they’ve been covered above and you should be able to extrapolate that information when the same error occurs under different circumstances.</p>
 <p>Let’s look at a few errors that can occur specifically when creating plots:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty)) <span class="op">+</span>
@@ -703,7 +703,7 @@ Solution
 <center>
 <img src="images/gg_error_2.gif" />
 </center>
-<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-372-1.png" width="672" /></p>
+<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-371-1.png" width="672" /></p>
 <p>OK, so this produces the first layer of the graph- the background with a scale on the axis.</p>
 <p>What do you think is going on here? There is a hint available at this stage. Compare the axes on the graph we are aiming to produce versus the axes you have on this sample.</p>
 <p>If you are still not sure, do the same thing with the second line of the code, this is where the error message is produced in the code and this should provide you with extra information.</p>
@@ -718,7 +718,7 @@ Solution
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># first two lines should read:</span>
 <span class="kw">ggplot</span>(mpg, <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) </code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-373-1.png" width="672" /></p>
+<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-372-1.png" width="672" /></p>
 </div>
 </div>
 <div id="cannot-add-ggproto-objects-together.-did-you-forget-to-add-this-object-to-a-ggplot-object" class="section level5 unnumbered">
@@ -729,13 +729,13 @@ Solution
   <span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> class)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span> (<span class="dt">x =</span> <span class="st">&quot;City MPG&quot;</span>,
         <span class="dt">y =</span> <span class="st">&quot;Highway MPG&quot;</span>)</code></pre></div>
-<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-375-1.png" width="672" /></p>
+<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-374-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Error: Cannot add ggproto objects together. Did you forget to add this object to a ggplot object?</code></pre></div>
 <p>Let’s do the same thing that we did with pipes, highlight the first line and run it. As above, we don’t stop at a pipe we <strong>stop before the <code>+</code></strong>.</p>
 <center>
 <img src="images/gg_error_1.gif" />
 </center>
-<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-377-1.png" width="672" /></p>
+<p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-376-1.png" width="672" /></p>
 <p>Did it do as we expected it to do?</p>
 <p>Keep moving down the code segment line by line until you find where the result deviates from what we were expecting.</p>
 <p>What was the problem in this case? How do we solve this?</p>
