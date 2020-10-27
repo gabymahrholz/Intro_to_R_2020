@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Data Transformation 4: Fine-tuned Data Manipulation | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Data Transformation 4: Fine-tuned Data Manipulation | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -405,7 +407,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">6.2</span> rename()</h2>
 <p><code>rename()</code> is a very useful function if we wanted to change column names. All available column are retained, so nothing is lost. If you had 5 variables in a tibble, and wanted to change the name of one of them, your output would be 5 columns in total - one column with a changed name and 4 columns with the previous names. The <code>rename()</code> function follows a very simple pattern of</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rename</span>(data, <span class="dt">new_column_name =</span> old_column_name)</code></pre></div>
-<p>You can rename multiple column headers by including more arguments, separating them with a comma. Let’s take a look at a simple example in <code>table1</code>.</p>
+<p>You can rename multiple column headers by including more arguments, separating them with a comma. Let's take a look at a simple example in <code>table1</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table1</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   country      year  cases population
@@ -447,7 +449,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">6.3</span> Conditional statements</h2>
 <p>Conditional statements are used when you want to create an output value that is conditioned on an evaluation. Here, we are showing you how to use them in combination with <code>mutate()</code> by either modifying the values within one column, or by adding a new column.</p>
 <p>Example scenario: Imagine that we have data in which a column <code>Sex</code> holds values of <code>1</code> and <code>2</code> that stand for <code>Male</code>, and <code>Female</code> participants respectively. Conditional statements make an evaluation: <em>if <code>Sex</code> is <code>1</code>, then put the value of <code>Male</code> in a new column called <code>Sex_char</code>; if <code>Sex</code> is <code>2</code> put <code>Female</code> in column <code>Sex_char</code>.</em></p>
-<p>Let’s create some fake data for this. 40 participants (17 male, 20 female, 3 other), they are between 16 and 40 years of age, they study at 4 different institutions (University of Glasgow, University of Strathclyde, Glasgow Caledonian University, University of the West of Scotland), and we had them complete an R assignment and recorded their grade points.</p>
+<p>Let's create some fake data for this. 40 participants (17 male, 20 female, 3 other), they are between 16 and 40 years of age, they study at 4 different institutions (University of Glasgow, University of Strathclyde, Glasgow Caledonian University, University of the West of Scotland), and we had them complete an R assignment and recorded their grade points.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">999</span>) <span class="co">#so we all get the same random data</span>
 fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">PP_ID =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">40</span>,
                     <span class="dt">Sex =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">17</span>), <span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">20</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">3</span>)),
@@ -455,8 +457,8 @@ fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span cla
                     <span class="dt">Institution =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">10</span>), <span class="kw">rep</span>(<span class="dv">99</span>,<span class="dv">2</span>))),
                     <span class="dt">Grade_points =</span> <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">9</span><span class="op">:</span><span class="dv">22</span>), <span class="dv">40</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>))
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 5
+<pre><code>## Rows: 40
+## Columns: 5
 ## $ PP_ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
 ## $ Sex          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, ...
 ## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22, 21...
@@ -756,27 +758,27 @@ fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span cla
 </tr>
 </tbody>
 </table>
-<p>Now, the data doesn’t look very readable at the moment. If we pass this data set onto a fellow researcher, they would ask us how the columns <code>Sex</code> and <code>Institution</code> are coded.</p>
+<p>Now, the data doesn't look very readable at the moment. If we pass this data set onto a fellow researcher, they would ask us how the columns <code>Sex</code> and <code>Institution</code> are coded.</p>
 <p>Best would be to adjust the values to make that clearer. There are the options of using the function <code>recode()</code>, an <code>ifelse</code> statement or <code>case_when()</code>.</p>
 <div id="recode" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> recode()</h3>
 <p>Can be used for character, numeric, and factors columns.</p>
 <p>The structure for <code>recode()</code> is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">recode</span>(variable_to_recode, <span class="dt">old_value =</span> new_value)</code></pre></div>
-<p>This is a bit tricky to remember as it doesn’t follow the usual tidyverse logic. In <code>select()</code>, <code>rename()</code>, and <code>mutate()</code> for example it is the other way around <code>new_thing = old_thing</code> or <code>new_thing = something_computational</code>)</p>
+<p>This is a bit tricky to remember as it doesn't follow the usual tidyverse logic. In <code>select()</code>, <code>rename()</code>, and <code>mutate()</code> for example it is the other way around <code>new_thing = old_thing</code> or <code>new_thing = something_computational</code>)</p>
 <p>In combination with <code>mutate()</code>, the structure looks as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(data, <span class="dt">new_column_name =</span> <span class="kw">recode</span>(variable_to_recode, <span class="dt">old_value =</span> new_value))</code></pre></div>
 <p>What is a bit unusual in this structure is that we need a new column name within the <code>mutate()</code> function but also a reference column within <code>recode()</code> on which the conditional recoding is based upon.</p>
 <p>The new column name within <code>mutate()</code> can either be an entirely new column name, or if it is an existing column name that original column would be overwritten by the new values we recode.</p>
-<p>So, let’s turn to our <code>fake_data</code>, and apply that logic for recoding the values of the column <code>Sex</code> where 1 = “Male”, 2 = “Female”, and 3 = “Other”. We will add a new column <code>Sex_char</code> onto our <code>fake_data</code>.</p>
+<p>So, let's turn to our <code>fake_data</code>, and apply that logic for recoding the values of the column <code>Sex</code> where 1 = &quot;Male&quot;, 2 = &quot;Female&quot;, and 3 = &quot;Other&quot;. We will add a new column <code>Sex_char</code> onto our <code>fake_data</code>.</p>
 <p>The only tricky thing to remember here is that recoding numeric values requires backticks (if the numbers are on the left side of the equation).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_char =</span> <span class="kw">recode</span>(Sex, 
                                                  <span class="st">`</span><span class="dt">1</span><span class="st">`</span> =<span class="st"> &quot;Male&quot;</span>, 
                                                  <span class="st">`</span><span class="dt">2</span><span class="st">`</span> =<span class="st"> &quot;Female&quot;</span>, 
                                                  <span class="st">`</span><span class="dt">3</span><span class="st">`</span> =<span class="st"> &quot;Other&quot;</span>))
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 6
+<pre><code>## Rows: 40
+## Columns: 6
 ## $ PP_ID        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
 ## $ Sex          &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, ...
 ## $ Age          &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22, 21...
@@ -785,7 +787,7 @@ fake_data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span cla
 ## $ Sex_char     &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;...</code></pre>
 <div class="warning">
 <p>
-If you forget to recode one condition (for example <code>`3` = “Other”</code>), values for 3 would be displayed as <code>NA</code> in the new column. This becomes more important when you decide to overwrite an existing column.
+If you forget to recode one condition (for example <code>`3` = &quot;Other&quot;</code>), values for 3 would be displayed as <code>NA</code> in the new column. This becomes more important when you decide to overwrite an existing column.
 </p>
 </div>
 <div class="task">
@@ -827,8 +829,8 @@ Solution
                                                          <span class="st">`</span><span class="dt">4</span><span class="st">`</span> =<span class="st"> &quot;UWS&quot;</span>, 
                                                          <span class="st">`</span><span class="dt">99</span><span class="st">`</span> =<span class="st"> &quot;Strathclyde&quot;</span>))
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 7
+<pre><code>## Rows: 40
+## Columns: 7
 ## $ PP_ID            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
 ## $ Sex              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
 ## $ Age              &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22...
@@ -837,7 +839,7 @@ Solution
 ## $ Sex_char         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;M...
 ## $ Institution_char &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;, ...</code></pre>
 </div>
-<p>An alternative to <code>recode()</code> is <code>ifelse()</code>. Let’s see how <code>Sex</code> and <code>Institution</code> could have been recoded using <code>ifelse()</code>.</p>
+<p>An alternative to <code>recode()</code> is <code>ifelse()</code>. Let's see how <code>Sex</code> and <code>Institution</code> could have been recoded using <code>ifelse()</code>.</p>
 </div>
 <div id="ifelse" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> ifelse()</h3>
@@ -852,11 +854,11 @@ Solution
 <p>The interpretation of <code>ifelse()</code> is: if the test expression is <code>TRUE</code>, write the value of yes, otherwise no.</p>
 <p>In combination with <code>mutate()</code>, the structure looks as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(data, <span class="dt">new_column_name =</span> <span class="kw">ifelse</span>(test, yes, no))</code></pre></div>
-<p>How would we apply that to recoding <code>Sex</code>? We would want the expression to test whether the Sex column holds a value of 1, then a new column should code it as “Male”, otherwise as “Female”. Let’s add a new column <code>Sex_ifelse</code> to <code>fake_data</code></p>
+<p>How would we apply that to recoding <code>Sex</code>? We would want the expression to test whether the Sex column holds a value of 1, then a new column should code it as &quot;Male&quot;, otherwise as &quot;Female&quot;. Let's add a new column <code>Sex_ifelse</code> to <code>fake_data</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_ifelse =</span> <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>))
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 8
+<pre><code>## Rows: 40
+## Columns: 8
 ## $ PP_ID            &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
 ## $ Sex              &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,...
 ## $ Age              &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, 22...
@@ -865,7 +867,7 @@ Solution
 ## $ Sex_char         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;M...
 ## $ Institution_char &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;, ...
 ## $ Sex_ifelse       &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;M...</code></pre>
-<p>AHHHH!!! But what about the 3 participants that chose option 3? They are now coded as “Female”. Hmmm. One way to get around that would be a nested <code>ifelse()</code> statement. Instead of replacing the no argument (<code>FALSE</code> evaluation) with “Female”, we could include a second <code>ifelse()</code> statement.</p>
+<p>AHHHH!!! But what about the 3 participants that chose option 3? They are now coded as &quot;Female&quot;. Hmmm. One way to get around that would be a nested <code>ifelse()</code> statement. Instead of replacing the no argument (<code>FALSE</code> evaluation) with &quot;Female&quot;, we could include a second <code>ifelse()</code> statement.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Sex_ifelse =</span> <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Male&quot;</span>,
                                                    <span class="kw">ifelse</span>(Sex <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, <span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Other&quot;</span>)))</code></pre></div>
 <p>Now everything is coded as it should be.</p>
@@ -878,16 +880,16 @@ Recode <code>Institution</code> using <code>ifelse()</code>. Add a new column <c
 </p>
 <ul>
 <li>
-1 = “UoG”,
+1 = &quot;UoG&quot;,
 </li>
 <li>
-2 and 99 = “Strathclyde”,
+2 and 99 = &quot;Strathclyde&quot;,
 </li>
 <li>
-3 = “GCU”, and
+3 = &quot;GCU&quot;, and
 </li>
 <li>
-4 = “UWS”
+4 = &quot;UWS&quot;
 </li>
 </ul>
 </div>
@@ -900,8 +902,8 @@ Solution
                                                                   <span class="kw">ifelse</span>(Institution <span class="op">==</span><span class="st">  </span><span class="dv">4</span>, <span class="st">&quot;UWS&quot;</span>, <span class="st">&quot;Strathclyde&quot;</span>))))
 
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 9
+<pre><code>## Rows: 40
+## Columns: 9
 ## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 ## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, ...
@@ -912,11 +914,11 @@ Solution
 ## $ Sex_ifelse         &lt;chr&gt; &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, &quot;Male&quot;, ...
 ## $ Institution_ifelse &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;GCU&quot;...</code></pre>
 </div>
-<p>It does look a bit convoluted, and there is definitely the need to count opening and closing brackets, but it gets us the output we wanted. Before showing you how this can be coded in a slightly neater way with <code>case_when()</code>, I’d like to highlight one advantage <code>ifelse()</code> has over <code>recode()</code>, namely that the test expression can evaluate more complex “things” as long as they return a logical value. For example, if we wanted to add a column <code>Pass_Fail</code> to <code>fake_data</code>, that holds values of “Pass” for grade points above 9, and “Fail” for values of 9 and below, we would code</p>
+<p>It does look a bit convoluted, and there is definitely the need to count opening and closing brackets, but it gets us the output we wanted. Before showing you how this can be coded in a slightly neater way with <code>case_when()</code>, I'd like to highlight one advantage <code>ifelse()</code> has over <code>recode()</code>, namely that the test expression can evaluate more complex &quot;things&quot; as long as they return a logical value. For example, if we wanted to add a column <code>Pass_Fail</code> to <code>fake_data</code>, that holds values of &quot;Pass&quot; for grade points above 9, and &quot;Fail&quot; for values of 9 and below, we would code</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Pass_Fail =</span> <span class="kw">ifelse</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>, <span class="st">&quot;Pass&quot;</span>, <span class="st">&quot;Fail&quot;</span>))
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 10
+<pre><code>## Rows: 40
+## Columns: 10
 ## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 ## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, ...
@@ -937,8 +939,8 @@ Solution
                                                                                  <span class="kw">ifelse</span>(Grade_points <span class="op">%in%</span><span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="st">&quot;G&quot;</span>,<span class="st">&quot;H&quot;</span>))))))))
 
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 11
+<pre><code>## Rows: 40
+## Columns: 11
 ## $ PP_ID              &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1...
 ## $ Sex                &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 ## $ Age                &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 20, ...
@@ -960,7 +962,7 @@ Solution
 <li>The left hand side (LHS) determines which values match this case. The right hand side (RHS) provides the replacement value.</li>
 <li>The LHS must evaluate to a logical vector. The RHS does not need to be logical, but all RHSs must evaluate to the same type of vector.</li>
 </ul>
-<p>Let’s apply this to recoding the values in the column <code>Institution</code>. Combining <code>case_when()</code> with <code>mutate()</code>, we will add another column called <code>Institution_case_when</code> to <code>fake_data</code>.</p>
+<p>Let's apply this to recoding the values in the column <code>Institution</code>. Combining <code>case_when()</code> with <code>mutate()</code>, we will add another column called <code>Institution_case_when</code> to <code>fake_data</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(fake_data, <span class="dt">Institution_case_when =</span> <span class="kw">case_when</span>(
   Institution <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">~</span><span class="st"> &quot;UoG&quot;</span>,
   Institution <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">~</span><span class="st"> &quot;GCU&quot;</span>,
@@ -969,8 +971,8 @@ Solution
   )
 )
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 12
+<pre><code>## Rows: 40
+## Columns: 12
 ## $ PP_ID                 &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
 ## $ Sex                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 ## $ Age                   &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 2...
@@ -983,8 +985,8 @@ Solution
 ## $ Pass_Fail             &lt;chr&gt; &quot;Fail&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass&quot;, &quot;Pass...
 ## $ Grade                 &lt;chr&gt; &quot;H&quot;, &quot;A&quot;, &quot;B&quot;, &quot;A&quot;, &quot;D&quot;, &quot;A&quot;, &quot;A&quot;, &quot;D&quot;, &quot;C&quot;, ...
 ## $ Institution_case_when &lt;chr&gt; &quot;GCU&quot;, &quot;UoG&quot;, &quot;UoG&quot;, &quot;UWS&quot;, &quot;Strathclyde&quot;, &quot;G...</code></pre>
-<p>The <code>TRUE</code> statement at the end is similar to the the “else” in the <code>ifelse()</code> function. A further similarity between the two is that arguments are evaluated in order, so you must proceed from the most specific to the most general.</p>
-<p>Allison Horst made a really cute artwork about <code>case_when()</code> which might help. In her example, she is using the <code>mutate()</code> function to add a new column called <code>danger</code>, and wants the danger value to be listed as extreme! if the animal is of <code>type</code> kraken. In all other cases, the danger levels should be “just” high.</p>
+<p>The <code>TRUE</code> statement at the end is similar to the the &quot;else&quot; in the <code>ifelse()</code> function. A further similarity between the two is that arguments are evaluated in order, so you must proceed from the most specific to the most general.</p>
+<p>Allison Horst made a really cute artwork about <code>case_when()</code> which might help. In her example, she is using the <code>mutate()</code> function to add a new column called <code>danger</code> to the data <code>df</code>, and wants the danger value to be listed as extreme! if the animal is of <code>type</code> kraken. In all other cases, the danger levels should be &quot;just&quot; high.</p>
 <div class="figure">
 <img src="images/dplyr_case_when.png" alt="Artwork by @allison_horst, Source: https://github.com/allisonhorst/stats-illustrations" />
 <p class="caption">Artwork by <code>@allison_horst</code>, Source: <a href="https://github.com/allisonhorst/stats-illustrations" class="uri">https://github.com/allisonhorst/stats-illustrations</a></p>
@@ -1039,8 +1041,8 @@ Solution
   )
 )
 <span class="kw">glimpse</span>(fake_data)</code></pre></div>
-<pre><code>## Observations: 40
-## Variables: 13
+<pre><code>## Rows: 40
+## Columns: 13
 ## $ PP_ID                 &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14...
 ## $ Sex                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 ## $ Age                   &lt;int&gt; 19, 22, 24, 29, 16, 25, 37, 18, 38, 39, 30, 2...
@@ -1088,24 +1090,24 @@ institution_distinct</code></pre></div>
 ## #   Pass_Fail &lt;chr&gt;, Grade &lt;chr&gt;, Institution_case_when &lt;chr&gt;,
 ## #   Grade_case_when &lt;chr&gt;</code></pre>
 <p>In the new <code>institution_distinct</code> dataframe, we still have 4 institutions listed but we kept all 13 columns. If there are multiple rows with the same input (in this case 40 participants from 4 different institutions), <code>distinct()</code> only preserves the first row a new value occurs.</p>
-<p>The <code>distinct()</code> function also allows you to eliminate duplicate rows with multiple variables in the dataframe. So if we wanted to see where participants were studying but also the different sexes taking part in the study, we would code…</p>
+<p>The <code>distinct()</code> function also allows you to eliminate duplicate rows with multiple variables in the dataframe. So if we wanted to see where participants were studying but also the different sexes taking part in the study, we would code...</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">institution_sex_distinct &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">distinct</span>(Institution_char, Sex_char)
 institution_sex_distinct</code></pre></div>
 <pre><code>## # A tibble: 10 x 2
-##    Institution_char Sex_char
-##    &lt;chr&gt;            &lt;chr&gt;   
-##  1 GCU              Male    
-##  2 UoG              Male    
-##  3 UWS              Male    
-##  4 Strathclyde      Male    
-##  5 Strathclyde      Female  
-##  6 GCU              Female  
-##  7 UWS              Female  
-##  8 UoG              Female  
-##  9 Strathclyde      Other   
-## 10 UoG              Other</code></pre>
-<p><code>institution_sex_distinct</code> has 10 observations, so that means, we have at least 1 male and 1 female participant from each of the 4 institutions. Additionally, Strathclyde and Glasgow have participants classifying as neither male nor female (here coded as “Other”).</p>
+##    Sex_char Institution_char
+##    &lt;chr&gt;    &lt;chr&gt;           
+##  1 Male     GCU             
+##  2 Male     UoG             
+##  3 Male     UWS             
+##  4 Male     Strathclyde     
+##  5 Female   Strathclyde     
+##  6 Female   GCU             
+##  7 Female   UWS             
+##  8 Female   UoG             
+##  9 Other    Strathclyde     
+## 10 Other    UoG</code></pre>
+<p><code>institution_sex_distinct</code> has 10 observations, so that means, we have at least 1 male and 1 female participant from each of the 4 institutions. Additionally, Strathclyde and Glasgow have participants classifying as neither male nor female (here coded as &quot;Other&quot;).</p>
 <div class="question">
 <p>
 You can see they are not sorted by either of the column. Why is that?
@@ -1124,10 +1126,10 @@ The values are sorted by occurrence. R goes through the tibble row by row to det
 </div>
 <div id="recap" class="section level2">
 <h2><span class="header-section-number">6.5</span> Recap</h2>
-<p>Let’s just have some fun with <code>fake_data</code> whilst recapping a little bit of what we did in the past 5 weeks.</p>
+<p>Let's just have some fun with <code>fake_data</code> whilst recapping a little bit of what we did in the past 5 weeks.</p>
 <div id="question-1" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> Question 1</h3>
-<p>Select the variables <code>PP_ID</code>, <code>Sex_char</code>, <code>Age</code>, <code>Institution_char</code>, <code>Grade_points</code>, <code>Grade</code>, and <code>Pass_Fail</code> from <code>fake_data</code>and save it as <code>fake_data</code> in your Global Environment (i.e. overwrite/replace <code>fake_data</code>). Rename the following variables in the process:</p>
+<p>Select the variables <code>PP_ID</code>, <code>Sex_char</code>, <code>Age</code>, <code>Institution_char</code>, <code>Grade_points</code>, <code>Grade</code>, and <code>Pass_Fail</code> from <code>fake_data</code>and save it as <code>fake_data</code> in your Global Environment (i.e. overwrite/replace <code>fake_data</code>). Rename the following variables in the process:</p>
 <ul>
 <li><code>PP_ID</code> as <code>Participant_ID</code></li>
 <li><code>Sex_char</code> as <code>Sex</code></li>
@@ -1174,9 +1176,9 @@ Solution
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grade_points &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-grade_points</code></pre></div>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">grade_points</code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   Institution Average_grade_points
 ##   &lt;chr&gt;                      &lt;dbl&gt;
@@ -1218,7 +1220,7 @@ Solution
 </div>
 <div id="question-4" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> Question 4</h3>
-<p>Our colleague is interested in what the grade point average for each university would be if we were only looking at the students who passed the R assignment initially (i.e. grade points above 9). Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_pass</code>.</p>
+<p>Our colleague is interested in what the grade point average for each university would be if we were only looking at the students who passed the R assignment initially (i.e. grade points above 9). Store the output in your <code>Global Environment</code> as a new object called <code>fake_data_pass</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_pass &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 <div class="solution">
 <button>
@@ -1229,16 +1231,16 @@ fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</
 <span class="st">  </span><span class="kw">filter</span>(Grade_points <span class="op">&gt;</span><span class="st"> </span><span class="dv">9</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-<span class="co"># filter Pass_Fail</span>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># filter Pass_Fail</span>
 fake_data_pass &lt;-<span class="st"> </span>fake_data <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(Pass_Fail <span class="op">==</span><span class="st"> &quot;Pass&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Institution) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">Average_grade_points_pass =</span> <span class="kw">mean</span>(Grade_points)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>()
-
-fake_data_pass</code></pre></div>
+<span class="st">  </span><span class="kw">ungroup</span>()</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_pass</code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   Institution Average_grade_points_pass
 ##   &lt;chr&gt;                           &lt;dbl&gt;
@@ -1263,9 +1265,9 @@ Solution
 <span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">spread</span>(Sex, Average_gp) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(Institution, <span class="dt">Males =</span> Male, <span class="dt">Females =</span> Female) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Better =</span> <span class="kw">ifelse</span>(Males <span class="op">&gt;</span><span class="st"> </span>Females, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))
-
-fake_data_sex</code></pre></div>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Better =</span> <span class="kw">ifelse</span>(Males <span class="op">&gt;</span><span class="st"> </span>Females, <span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;Institution&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fake_data_sex</code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ##   Institution Males Females Better
 ##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 

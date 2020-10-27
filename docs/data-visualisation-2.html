@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Data Visualisation 2 | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Data Visualisation 2 | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -428,7 +430,7 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 <tr class="odd">
 <td align="left">Measurement</td>
-<td align="left">What type of measurement it is (here we have only counts i.e. the number of people)</td>
+<td align="left">What type of measurement it is (here we have only counts i.e. the number of people)</td>
 </tr>
 <tr class="even">
 <td align="left">Units</td>
@@ -436,7 +438,7 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 <tr class="odd">
 <td align="left">Value</td>
-<td align="left">The actual count (i.e. the number of people)</td>
+<td align="left">The actual count (i.e. the number of people)</td>
 </tr>
 <tr class="even">
 <td align="left">Age</td>
@@ -490,7 +492,7 @@ Solution
 Simple Task 2:
 </p>
 <p>
-Create a column plot that shows the number of people for each sex using the data we just created using <code>geom_col()</code>. Separate the data by using different colours based on <code>Migration Type</code>. Don’t forget to use <code>position = ‘dodge’</code> so that your columns do not overlap.
+Create a column plot that shows the number of people for each sex using the data we just created using <code>geom_col()</code>. Separate the data by using different colours based on <code>Migration Type</code>. Don't forget to use <code>position = 'dodge'</code> so that your columns do not overlap.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span><span class="ot">NULL</span></code></pre></div>
@@ -534,20 +536,20 @@ Solution
 <p>We can use several facet functions.</p>
 <ul>
 <li><code>facet_grid(variable_to_split_by)</code> structures the rows and columns of graphs based on a third variable</li>
-<li><code>facet_grid(.~variable)</code> creates columns - i.e. side by side panels</li>
-<li><code>facet_grid(variable~.)</code> creates rows - i.e. one on top of the other</li>
+<li><code>facet_grid(.~variable)</code> creates columns - i.e. side by side panels</li>
+<li><code>facet_grid(variable~.)</code> creates rows - i.e. one on top of the other</li>
 <li><code>facet_grid(variable1~variable2)</code> creates rows based on variable1 and columns based on variable2<br />
 </li>
 <li><code>facet_wrap(variable)</code> creates a grid with rectangular slots for the plots based on your variables</li>
 </ul>
-<p>Let’s replicate the two plots we just created but using <code>facet_grid()</code> and put them side-by-side in one. Now we have both plots next to each other, which makes it much easier to look at the differences in the migration patterns between the two Migration Sources.</p>
+<p>Let's replicate the two plots we just created but using <code>facet_grid()</code> and put them side-by-side in one. Now we have both plots next to each other, which makes it much easier to look at the differences in the migration patterns between the two Migration Sources.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, 
                          <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(.<span class="op">~</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-328-1.png" width="672" /></p>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
-<p>Let’s look at these plots.</p>
+<p>Let's look at these plots.</p>
 <ul>
 <li>Which sex tends to move to Scotland more, regardless of migration location? <select class='solveme' data-answer='["Female"]'> <option></option> <option>Female</option> <option>Male</option></select></li>
 <li>Which migration location do both males and females migrate to more when they leave Scotland? <select class='solveme' data-answer='["To RUK"]'> <option></option> <option>To Overseas</option> <option>To RUK</option></select></li>
@@ -557,10 +559,10 @@ Solution
 <div id="global-and-local-aesthetics" class="section level2">
 <h2><span class="header-section-number">8.4</span> Global and Local aesthetics</h2>
 <p>So far, we have been working with a <em>Global</em> definition of the aesthetics. This allows us to specify the axes and the groupings only once.</p>
-<p>Sometimes, we want to use multiple data and put multiple plots on top of each other. For these occasions we can specify the aesthetics at a local level - i.e. in the geoms.</p>
+<p>Sometimes, we want to use multiple data and put multiple plots on top of each other. For these occasions we can specify the aesthetics at a local level - i.e. in the geoms.</p>
 <p>If you remember from last week, we specified both the colour and the shape in our <code>ggplot()</code> when we were making the line graph. The <code>geom_line()</code> inherited the colour but not the shape argument.</p>
 <p>However, if we have two geoms that share the same aesthetics but we do not want to have the same colours, we can move them to each of the geoms instead of specifying them globally in the <code>ggplot()</code> function.</p>
-<p>Let’s redo the violins and box plots from last week, and put them together into two separate layers of the same graph. This time, we will give them some colour. We will colour the violins with the <code>fill</code> argument and make the box plots transparent using the <code>alpha</code> argument.</p>
+<p>Let's redo the violins and box plots from last week, and put them together into two separate layers of the same graph. This time, we will give them some colour. We will colour the violins with the <code>fill</code> argument and make the box plots transparent using the <code>alpha</code> argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#some data wrangling</span>
 boxes &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, 
@@ -577,7 +579,7 @@ boxes &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>))</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-329-1.png" width="672" /></p>
 <p>Because <code>alpha</code> (the transparency argument) and <code>fill</code> are arguments for both box plots and violins, if we had put them in the <code>ggplot()</code> layer, they would both be inherited by the two geoms.</p>
-<p>Let’s see how it would have looked like if we had specified the two arguments globally.</p>
+<p>Let's see how it would have looked like if we had specified the two arguments globally.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#make violins and box plots </span>
 
 <span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span>
@@ -593,7 +595,7 @@ As you know, R works left to right and top to bottom, reading your code line by 
 </div>
 <div id="themes-making-your-plots-pretty-looking-the-way-you-want-them-to" class="section level2">
 <h2><span class="header-section-number">8.5</span> Themes: Making your plots pretty: looking the way you want them to</h2>
-<p>The great thing about making your own plots in R is that you can make them look the way you want. Even better, if you are writing a paper, graphs are easy to adjust to match journals’ criteria. Let’s adjust the look of our graph.</p>
+<p>The great thing about making your own plots in R is that you can make them look the way you want. Even better, if you are writing a paper, graphs are easy to adjust to match journals' criteria. Let's adjust the look of our graph.</p>
 <div id="ready-made-themes" class="section level3">
 <h3><span class="header-section-number">8.5.1</span> Ready-made themes</h3>
 <p>ggplot2 comes with several ready made themes. Some of them are:</p>
@@ -601,7 +603,7 @@ As you know, R works left to right and top to bottom, reading your code line by 
 <li>theme_bw(): a white background with major axes and border.</li>
 <li>theme_minimal(): a white background with major axes and more. Just use the cheetsheet for visualisations with ggplot for some more examples.</li>
 </ul>
-<p>Themes are just like any other layer for ggplot. You just add them at the end of your plot with <code>+</code>. Let’s add one of these theme formats to our plot above.</p>
+<p>Themes are just like any other layer for ggplot. You just add them at the end of your plot with <code>+</code>. Let's add one of these theme formats to our plot above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
@@ -625,7 +627,7 @@ The background is no longer grey, the grid lines are a light grey instead of whi
 </div>
 <div id="adding-axes-titles-and-headings" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> Adding axes titles and headings</h3>
-<p>Next, let’s add some titles and better labels with <code>labs()</code>. You need to specify which labels you want to change - x, y or the title, and type in the labels you want. Write <code>?labs()</code> in your console to see some examples.</p>
+<p>Next, let's add some titles and better labels with <code>labs()</code>. You need to specify which labels you want to change - x, y or the title, and type in the labels you want. Write <code>?labs()</code> in your console to see some examples.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)) <span class="op">+</span>
@@ -634,7 +636,7 @@ The background is no longer grey, the grid lines are a light grey instead of whi
        <span class="dt">x =</span> <span class="st">&#39;Migration direction&#39;</span>, 
        <span class="dt">y =</span> <span class="st">&#39;Number of people&#39;</span>)</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-335-1.png" width="672" /></p>
-<p>Sometimes, we need the titles to be a specific size. We can change all of that in an additional <code>theme()</code> layer. We specify the argument we want to change and what about them we need to change. In our case, I want to change the size of the x-axis title to 12pt, and the graph title to 20pt. Let’s also pretend we do not want the y-axis title. We can also specify this in the <code>theme()</code> layer.</p>
+<p>Sometimes, we need the titles to be a specific size. We can change all of that in an additional <code>theme()</code> layer. We specify the argument we want to change and what about them we need to change. In our case, I want to change the size of the x-axis title to 12pt, and the graph title to 20pt. Let's also pretend we do not want the y-axis title. We can also specify this in the <code>theme()</code> layer.</p>
 <p>We do this by specifying <code>element_text()</code> and <code>element_blank()</code> for the correct theme arguments (<code>axis.title.x</code>, <code>title</code>, <code>axis.title.x</code>). Simply put, for that element of the plot, what do we want to change - text and to make it blank.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(boxes, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
@@ -687,8 +689,8 @@ R really likes order, so it will put everything in alphabetical order. This is w
 <div id="legends" class="section level2">
 <h2><span class="header-section-number">8.7</span> Legends</h2>
 <p>We can see that for any additional aesthetic we have put, ggplot has created a legend on the side.</p>
-<p>Now let’s change what the labels actually say. We do this in the same place we specified the colours <code>scale_fill_manual</code> because, again, we are overwriting the automatic <code>fill</code> labels.</p>
-<p>Let’s also:</p>
+<p>Now let's change what the labels actually say. We do this in the same place we specified the colours <code>scale_fill_manual</code> because, again, we are overwriting the automatic <code>fill</code> labels.</p>
+<p>Let's also:</p>
 <ol style="list-style-type: decimal">
 <li><p>hide the legend associated with the box plots (i.e. <code>alpha</code>);</p></li>
 <li><p>move the legend to the bottom of the graph using the <code>legend.position</code> argument; and</p></li>
@@ -738,8 +740,8 @@ R really likes order, so it will put everything in alphabetical order. This is w
     <span class="dt">legend.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>)
   )</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-341-1.png" width="672" /></p>
-<p>Let’s also say that we are plotting data which is continuous but we want to show each of the values. For example we have years and we want to show every year. <code>ggplot</code> will try and skip some of the years to make the graph look neater. There are several ways we can change that. We can either make the variable into a factor or a character using <code>as.character</code>so that <code>ggplot</code> will be forced to look at it as a discrete variable or we can change the ticks of the x axis by giving them <code>limits</code> and <code>breaks</code> in the layer that overwrites the original x values - <code>scale_x_continuous()</code>.</p>
-<p>Let’s use the graph from last week which showed us the change in migration across the years.</p>
+<p>Let's also say that we are plotting data which is continuous but we want to show each of the values. For example we have years and we want to show every year. <code>ggplot</code> will try and skip some of the years to make the graph look neater. There are several ways we can change that. We can either make the variable into a factor or a character using <code>as.character</code>so that <code>ggplot</code> will be forced to look at it as a discrete variable or we can change the ticks of the x axis by giving them <code>limits</code> and <code>breaks</code> in the layer that overwrites the original x values - <code>scale_x_continuous()</code>.</p>
+<p>Let's use the graph from last week which showed us the change in migration across the years.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First, we are getting the data from last week to recreate the code.</span>
 
 traffic_scot2 &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>

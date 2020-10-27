@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Data Transformation 3: Tidy Data | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Data Transformation 3: Tidy Data | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -397,15 +399,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="pre-steps-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Pre-steps</h2>
-<p>All the functions for tidying data are within <code>tidyverse</code> so we need to make sure to load it into the library. Today’s lecture will make use of built-in dataframes but for practice examples, we may want to load in the West of Scotland seasonal sunshine and rain data you encountered last week.</p>
+<p>All the functions for tidying data are within <code>tidyverse</code> so we need to make sure to load it into the library. Today's lecture will make use of built-in dataframes but for practice examples, we may want to load in the West of Scotland seasonal sunshine and rain data you encountered last week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 sun &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;wos_seasonal_sun.csv&quot;</span>)
 rain &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;wos_seasonal_rain.csv&quot;</span>)</code></pre></div>
 </div>
 <div id="tidy-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Tidy data</h2>
-<p><em>“Happy families are all alike; every unhappy family is unhappy in its own way.”</em> – Leo Tolstoy</p>
-<p><em>“Tidy datasets are all alike, but every messy dataset is messy in its own way.”</em> – Hadley Wickham</p>
+<p><em>&quot;Happy families are all alike; every unhappy family is unhappy in its own way.&quot;</em> -- Leo Tolstoy</p>
+<p><em>&quot;Tidy datasets are all alike, but every messy dataset is messy in its own way.&quot;</em> -- Hadley Wickham</p>
 <p>In this chapter, you will learn a consistent way to organise your data in R. Hadley Wickham and Garrett Grolemund call this <strong>tidy data</strong>. In most cases, data does not come in a tidy format. Researchers spend most of their time getting the data into the shape it needs to be for a particular analysis. The tools we introduce you to this week and next should form the basics for data wrangling. The idea is that tidy datasets are easier to work with in the long run.</p>
 <p>There are three interrelated rules which make a dataset tidy:</p>
 <ol style="list-style-type: decimal">
@@ -413,7 +415,7 @@ rain &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <li>Each observation must have its own row.</li>
 <li>Each value must have its own cell.</li>
 </ol>
-<p>If you want to know more about tidy data, Hadley Wickham’s paper can be found on <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a> or check out chapter 12 in the book R for Data Science (<a href="https://r4ds.had.co.nz/tidy-data.html" class="uri">https://r4ds.had.co.nz/tidy-data.html</a>).</p>
+<p>If you want to know more about tidy data, Hadley Wickham's paper can be found on <a href="https://vita.had.co.nz/papers/tidy-data.pdf" class="uri">https://vita.had.co.nz/papers/tidy-data.pdf</a> or check out chapter 12 in the book R for Data Science (<a href="https://r4ds.had.co.nz/tidy-data.html" class="uri">https://r4ds.had.co.nz/tidy-data.html</a>).</p>
 <p>We will see today how <code>gather()</code>, <code>spread()</code>, <code>separate()</code>, and <code>unite()</code> can help us to get our data into a tidy format.</p>
 </div>
 <div id="gather-and-spread" class="section level2">
@@ -422,7 +424,7 @@ rain &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <center>
 <img src="images/original-dfs-tidy.png" >
 </center>
-<p>We cannot say “wide format is tidy” or “the data should always be in long format”; how your data needs to be formatted depends on your data (and the meaning). If x, y, and z are separate variables, then the data is tidy in the wide format as shown above; if x, y, and z are levels of a variable (<code>key</code> in the image above), you want to shape your data into long format.</p>
+<p>We cannot say &quot;wide format is tidy&quot; or &quot;the data should always be in long format&quot;; how your data needs to be formatted depends on your data (and the meaning). If x, y, and z are separate variables, then the data is tidy in the wide format as shown above; if x, y, and z are levels of a variable (<code>key</code> in the image above), you want to shape your data into long format.</p>
 <p>The gif animation by Garrick Aden-Buie (<a href="https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather" class="uri">https://www.garrickadenbuie.com/project/tidyexplain/#spread-and-gather</a>) shows you how <code>gather()</code> and <code>spread()</code> work by rearranging your data from wide to long format and vice versa.</p>
 <center>
 <img src="images/tidyr-spread-gather.gif" >
@@ -465,12 +467,12 @@ rain &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class=
 <img src="images/gather.PNG" >
 </center>
 <p><br></p>
-<p>Let’s apply this formula to <code>table4a</code></p>
+<p>Let's apply this formula to <code>table4a</code></p>
 <ul>
 <li>We need a dataframe that we want to modify -&gt; <code>table4a</code></li>
 <li>We need to come up with the name of a new column in which the values of 1999 and 2000 will be stored -&gt; <code>year</code></li>
 <li>We need to come up with the name of a new column in which all the case values will be stored -&gt; <code>cases</code></li>
-<li>And finally, we need to tell R which columns in <code>table4a</code> we want to turn into long format (i.e. the columns of the 7 subscales) -&gt; 1999 and 2000 (Note that “1999” and “2000” are non-syntactic names as they don’t start with a letter. The solution is to surround them in backticks.)</li>
+<li>And finally, we need to tell R which columns in <code>table4a</code> we want to turn into long format (i.e. the columns of the 7 subscales) -&gt; 1999 and 2000 (Note that &quot;1999&quot; and &quot;2000&quot; are non-syntactic names as they don't start with a letter. The solution is to surround them in backticks.)</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(table4a, <span class="dt">key =</span> year, <span class="dt">value =</span> cases, <span class="st">`</span><span class="dt">1999</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2000</span><span class="st">`</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
@@ -515,7 +517,7 @@ Solution
 <strong>Your turn - Second example</strong>
 </p>
 <p>
-Remember the sunshine and rain data from last week? Let’s have a look at one of the datasets (your choice whether to look at <code>sun</code> or <code>rain</code>). The data for <code>year</code>is in a tidy format, but the seasonal data is spread over 4 columns (<code>win</code>, <code>spr</code>, <code>sum</code>, and <code>aut</code>) which is not tidy. Use <code>gather()</code> to reshape the data into a tidier format. Store the output in the <code>Global Environment</code> as an object called <code>sun_tidy</code> or <code>rain_tidy</code>.
+Remember the sunshine and rain data from last week? Let's have a look at one of the datasets (your choice whether to look at <code>sun</code> or <code>rain</code>). The data for <code>year</code>is in a tidy format, but the seasonal data is spread over 4 columns (<code>win</code>, <code>spr</code>, <code>sum</code>, and <code>aut</code>) which is not tidy. Use <code>gather()</code> to reshape the data into a tidier format. Store the output in the <code>Global Environment</code> as an object called <code>sun_tidy</code> or <code>rain_tidy</code>.
 </p>
 </div>
 <div class="solution">
@@ -550,7 +552,7 @@ Solution
 <code>gather()</code> is slowly getting replaced by a function called <code>pivot_longer()</code> which is intended to be more intuitive as the arguments <code>key</code> and <code>value</code> were relabelled <code>names_to</code> and <code>values_to</code> respectively. Strictly speaking it is the same function but the order of the arguments is slightly different. <code>gather()</code> start with the name of the column headers, followed by the name for the values, and lastly addresses which columns need to be reshaped into long format. <code>pivot_longer()</code> starts of with the columns to be reshaped, then you are asked to provide a name for the new column in which all column headers are stored into, and then about what you would want to label the column of the values.
 </p>
 </div>
-<p>Just as an example, we reshaped the <code>sun</code> data from wide to long format with <code>gather()</code>…</p>
+<p>Just as an example, we reshaped the <code>sun</code> data from wide to long format with <code>gather()</code>...</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(sun, <span class="dt">key =</span> season, <span class="dt">value =</span> sun, win<span class="op">:</span>aut)
 
 <span class="kw">head</span>(sun_tidy)</code></pre></div>
@@ -584,7 +586,7 @@ When using <code>pivot_longer()</code>, make sure to surround the new column nam
 </div>
 <div id="spread" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> spread()</h3>
-<p>Now onto the reverse. <code>spread()</code> will spread the data from <code>long</code> into <code>wide format</code>. When you have observations that are scattered across multiple rows, you can use <code>spread()</code> to split those rows up into separate variables. Let’s take a look at <code>table2</code>.</p>
+<p>Now onto the reverse. <code>spread()</code> will spread the data from <code>long</code> into <code>wide format</code>. When you have observations that are scattered across multiple rows, you can use <code>spread()</code> to split those rows up into separate variables. Let's take a look at <code>table2</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table2</code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ##    country      year type            count
@@ -614,7 +616,7 @@ When using <code>pivot_longer()</code>, make sure to surround the new column nam
 <img src="images/spread.PNG" >
 </center>
 <p><br></p>
-<p>Let’s apply the formula above to <code>table2</code>:</p>
+<p>Let's apply the formula above to <code>table2</code>:</p>
 <ul>
 <li>We need a dataframe that we want to modify -&gt; <code>table2</code></li>
 <li>We need to decide which of the columns in <code>table2</code> will become the new column headers -&gt; <code>type</code></li>
@@ -764,7 +766,7 @@ When using <code>pivot_longer()</code>, make sure to surround the new column nam
 In the modified table above <code>table1_mod</code>, we added a <code>percent</code> column to see how much percentage of the population had Tuberculosis in 1999 and 2000 in each of the countries Afghanistan, Brazil, and China. But somehow, all numerical information has ended up in 1 column (values).
 </p>
 <p>
-Your task is to spread the data back out, so that cases, population, and percentage values are in their own columns, titled as <code>cases</code>, <code>population</code>, and <code>percent</code> respectively. Store the new object in the <code>Global Environment</code> as <code>table1_mod_corrected</code>. When you are done, <code>table1_mod_corrected</code> should look like this…
+Your task is to spread the data back out, so that cases, population, and percentage values are in their own columns, titled as <code>cases</code>, <code>population</code>, and <code>percent</code> respectively. Store the new object in the <code>Global Environment</code> as <code>table1_mod_corrected</code>. When you are done, <code>table1_mod_corrected</code> should look like this...
 </p>
 </div>
 <table>
@@ -880,10 +882,10 @@ Solution
 </div>
 <div class="info">
 <p>
-<code>spread()</code> is slowly getting replaced by a function called <code>pivot_wider()</code> which again is intended to be more intuitive as the arguments <code>key</code> and <code>value</code> were relabelled <code>names_from</code> and <code>values_from</code> respectively. As we’ve seen with <code>gather()</code> and <code>pivot_longer()</code>, <code>spread()</code> and <code>pivot_wider()</code> pretty much do the same job.
+<code>spread()</code> is slowly getting replaced by a function called <code>pivot_wider()</code> which again is intended to be more intuitive as the arguments <code>key</code> and <code>value</code> were relabelled <code>names_from</code> and <code>values_from</code> respectively. As we've seen with <code>gather()</code> and <code>pivot_longer()</code>, <code>spread()</code> and <code>pivot_wider()</code> pretty much do the same job.
 </p>
 </div>
-<p>Just as an example, we reshaped the <code>sun_fail</code> data from long to wide format with <code>spread()</code>…</p>
+<p>Just as an example, we reshaped the <code>sun_fail</code> data from long to wide format with <code>spread()</code>...</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sun_outfoxed &lt;-<span class="st"> </span><span class="kw">spread</span>(sun_fail, <span class="dt">key =</span> col_names, <span class="dt">value =</span> values)
 
 <span class="kw">head</span>(sun_outfoxed)</code></pre></div>
@@ -970,29 +972,29 @@ By the way, the separator argument <code>sep =</code> can be any non-alphanumeri
 </p>
 <ul>
 <li>
-underscore (“_“),
+underscore (&quot;_&quot;),
 </li>
 <li>
-comma (“,”),
+comma (&quot;,&quot;),
 </li>
 <li>
-semi-colon (“;”),
+semi-colon (&quot;;&quot;),
 </li>
 <li>
-colon (“:”),
+colon (&quot;:&quot;),
 </li>
 <li>
-forward-slash (“/”),
+forward-slash (&quot;/&quot;),
 </li>
 <li>
-space (&quot; “) or
+space (&quot; &quot;) or
 </li>
 <li>
-nothing (“”).
+nothing (&quot;&quot;).
 </li>
 </ul>
 <p>
-But watch out! When the separator is a <code>full stop</code>, you would need to add a double backward slash in front of it (<code>sep = “\\.”</code>).
+But watch out! When the separator is a <code>full stop</code>, you would need to add a double backward slash in front of it (<code>sep = &quot;\\.&quot;</code>).
 </p>
 </div>
 </div>
@@ -1052,7 +1054,7 @@ Solution
 <div id="separating-by-position" class="section level4">
 <h4><span class="header-section-number">5.4.2.3</span> Separating by position</h4>
 <p>It is also possible to separate by position. <code>sep = 2</code> would split the column between the second and third character/ number etc.</p>
-<p>Let’s try that the separation by position. We will keep 4 letters from each <code>country</code> name rather than the whole word, and drop the rest.</p>
+<p>Let's try that the separation by position. We will keep 4 letters from each <code>country</code> name rather than the whole word, and drop the rest.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">separate</span>(table3, country, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span>, <span class="ot">NA</span>), <span class="dt">sep =</span> <span class="dv">4</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country  year rate             
@@ -1066,7 +1068,7 @@ Solution
 </div>
 <div id="separating-into-more-than-2-columns" class="section level4">
 <h4><span class="header-section-number">5.4.2.4</span> Separating into more than 2 columns</h4>
-<p>Special case. Let’s modify <code>table3</code> a little bit by adding a new column with a value of 200 and unite that column with column <code>rate</code>.</p>
+<p>Special case. Let's modify <code>table3</code> a little bit by adding a new column with a value of 200 and unite that column with column <code>rate</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table3_mod &lt;-<span class="st"> </span>table3 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="dv">200</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">unite</span>(rate, rate, new, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</code></pre></div>
@@ -1096,7 +1098,7 @@ Solution
 ## 6 China        2000 213766 1280428583 200</code></pre>
 <div class="funfact">
 <p>
-Technically, you would not need a separator argument in the case above, as <code>separate()</code> splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn’t a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
+Technically, you would not need a separator argument in the case above, as <code>separate()</code> splits the data whenever it detects a non-alphanumeric character (i.e. a character that isn't a number or letter). Saying that, the separator argument is needed when your column contains non-alphanumeric characters as part of your cell values.
 </p>
 </div>
 <p>If the values in <code>population</code> and <code>200</code> (separated by a <code>/</code>) were some sort of <code>ID_code</code>, <strong>AND</strong> we wanted to split the data into 2 columns, after the first <code>/</code> only, we would have to include an <code>extra</code> argument, and set it to <code>&quot;merge&quot;</code>.</p>
@@ -1171,14 +1173,14 @@ The new columns <code>ID_code</code> and <code>cases</code> are <code>character<
 <center>
 <img src="images/tidy_5.png" >
 </center>
-<p><code>unite()</code> (the inverse of separate) can help to combine the values of <code>century</code> and <code>year</code> into a single column. It is used less frequently than it’s counterpart, but is still a useful function to know.</p>
+<p><code>unite()</code> (the inverse of separate) can help to combine the values of <code>century</code> and <code>year</code> into a single column. It is used less frequently than it's counterpart, but is still a useful function to know.</p>
 <p>The function <code>unite()</code> is structured like this:</p>
 <p><br></p>
 <center>
 <img src="images/unite.PNG" >
 </center>
 <p><br></p>
-<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as “nothing” since the default is sep = “_“.</p>
+<p>We would need the data <code>table5</code>, a new column we want to create <code>year</code>, the two columns we would like to combine (<code>century</code> and <code>year</code>), and define the separator as &quot;nothing&quot; since the default is sep = &quot;_&quot;.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unite</span>(table5, year, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   country     year  rate             
@@ -1189,13 +1191,13 @@ The new columns <code>ID_code</code> and <code>cases</code> are <code>character<
 ## 4 Brazil      2000  80488/174504898  
 ## 5 China       1999  212258/1272915272
 ## 6 China       2000  213766/1280428583</code></pre>
-<p>Yay! The data of <code>table5</code> is in a tidier format now - at least for column <code>year</code>. Ah, but we didn’t save the changes as an object in our <code>Global Environment</code>.</p>
+<p>Yay! The data of <code>table5</code> is in a tidier format now - at least for column <code>year</code>. Ah, but we didn't save the changes as an object in our <code>Global Environment</code>.</p>
 <div class="task">
 <p>
 <strong>Your turn</strong>
 </p>
 <p>
-Let’s combine the two steps of tidying <code>table5</code> in a single pipe <code>%&gt;%</code> - separate the <code>rate</code> column into <code>cases</code> and <code>population</code>, and unite the columns <code>year</code> and <code>century</code> into a new column <code>year</code>. Store the new object as <code>tb_cases</code> in the <code>Global Environment</code>. Make sure, the columns <code>cases</code> and <code>population</code> are <code>integer</code> values.
+Let's combine the two steps of tidying <code>table5</code> in a single pipe <code>%&gt;%</code> - separate the <code>rate</code> column into <code>cases</code> and <code>population</code>, and unite the columns <code>year</code> and <code>century</code> into a new column <code>year</code>. Store the new object as <code>tb_cases</code> in the <code>Global Environment</code>. Make sure, the columns <code>cases</code> and <code>population</code> are <code>integer</code> values.
 </p>
 </div>
 <div class="solution">
@@ -1252,7 +1254,7 @@ tb_cases_converted</code></pre></div>
 </div>
 <div id="removing-missing-values-before-uniting-columns" class="section level4">
 <h4><span class="header-section-number">5.4.4.2</span> Removing missing values before uniting columns</h4>
-<p><code>unite()</code> also comes with an <code>na.rm</code> statement that will remove missing values prior to uniting the values of a column (actually, the values have to be a “character” column). Let me modify <code>table5</code> a wee bit to make that point.</p>
+<p><code>unite()</code> also comes with an <code>na.rm</code> statement that will remove missing values prior to uniting the values of a column (actually, the values have to be a &quot;character&quot; column). Let me modify <code>table5</code> a wee bit to make that point.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">table5_mod &lt;-<span class="st"> </span>table5 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">new =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;200&quot;</span>, <span class="ot">NA</span>), <span class="dv">3</span>))
 
@@ -1293,7 +1295,7 @@ table5_mod</code></pre></div>
 </div>
 <div id="bonus-materials-mutate-row-names-from-the-mtcars" class="section level2">
 <h2><span class="header-section-number">5.5</span> Bonus materials: mutate row names from the <code>mtcars</code></h2>
-<p>Remember, in lecture 2 when we were talking about the <code>mtcars</code> dataset and how the car types were not in listed as a separate column but rather row names? Let’s just read in the data and have another quick look to jog our memories…</p>
+<p>Remember, in lecture 2 when we were talking about the <code>mtcars</code> dataset and how the car types were not in listed as a separate column but rather row names? Let's just read in the data and have another quick look to jog our memories...</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars
 
 <span class="kw">head</span>(df_mtcars)</code></pre></div>
@@ -1304,7 +1306,7 @@ table5_mod</code></pre></div>
 ## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 ## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<p>You can see much better what I’m talking about when you view your <code>df_mtcars</code>.</p>
+<p>You can see much better what I'm talking about when you view your <code>df_mtcars</code>.</p>
 <p>Now, that we have learnt about the <code>mutate()</code> function, we can attempt to get all of these row names into a new column. All we have to do is combining a function called <code>rownames()</code> with <code>mutate()</code>. We also could use some more of these handy pipes <code>%&gt;%</code> you learnt about last week.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Car_type =</span> <span class="kw">rownames</span>(mtcars))</code></pre></div>
@@ -1345,7 +1347,7 @@ df_mtcars &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span><sp
 <h2><span class="header-section-number">5.6</span> Additional information</h2>
 <p>More information on stuff we covered today and beyond can be found here:</p>
 <ul>
-<li><a href="https://r4ds.had.co.nz" class="uri">https://r4ds.had.co.nz</a> “R 4 Data Science” by Garrett Grolemund and Hadley Wickham is the official guidebook for R</li>
+<li><a href="https://r4ds.had.co.nz" class="uri">https://r4ds.had.co.nz</a> &quot;R 4 Data Science&quot; by Garrett Grolemund and Hadley Wickham is the official guidebook for R</li>
 <li><a href="https://suzan.rbind.io/categories/tutorial/" class="uri">https://suzan.rbind.io/categories/tutorial/</a> She has some pretty cool tutorials on data wrangling</li>
 </ul>
 </div>

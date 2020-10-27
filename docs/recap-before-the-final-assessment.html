@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 10 Recap: Before the final assessment | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 10 Recap: Before the final assessment | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -397,11 +399,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>There are three datafiles:</p>
 <ul>
 <li><code>ratings.csv</code> contains ratings from 47 participants.</li>
-<li><code>item_info.csv</code> contains more information about the words: <code>AROUSAL</code> column shows how people from a larger database (different to our participants) have rated the words on arousal, and <code>VALENCE</code> column shows how people have rated these words on valence (i.e. how positive or negative they think the words are).</li>
+<li><code>item_info.csv</code> contains more information about the words: <code>AROUSAL</code> column shows how people from a larger database (different to our participants) have rated the words on arousal, and <code>VALENCE</code> column shows how people have rated these words on valence (i.e. how positive or negative they think the words are).</li>
 <li><code>groups</code> contains information about our participants, who were either bilingual speakers <code>B</code> or monolingual native English speakers <code>E</code>.</li>
 </ul>
 <p>Before we get started, make sure you have downloaded and unzipped the folder, and you have the three datafiles and this .Rmd file in it. Now set your working directory to the folder and we are ready to go.</p>
-<p>Again, DON’T CHANGE THE OBJECT NAMES. Replace the NULLs with your code.</p>
+<p>Again, DON'T CHANGE THE OBJECT NAMES. Replace the NULLs with your code.</p>
 <p>This exercise is <strong>NOT GRADED</strong>, but it is very similar to the summative assignment you will be given after this class, and should help you prepare for it.</p>
 <div id="question-1-1" class="section level3 unnumbered">
 <h3>Question 1</h3>
@@ -417,7 +419,7 @@ groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></
 </div>
 <div id="question-3-1" class="section level3 unnumbered">
 <h3>Question 3</h3>
-<p>Look at <code>ratings</code>. Oh dear - whoever has entered <code>ratings</code> data clearly doesn’t know about tidy data! Right now, each participant has their own row and each of the 240 words has their own column. We want to transform this data into long format so that the item numbers of the words (1-240) are in one column and all the ratings are in one column. Using <code>gather()</code>, make a new dataframe that has a column called <code>item</code>. This column should include the column headers (item number). Make another column that is called <code>rating</code>, which should include the cell values from columns that contain word ratings.</p>
+<p>Look at <code>ratings</code>. Oh dear - whoever has entered <code>ratings</code> data clearly doesn't know about tidy data! Right now, each participant has their own row and each of the 240 words has their own column. We want to transform this data into long format so that the item numbers of the words (1-240) are in one column and all the ratings are in one column. Using <code>gather()</code>, make a new dataframe that has a column called <code>item</code>. This column should include the column headers (item number). Make another column that is called <code>rating</code>, which should include the cell values from columns that contain word ratings.</p>
 <ul>
 <li>Hint 1: Remember how to index columns which have numerical names?</li>
 <li>Hint 2: Go to lecture 5 inclass material to see how to specify the arguments in <code>gather()</code></li>
@@ -468,7 +470,7 @@ groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></
 </div>
 <div id="question-4-1" class="section level3 unnumbered">
 <h3>Question 4</h3>
-<p>Now look at <code>words</code> dataframe. We don’t need all these columns. Make a new dataframe called <code>words_small</code> that only includes columns <code>item</code>, <code>Word</code>,<code>AROUSAL</code> and <code>VALENCE</code>.</p>
+<p>Now look at <code>words</code> dataframe. We don't need all these columns. Make a new dataframe called <code>words_small</code> that only includes columns <code>item</code>, <code>Word</code>,<code>AROUSAL</code> and <code>VALENCE</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words_small &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 <p>The first 6 rows of <code>words_small</code> should look like the ones shown in the tibble below.</p>
 <table>
@@ -522,7 +524,7 @@ groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></
 </div>
 <div id="question-5-1" class="section level3 unnumbered">
 <h3>Question 5</h3>
-<p>Now we should put the tables together. But there is a problem! The columns don’t match. We need to change the <code>words_small</code> dataframe slightly. Separate the <code>item</code> column into two columns called <code>item</code> and <code>condition</code>, and remove the underscore.</p>
+<p>Now we should put the tables together. But there is a problem! The columns don't match. We need to change the <code>words_small</code> dataframe slightly. Separate the <code>item</code> column into two columns called <code>item</code> and <code>condition</code>, and remove the underscore.</p>
 <p>Hint: Look at lecture 5 for help with this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">words_small &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 <p>The first 6 rows of <code>words_small</code> should look like the ones shown in the tibble below.</p>
@@ -589,13 +591,13 @@ groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></
 </div>
 <div id="question-7" class="section level3 unnumbered">
 <h3>Question 7</h3>
-<p>We are almost ready to look at summary statistics, but we need to do two more things first. The participants have entered 0 as a rating when they didn’t know the word, or didn’t have time to read it. We only want to look at the trials where the participant knows what the word is. Remove the rows where the rating is 0 from <code>combined_data</code>. Store this in a dataframe called <code>combined_recog</code>.</p>
+<p>We are almost ready to look at summary statistics, but we need to do two more things first. The participants have entered 0 as a rating when they didn't know the word, or didn't have time to read it. We only want to look at the trials where the participant knows what the word is. Remove the rows where the rating is 0 from <code>combined_data</code>. Store this in a dataframe called <code>combined_recog</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">combined_recog &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 </div>
 <div id="question-8" class="section level3 unnumbered">
 <h3>Question 8</h3>
 <p>Final step before summary statistics! Join <code>combined_recog</code> with <code>groups</code> and save it to <code>preprocessed_data</code>. You will get an error message trying to do this. Solve the error so you get the dataframe we are asking for.</p>
-<p>HINT: There are multiple ways of solving the error. You can change your dataframe heading in an additional step, or you can use the help function to figure out what to do when the dataframes you are trying to join don’t match.</p>
+<p>HINT: There are multiple ways of solving the error. You can change your dataframe heading in an additional step, or you can use the help function to figure out what to do when the dataframes you are trying to join don't match.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">preprocessed_data &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 </div>
 <div id="question-9" class="section level3 unnumbered">
@@ -607,7 +609,8 @@ groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></
 <li>Hint 3: Which dplyr function lets you calculate summary statistics for data?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rating_summary &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
-<p>Now let’s visualise the data! We will use <code>preprocessed_data</code> for all the visualisations.</p>
+<pre><code>## `summarise()` regrouping output by &#39;condition&#39; (override with `.groups` argument)</code></pre>
+<p>Now let's visualise the data! We will use <code>preprocessed_data</code> for all the visualisations.</p>
 </div>
 <div id="question-10" class="section level3 unnumbered">
 <h3>Question 10</h3>
@@ -625,13 +628,14 @@ groups &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></
 <H2>
 Bonus Questions
 </H2>
-<p>We want to know which word people think is the most exciting and which one is the most boring. Let’s find out!</p>
+<p>We want to know which word people think is the most exciting and which one is the most boring. Let's find out!</p>
 </div>
 <div id="question-12-bonus" class="section level3 unnumbered">
 <h3>Question 12 (Bonus)</h3>
-<p>We’ll go back to working with the <code>combined_recog</code> dataframe. Calculate a mean rating based on our participants’ ratings (the <code>rating</code> column) for each of the words. Call this column <code>mean_rating</code>. This process involves two steps, but put them together with the pipe operator and store it in <code>by_item_ratings</code>. Hint: You need to make R think about the data in subsets based on the column <code>Word</code>, and then calculate the mean scores.</p>
+<p>We'll go back to working with the <code>combined_recog</code> dataframe. Calculate a mean rating based on our participants' ratings (the <code>rating</code> column) for each of the words. Call this column <code>mean_rating</code>. This process involves two steps, but put them together with the pipe operator and store it in <code>by_item_ratings</code>. Hint: You need to make R think about the data in subsets based on the column <code>Word</code>, and then calculate the mean scores.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_item_ratings &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 <p>You should end up with a dataframe that has 240 rows and 2 columns.</p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 </div>
 <div id="question-13-bonus" class="section level3 unnumbered">
 <h3>Question 13 (Bonus)</h3>
@@ -739,6 +743,7 @@ Question 12 (Bonus)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">by_item_ratings &lt;-<span class="st"> </span>combined_recog <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(Word) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_rating =</span> <span class="kw">mean</span>(rating))</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 </div>
 <div class="solution">
 <button>

@@ -51,7 +51,7 @@ Use pipes `%>%` for the following 4 tasks and save your data into the *trafic_sc
 1. Select only the necessary variable - `DateCode`, `Value`, `Sex`, `Age`, `Migration Source` & `Migration Type` (notice that some variable names include spaces)
 2. Filter the data in column `DateCode`, and keep only observations from 2016
 3. Keep only the total number of people by `Age` ('All') and `Sex` ('All')
-4. Keep only the information about the number of people that came into and left Scotland (we do not want to know about the net value)
+4. Keep only the information about the number of people that came to and left Scotland (we do not want to know about the net value)
 
 
 ```{r}
@@ -124,7 +124,7 @@ What is the difference in the produced plots from the above two lines of code? W
 
 `r hide("Solution")`
 ```{block, type="solved"}
-If you look closely, new plot we have created with the first layer of `ggplot2` gives us numbers on y-axis and the two sexes on the x-axis. We also now have the titles of the two axes.We do not have any view of the data because we have not told `R` how we wont to visualise the data. R only knows what the data is.
+If you look closely, new plot we have created with the first layer of `ggplot2` gives us numbers on y-axis and the two sexes on the x-axis. We also now have the titles of the two axes. We do not have any view of the data because we have not told `R` how we want to visualise the data. R only knows what the data is.
 ```
 `r unhide()`
 
@@ -166,7 +166,7 @@ Can you think of a time when a continuous variable can be used as categorical an
 ```{block, type="solved"}
 Continuous that is really categorical: If you have used the numbers 1, 2, 3 ... to label groups in your data, then that data is integer/double, but in reality the difference between 1 and 2 is in no way measurable. In this case you will have to transform that column in your data and change it from continuous to categorical, so R does not misinterpret it. if you do not remember how to do that, go back  to `L2`. 
 
-Categorical that can be used as continuous: Sometimes you have questions where people answer from Strongly Agree to Strongly Disagree, and you have given numeric values to the responses: 1=Strongly Agree, 2=Agree, 3 = Neutral etc. In reality, you cannot say that the distance between Strongly Agree and Agree is the same as the distance between Agree and Neutral. However, we can make the assumption that they represent equal distances and treat the numbers as a continuous scale. In fact, this is often done in Psychology and the Social Sciences. 
+Categorical that can be used as continuous: Sometimes you have questions where people answer from Strongly Agree to Strongly Disagree, and you have given numeric values to the responses: 1 = Strongly Agree, 2 = Agree, 3 = Neutral, etc. In reality, you cannot say that the distance between Strongly Agree and Agree is the same as the distance between Agree and Neutral. However, we can make the assumption that they represent equal distances and treat the numbers as a continuous scale. In fact, this is often done in Psychology and the Social Sciences. 
 ```
 `r unhide()`
 
@@ -294,7 +294,7 @@ We are using both continuous (value i.e. count of people) and categorical (sex).
 
 ### Types of plots
 
-There is variety of plots that we can create using ggplot2. We select the plot by adding on `geom_???()`. Instead of the *???* we specify the type of plot we want to make. Bellow are some examples, but you can see more here: ggplot2 layers.
+There is variety of plots that we can create using ggplot2. We select the plot by adding on `geom_???()`. Instead of the *???* we specify the type of plot we want to make. Below are some examples, but you can see more here: ggplot2 layers.
 
 | Geom | Plot type  |
 |:-----------------|:---------------------------------------------------------|
@@ -487,7 +487,7 @@ ggplot(traffic_scot2, aes(DateCode, Value,
 ```
 
 ```{block, type = 'question'}
-Question: How do we know that the line graph is going to connect the `Migration Type` and not the `Migration Source`? (Think about the aesthetics of geom_line and geom_point)
+Question: How do we know that the line graph is going to connect the `Migration Type` and not the `Migration Source`? (Think about the aesthetics of `geom_line` and `geom_point`)
 ```
 
 

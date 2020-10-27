@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Data Visualisation 1 | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Data Visualisation 1 | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -429,7 +431,7 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 <tr class="odd">
 <td align="left">Measurement</td>
-<td align="left">What type of measurement it is (here we have only counts i.e. the number of people)</td>
+<td align="left">What type of measurement it is (here we have only counts i.e. the number of people)</td>
 </tr>
 <tr class="even">
 <td align="left">Units</td>
@@ -437,7 +439,7 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 <tr class="odd">
 <td align="left">Value</td>
-<td align="left">The actual count (i.e. the number of people)</td>
+<td align="left">The actual count (i.e. the number of people)</td>
 </tr>
 <tr class="even">
 <td align="left">Age</td>
@@ -457,7 +459,7 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 </tr>
 </tbody>
 </table>
-<p>The data is a bit messy, so let’s clean it a little bit before we can work with it. When we make plots, we want to make sure that the data we are working with contains only data that we are going to include in the plot. This helps us avoid things like double counting. For example, if we have values for males and females and total, but we do not want to give separate representations for males and females, then we would only keep information that gives us the total number.</p>
+<p>The data is a bit messy, so let's clean it a little bit before we can work with it. When we make plots, we want to make sure that the data we are working with contains only data that we are going to include in the plot. This helps us avoid things like double counting. For example, if we have values for males and females and total, but we do not want to give separate representations for males and females, then we would only keep information that gives us the total number.</p>
 </div>
 <div id="some-warm-up-tasks" class="section level2">
 <h2><span class="header-section-number">7.3</span> Some warm-up tasks</h2>
@@ -465,8 +467,8 @@ migration_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<s
 <ol style="list-style-type: decimal">
 <li>Select only the necessary variable - <code>DateCode</code>, <code>Value</code>, <code>Sex</code>, <code>Age</code>, <code>Migration Source</code> &amp; <code>Migration Type</code> (notice that some variable names include spaces)</li>
 <li>Filter the data in column <code>DateCode</code>, and keep only observations from 2016</li>
-<li>Keep only the total number of people by <code>Age</code> (‘All’) and <code>Sex</code> (‘All’)</li>
-<li>Keep only the information about the number of people that came into and left Scotland (we do not want to know about the net value)</li>
+<li>Keep only the total number of people by <code>Age</code> ('All') and <code>Sex</code> ('All')</li>
+<li>Keep only the information about the number of people that came to and left Scotland (we do not want to know about the net value)</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_scot &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 <div class="solution">
@@ -483,7 +485,7 @@ Solution
 </div>
 <div id="the-package-ggplot2" class="section level2">
 <h2><span class="header-section-number">7.4</span> The package GGPLOT2</h2>
-<p>We use the <code>ggplot2</code> package due to its ease of layering and variety. With <code>ggplot2</code> we can create beautiful and varied plots that can show us much more than just the simplicity of the base R plots. Whereas the plot/graph’s job is to visualise the data, how you visualise your data is very important. Sometimes in an attempt to show off our plotting skills, we can make the graph difficult to read. Today and next week, using <code>ggplot2</code> we will streamline the process of plot creation.</p>
+<p>We use the <code>ggplot2</code> package due to its ease of layering and variety. With <code>ggplot2</code> we can create beautiful and varied plots that can show us much more than just the simplicity of the base R plots. Whereas the plot/graph's job is to visualise the data, how you visualise your data is very important. Sometimes in an attempt to show off our plotting skills, we can make the graph difficult to read. Today and next week, using <code>ggplot2</code> we will streamline the process of plot creation.</p>
 </div>
 <div id="layering" class="section level2">
 <h2><span class="header-section-number">7.5</span> Layering</h2>
@@ -493,17 +495,17 @@ Solution
 <li><em>+</em></li>
 <li>Layer 2: how do we want it to look</li>
 </ul>
-<p>Layer 1: ggplot(data, aes(x, y, …)) + <br> Layer 2: geom_something(…)</p>
+<p>Layer 1: ggplot(data, aes(x, y, ...)) + <br> Layer 2: geom_something(...)</p>
 <div id="layer-1" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> Layer 1</h3>
 <p>Plots always start with <em>ggplot()</em>. This initialises the plot. It is used to tell <em>R</em> what data we are going to use. We can also set the aesthetics of the plot which will be used to specify the axes of our plot, any groupings, variables we are going to colour based on, etc. Unless specifically overwritten in the following layers, all the data information you give in this first layer will be inherited in every following layer.</p>
-<p>For now we are going to stick with one global specification - i.e. we are going to specify all our data in this first layer.</p>
-<p>If you run just the first command, R is going to show you the first layer - i.e. a blank screen. R has prepared a space for you to create your plot.</p>
-<p>Let’s try it.</p>
+<p>For now we are going to stick with one global specification - i.e. we are going to specify all our data in this first layer.</p>
+<p>If you run just the first command, R is going to show you the first layer - i.e. a blank screen. R has prepared a space for you to create your plot.</p>
+<p>Let's try it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>()</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
-<p>Now let’s add some information. Let’s include the data and the axes. From our data <code>traffic_scot</code> let’s put <code>Sex</code> on the x-axis and <code>Value</code> on the y-axis. This way we can visualise how many people from each sex category came to and left Scotland overall.</p>
-<p>What’s the difference with the empty plot above?</p>
+<p>Now let's add some information. Let's include the data and the axes. From our data <code>traffic_scot</code> let's put <code>Sex</code> on the x-axis and <code>Value</code> on the y-axis. This way we can visualise how many people from each sex category came to and left Scotland overall.</p>
+<p>What's the difference with the empty plot above?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value))</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 <div class="question">
@@ -517,7 +519,7 @@ Solution
 </button>
 <div class="solved">
 <p>
-If you look closely, new plot we have created with the first layer of <code>ggplot2</code> gives us numbers on y-axis and the two sexes on the x-axis. We also now have the titles of the two axes.We do not have any view of the data because we have not told <code>R</code> how we wont to visualise the data. R only knows what the data is.
+If you look closely, new plot we have created with the first layer of <code>ggplot2</code> gives us numbers on y-axis and the two sexes on the x-axis. We also now have the titles of the two axes. We do not have any view of the data because we have not told <code>R</code> how we want to visualise the data. R only knows what the data is.
 </p>
 </div>
 </div>
@@ -536,11 +538,11 @@ If you look closely, new plot we have created with the first layer of <code>ggpl
 <h3><span class="header-section-number">7.6.1</span> Data format</h3>
 <div id="continuous" class="section level4">
 <h4><span class="header-section-number">7.6.1.1</span> Continuous</h4>
-<p>In continuous data the distance between any two consecutive points is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, or 5 and 6 etc. If you think back to <code>L2</code>, integer and double data types will fall in this category.</p>
+<p>In continuous data the distance between any two consecutive points is equivalent to the distance between any other two consecutive points - i.e. the difference between 1 and 2 is the same as the difference between 3 and 4, or 5 and 6 etc. If you think back to <code>L2</code>, integer and double data types will fall in this category.</p>
 </div>
 <div id="categorical" class="section level4">
 <h4><span class="header-section-number">7.6.1.2</span> Categorical</h4>
-<p>Categorical data, simply put, groups (categorises) data. The data in each group or category vary solely on one characteristic and usually those characteristics cannot be ranked - i.e. sex, race, nationality etc. If you think back to <code>L2</code>, logical and character data types will fall in this category.</p>
+<p>Categorical data, simply put, groups (categorises) data. The data in each group or category vary solely on one characteristic and usually those characteristics cannot be ranked - i.e. sex, race, nationality etc. If you think back to <code>L2</code>, logical and character data types will fall in this category.</p>
 <div class="question">
 <p>
 Can you think of a time when a continuous variable can be used as categorical and/or categorical data can be used as continuous?
@@ -552,10 +554,10 @@ Solution
 </button>
 <div class="solved">
 <p>
-Continuous that is really categorical: If you have used the numbers 1, 2, 3 … to label groups in your data, then that data is integer/double, but in reality the difference between 1 and 2 is in no way measurable. In this case you will have to transform that column in your data and change it from continuous to categorical, so R does not misinterpret it. if you do not remember how to do that, go back to <code>L2</code>.
+Continuous that is really categorical: If you have used the numbers 1, 2, 3 ... to label groups in your data, then that data is integer/double, but in reality the difference between 1 and 2 is in no way measurable. In this case you will have to transform that column in your data and change it from continuous to categorical, so R does not misinterpret it. if you do not remember how to do that, go back to <code>L2</code>.
 </p>
 <p>
-Categorical that can be used as continuous: Sometimes you have questions where people answer from Strongly Agree to Strongly Disagree, and you have given numeric values to the responses: 1=Strongly Agree, 2=Agree, 3 = Neutral etc. In reality, you cannot say that the distance between Strongly Agree and Agree is the same as the distance between Agree and Neutral. However, we can make the assumption that they represent equal distances and treat the numbers as a continuous scale. In fact, this is often done in Psychology and the Social Sciences.
+Categorical that can be used as continuous: Sometimes you have questions where people answer from Strongly Agree to Strongly Disagree, and you have given numeric values to the responses: 1 = Strongly Agree, 2 = Agree, 3 = Neutral, etc. In reality, you cannot say that the distance between Strongly Agree and Agree is the same as the distance between Agree and Neutral. However, we can make the assumption that they represent equal distances and treat the numbers as a continuous scale. In fact, this is often done in Psychology and the Social Sciences.
 </p>
 </div>
 </div>
@@ -629,7 +631,7 @@ Solution
 <strong>Tip</strong>: Most of the time, if you cannot represent a graph in 2D then you are probably trying to show too much, and you should reconsider splitting it into multiple plots.
 </p>
 </div>
-<p>Let’s get back to our free movement data that we started with in the section above. Remember we wanted to visualise how many people from each sex category came to and left Scotland.</p>
+<p>Let's get back to our free movement data that we started with in the section above. Remember we wanted to visualise how many people from each sex category came to and left Scotland.</p>
 <div class="question">
 <p>
 How many variables have we chosen so far? Type the number in the box below.
@@ -647,14 +649,14 @@ Solution
 </button>
 <div class="solved">
 <p>
-We are using both continuous (value i.e. count of people) and categorical (sex).
+We are using both continuous (value i.e. count of people) and categorical (sex).
 </p>
 </div>
 </div>
 </div>
 <div id="types-of-plots" class="section level3">
 <h3><span class="header-section-number">7.6.3</span> Types of plots</h3>
-<p>There is variety of plots that we can create using ggplot2. We select the plot by adding on <code>geom_???()</code>. Instead of the <em>???</em> we specify the type of plot we want to make. Bellow are some examples, but you can see more here: ggplot2 layers.</p>
+<p>There is variety of plots that we can create using ggplot2. We select the plot by adding on <code>geom_???()</code>. Instead of the <em>???</em> we specify the type of plot we want to make. Below are some examples, but you can see more here: ggplot2 layers.</p>
 <table>
 <colgroup>
 <col width="24%" />
@@ -705,7 +707,7 @@ We are using both continuous (value i.e. count of people) and categorical (sex)
 </tr>
 </tbody>
 </table>
-<p>Let’s create a column/bar plot to visualise the data using <code>geom_col()</code>. What does the data look like?</p>
+<p>Let's create a column/bar plot to visualise the data using <code>geom_col()</code>. What does the data look like?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-291-1.png" width="672" /></p>
@@ -729,13 +731,13 @@ If you worked in the immigration office, you would want to know how many people 
 <div id="groupings" class="section level3">
 <h3><span class="header-section-number">7.6.4</span> Groupings</h3>
 <p>When we want to group data to provide a better representation, we can usually use colour, shapes etc. Most of the time, this will depend on the type of graph we want to create. If we are using line graphs, then colours are usually best. If we are using dot plots then we can use the shape as well as the colours to differentiate the different groups.</p>
-<p>Let’s first look at colour.</p>
+<p>Let's first look at colour.</p>
 <p>Depending on the type of graph, colouring in can be done either with <code>colour</code> or with <code>fill</code>. For our column plots we use <code>fill.</code> If we used <code>colour</code>, then we would get different colours for the outlines. You can find out whether to use colour or fill by typing the name of the geom in the Help search bar or typing <code>?geom_col()</code> in the console and looking at the <em>Aesthetics</em> section.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
-<p>Let’s decompose the code above:</p>
-<p>We have our data and our two variables. They are the same as before. This time we are saying that we want the data to be separated even further by <code>Migration Type</code> and we have given two different colours to the ‘In’ and ‘Out’ migration types using the additional argument <code>fill</code>.</p>
+<p>Let's decompose the code above:</p>
+<p>We have our data and our two variables. They are the same as before. This time we are saying that we want the data to be separated even further by <code>Migration Type</code> and we have given two different colours to the 'In' and 'Out' migration types using the additional argument <code>fill</code>.</p>
 <p>We have also added the argument <code>position = 'dodge'</code> in the <code>geom_col()</code>. This makes sure that any groupings we create are then presented separately.</p>
 <div class="task">
 <p>
@@ -743,7 +745,7 @@ Simple task:
 </p>
 <ol style="list-style-type: decimal">
 <li>
-Remove <code>position =‘dodge’</code> from the geom and describe what happens in your stub file.
+Remove <code>position ='dodge'</code> from the geom and describe what happens in your stub file.
 </li>
 </ol>
 </div>
@@ -756,7 +758,7 @@ Simple task:
 </p>
 <ol start="2" style="list-style-type: decimal">
 <li>
-Use <code>position = ‘fill’</code> and describe what happens in your stub.
+Use <code>position = 'fill'</code> and describe what happens in your stub.
 </li>
 </ol>
 </div>
@@ -766,7 +768,7 @@ Use <code>position = ‘fill’</code> and describe what happens in your stub.
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-298-1.png" width="672" /></p>
 <div class="question">
 <p>
-What are the differences between ‘dodge’, ‘fill’ and no position argument? (Use <code>?geom_col()</code> to help you).
+What are the differences between 'dodge', 'fill' and no position argument? (Use <code>?geom_col()</code> to help you).
 </p>
 </div>
 <div class="solution">
@@ -775,7 +777,7 @@ Explanation
 </button>
 <div class="solved">
 <p>
-If we use <code>position = ‘fill’</code> it stacks our data and it also gives us proportions: check the y-axis between the plot with <code>position = ‘fill’</code> and the one without any position arguments. Whereas the plot without the position argument just stacks information on top of one another, <code>position = ‘fill’</code> shows relative proportions. Use the Help menu or put <em>?</em> in the console in front of the function you want to know more about, for example <code>?geom_col()</code>.
+If we use <code>position = 'fill'</code> it stacks our data and it also gives us proportions: check the y-axis between the plot with <code>position = 'fill'</code> and the one without any position arguments. Whereas the plot without the position argument just stacks information on top of one another, <code>position = 'fill'</code> shows relative proportions. Use the Help menu or put <em>?</em> in the console in front of the function you want to know more about, for example <code>?geom_col()</code>.
 </p>
 </div>
 </div>
@@ -783,7 +785,7 @@ If we use <code>position = ‘fill’</code> it stacks our data and it also give
 <p>Geoms in <code>ggplot2</code> have a large selection of arguments to allow you to adjust your visualisations. This is what makes it one of the most preferred visualisation packages by the R community.</p>
 <div id="more-groupings" class="section level4">
 <h4><span class="header-section-number">7.6.4.1</span> More groupings</h4>
-<p>Now let’s imagine that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? Let’s try also using colour as a grouping way, based on <code>Migration Source</code>.</p>
+<p>Now let's imagine that we want to know whether the individuals are moving to/from Overseas or RUK as well as all the information we have so far. Should we create more groups? Let's try also using colour as a grouping way, based on <code>Migration Source</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot, <span class="kw">aes</span>(<span class="dt">x =</span> Sex, <span class="dt">y =</span> Value, <span class="dt">fill =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>, <span class="dt">colour =</span><span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&#39;dodge&#39;</span>)</code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
@@ -797,7 +799,7 @@ Would you think there is a better way to represent the data? Write it down in yo
 </div>
 </div>
 <div id="now-lets-have-a-look-at-different-plots-with-more-complexity" class="section level2">
-<h2><span class="header-section-number">7.7</span> Now let’s have a look at different plots with more complexity</h2>
+<h2><span class="header-section-number">7.7</span> Now let's have a look at different plots with more complexity</h2>
 <p>Imagine you want to see the difference in the number of people coming into and moving out of Scotland from both the RUK and Overseas throughout the years, but you do not want to know the net flow of people, their age or their sex.</p>
 <div class="question">
 <p>
@@ -814,7 +816,7 @@ DateCode, Migration Type, Migration Source, Value
 </p>
 </div>
 </div>
-<p>First, let’s get the data we will need. We want our selected variables from above, and the overall data for the rest of the variables i.e. the ‘all’ categories for <code>Age</code>, and <code>Sex</code>. Remember we want to look at people moving in and out, so we do not want the net <code>Migration Type</code>. Save the output into the variable <em>trafic_scot2</em> so that it appears in your <code>Global Environment</code>.</p>
+<p>First, let's get the data we will need. We want our selected variables from above, and the overall data for the rest of the variables i.e. the 'all' categories for <code>Age</code>, and <code>Sex</code>. Remember we want to look at people moving in and out, so we do not want the net <code>Migration Type</code>. Save the output into the variable <em>trafic_scot2</em> so that it appears in your <code>Global Environment</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">traffic_scot2 &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
 <div class="solution">
 <button>
@@ -839,15 +841,15 @@ What type of data are these variables?
 <li>Migration Type:<select class='solveme' data-answer='["categorical"]'> <option></option> <option>continuous</option> <option>categorical</option></select></li>
 </ul>
 <p>So we need to use a different type of plot - one that can portray continuous data well enough.</p>
-<p>Good way to portray data like this are point graphs (i.e. scatter plots) and line graphs.</p>
+<p>Good way to portray data like this are point graphs (i.e. scatter plots) and line graphs.</p>
 <p>We have several variables again. It will help if we separate them with different aesthetics.</p>
-<p>Let’s start with a scatter plot.</p>
+<p>Let's start with a scatter plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, 
                           <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>, 
                           <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>() </code></pre></div>
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
-<p>This seems difficult to look at. Let’s make it easier by adding a line that connects the data. We can do this by adding another <em>Layer</em>.</p>
+<p>This seems difficult to look at. Let's make it easier by adding a line that connects the data. We can do this by adding another <em>Layer</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(traffic_scot2, <span class="kw">aes</span>(DateCode, Value, 
                           <span class="dt">shape =</span> <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span>,
                           <span class="dt">colour =</span> <span class="st">`</span><span class="dt">Migration Type</span><span class="st">`</span>)) <span class="op">+</span><span class="st"> </span>
@@ -856,7 +858,7 @@ What type of data are these variables?
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
 <div class="question">
 <p>
-Question: How do we know that the line graph is going to connect the <code>Migration Type</code> and not the <code>Migration Source</code>? (Think about the aesthetics of geom_line and geom_point)
+Question: How do we know that the line graph is going to connect the <code>Migration Type</code> and not the <code>Migration Source</code>? (Think about the aesthetics of <code>geom_line</code> and <code>geom_point</code>)
 </p>
 </div>
 <div class="solution">
@@ -877,9 +879,9 @@ Scatter and dot plots are excellent representations of the data as they show us 
 </div>
 <div id="other-plots" class="section level2">
 <h2><span class="header-section-number">7.8</span> Other plots</h2>
-<p>Let’s make some more plots.</p>
+<p>Let's make some more plots.</p>
 <p><em>Violin plots and Box plots</em> We need a continuous variable and a categorical variable for both of them. In both of these the categorical variable usually goes on the x-axis and the continuous on the y axis.</p>
-<p>Let’s get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas, from all ages. For this, we need to tidy the data into what we need and store it into the variable <code>female_migration</code></p>
+<p>Let's get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas, from all ages. For this, we need to tidy the data into what we need and store it into the variable <code>female_migration</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">female_migration &lt;-<span class="st"> </span>migration_scot <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(Sex <span class="op">==</span><span class="st"> &#39;Female&#39;</span>, 
          <span class="st">`</span><span class="dt">Migration Source</span><span class="st">`</span> <span class="op">==</span><span class="st"> &#39;To-from Overseas&#39;</span>, 
@@ -896,7 +898,7 @@ Scatter and dot plots are excellent representations of the data as they show us 
 <p><img src="Intro-to-R-GU-Open-Studies-2020-2021_files/figure-html/unnamed-chunk-313-2.png" width="672" /></p>
 <div class="info">
 <p>
-These plots show us the distribution of females entering and leaving Scotland. What we can tell is that over the years is that we haven’t had less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data is. We can see from the violin plots that the most common number of females coming into Scotland throughout the years is between 22000 and 18000. Box plots on the other hand, tell you where the middle 50% of the data are.
+These plots show us the distribution of females entering and leaving Scotland. What we can tell is that over the years is that we haven't had less than 12000 women coming to Scotland and no more than 16000 women leaving. These types of plots also tell us where the bulk of the data is. We can see from the violin plots that the most common number of females coming into Scotland throughout the years is between 22000 and 18000. Box plots on the other hand, tell you where the middle 50% of the data are.
 </p>
 </div>
 <div class="task">
@@ -914,7 +916,7 @@ Select two different years.
 Select two different age groups.
 </li>
 <li>
-Select the total for both sex ( i.e. ‘all’).
+Select the total for both sex ( i.e. 'all').
 </li>
 <li>
 Select migration In and Out of Scotland.
@@ -940,7 +942,8 @@ Solution
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Example answer </span>
 
 traffic_scot &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;free_movement_uk.csv&quot;</span>) </code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   FeatureCode = col_character(),
 ##   DateCode = col_double(),

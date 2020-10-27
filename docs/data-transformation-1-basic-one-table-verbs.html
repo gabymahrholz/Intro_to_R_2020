@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Data Transformation 1: Basic One Table Verbs | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Data Transformation 1: Basic One Table Verbs | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -401,7 +403,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="data-wrangling" class="section level2">
 <h2><span class="header-section-number">3.1</span> Data Wrangling</h2>
-<p>It is estimated that data scientists spend between 50-80% of their time cleaning and preparing data. This so-called <strong>data wrangling</strong> is a crucial first step in organising data for subsequent analysis (NYTimes., 2014). The goal is generally to get the data into a “tidy” format whereby each variable is a column, each observation is a row and each value is a cell. The <code>tidyverse</code> package, developed by Hadley Wickham, is a collection of R packages built around this basic concept and intended to make data science fast, easy and fun. It contains six core packages: dplyr, tidyr, readr, purrr, ggplot2, and tibble.</p>
+<p>It is estimated that data scientists spend between 50-80% of their time cleaning and preparing data. This so-called <strong>data wrangling</strong> is a crucial first step in organising data for subsequent analysis (NYTimes., 2014). The goal is generally to get the data into a &quot;tidy&quot; format whereby each variable is a column, each observation is a row and each value is a cell. The <code>tidyverse</code> package, developed by Hadley Wickham, is a collection of R packages built around this basic concept and intended to make data science fast, easy and fun. It contains six core packages: dplyr, tidyr, readr, purrr, ggplot2, and tibble.</p>
 <p><code>dplyr</code> provides a useful selection of functions - each corresponding to a basic verb:</p>
 <table>
 <thead>
@@ -441,10 +443,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="pre-steps-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Pre-Steps</h2>
-<p>Before we can talk about today’s data, let’s do some house-keeping first.</p>
+<p>Before we can talk about today's data, let's do some house-keeping first.</p>
 <div id="downloading-materials-1" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Downloading materials</h3>
-<p>Download the materials we will be working with today from moodle. The zip folder that contains an Rmd file called <code>L3_stub</code>, and a data file called <code>CareerStats.csv</code>. Similar to last week, <code>L3_stub</code> contains all code chunks for today’s lesson, and is intended for you to add notes and comments.</p>
+<p>Download the materials we will be working with today from moodle. The zip folder that contains an Rmd file called <code>L3_stub</code>, and a data file called <code>CareerStats.csv</code>. Similar to last week, <code>L3_stub</code> contains all code chunks for today's lesson, and is intended for you to add notes and comments.</p>
 </div>
 <div id="unzipping-the-zip-folder-1" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Unzipping the zip folder</h3>
@@ -456,10 +458,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="loading-in-the-required-packages-into-the-library" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Loading in the required packages into the library</h3>
-<p>As we will be using functions that are part of <code>tidyverse</code>, we need to load it into the library. You will also need to load in the new package <code>babynames</code>. You will need to have this package installed first before you can load it into the library, if you haven’t done that yet use the <code>install.packages()</code> function down in your console first.</p>
+<p>As we will be using functions that are part of <code>tidyverse</code>, we need to load it into the library. You will also need to load in the new package <code>babynames</code>. You will need to have this package installed first before you can load it into the library, if you haven't done that yet use the <code>install.packages()</code> function down in your console first.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(babynames)</code></pre></div>
-<pre><code>## Warning: package &#39;babynames&#39; was built under R version 3.6.1</code></pre>
 </div>
 <div id="read-in-the-data" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Read in the data</h3>
@@ -492,14 +493,14 @@ You could also view the data by using the function <code>View()</code>. If you a
 </div>
 <p>Remember from last week, we can also use <code>glimpse()</code> to view the columns and their datatypes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(Name_Data)</code></pre></div>
-<pre><code>## Observations: 1,924,665
-## Variables: 5
+<pre><code>## Rows: 1,924,665
+## Columns: 5
 ## $ year &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 18...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F...
 ## $ name &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret&quot;, &quot;Id...
 ## $ n    &lt;int&gt; 7065, 2604, 2003, 1939, 1746, 1578, 1472, 1414, 1320, 1288, 12...
 ## $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0....</code></pre>
-<p><code>head()</code> would be helpful in displaying only the first 6 rows of the dataset, but remember not to get “tricked” by the number of observations shown in the output.</p>
+<p><code>head()</code> would be helpful in displaying only the first 6 rows of the dataset, but remember not to get &quot;tricked&quot; by the number of observations shown in the output.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(Name_Data)</code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##    year sex   name          n   prop
@@ -521,7 +522,7 @@ Take some time to familiarise yourself with the variables in your dataframe.
 </div>
 <div id="select" class="section level2">
 <h2><span class="header-section-number">3.3</span> select()</h2>
-<p>You may not want to include every single variable in your analysis. In order to include or exclude certain variables (columns), use the <code>select()</code> function. The first argument to this function is the object you want to select variables from (i.e. our tibble called <code>Name_Data</code>), and the subsequent arguments are the variables to keep.</p>
+<p>You may not want to include every single variable in your analysis. In order to include or exclude certain variables (columns), use the <code>select()</code> function. The first argument to this function is the object you want to select variables from (i.e. our tibble called <code>Name_Data</code>), and the subsequent arguments are the variables to keep.</p>
 <p>For example, if you wanted to keep all variables except from <code>prop</code>, you could type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(Name_Data, year, sex, name, n)</code></pre></div>
 <pre><code>## # A tibble: 1,924,665 x 4
@@ -540,7 +541,7 @@ Take some time to familiarise yourself with the variables in your dataframe.
 ## # ... with 1,924,655 more rows</code></pre>
 <p>That works fine when you have realtively few variables like this dataset, however this menthod can become very time consuming if you have a lot of varibales in your dataset. There are two ways on how we could have done this easier and faster:</p>
 <ol style="list-style-type: decimal">
-<li>We could use the colon operator <code>:</code>. Similar to last week where we used the colon operator for numerical sequences, we can use it here for selecting a sequence of column names. Here, it reads as “take object <code>student_HM</code>, and select columns <code>year</code>, and every other column though to <code>n</code>”.</li>
+<li>We could use the colon operator <code>:</code>. Similar to last week where we used the colon operator for numerical sequences, we can use it here for selecting a sequence of column names. Here, it reads as &quot;take object <code>student_HM</code>, and select columns <code>year</code>, and every other column though to <code>n</code>&quot;.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(Name_Data, year<span class="op">:</span>n)</code></pre></div>
 <pre><code>## # A tibble: 1,924,665 x 4
@@ -558,7 +559,7 @@ Take some time to familiarise yourself with the variables in your dataframe.
 ## 10  1880 F     Sarah      1288
 ## # ... with 1,924,655 more rows</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>We could use “negative selection”, i.e. select the variable we wanted to drop by adding a <code>minus</code> in front of it.</li>
+<li>We could use &quot;negative selection&quot;, i.e. select the variable we wanted to drop by adding a <code>minus</code> in front of it.</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(Name_Data, <span class="op">-</span>prop)</code></pre></div>
 <pre><code>## # A tibble: 1,924,665 x 4
@@ -575,7 +576,7 @@ Take some time to familiarise yourself with the variables in your dataframe.
 ##  9  1880 F     Bertha     1320
 ## 10  1880 F     Sarah      1288
 ## # ... with 1,924,655 more rows</code></pre>
-<p>We also have the option of “de-selecting” more than one variable. By including the minus sign before each column we can remove as many as we want.</p>
+<p>We also have the option of &quot;de-selecting&quot; more than one variable. By including the minus sign before each column we can remove as many as we want.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(Name_Data, <span class="op">-</span>prop, <span class="op">-</span>sex)</code></pre></div>
 <pre><code>## # A tibble: 1,924,665 x 3
 ##     year name          n
@@ -593,13 +594,13 @@ Take some time to familiarise yourself with the variables in your dataframe.
 ## # ... with 1,924,655 more rows</code></pre>
 <div class="funfact">
 <p>
-We can also use <code>select()</code> in combination with the <code>c()</code> function. Remember, <code>c()</code>is “hugging things together”. We would put a single <code>minus</code> in front of the c rather than each of the column. This will read as exclude every column listed within the brackets.
+We can also use <code>select()</code> in combination with the <code>c()</code> function. Remember, <code>c()</code>is &quot;hugging things together&quot;. We would put a single <code>minus</code> in front of the c rather than each of the column. This will read as exclude every column listed within the brackets.
 </p>
 <p>
 select(Name_Data, -c(sex, n, prop))
 </p>
 </div>
-<p>Remember, if you don’t save this data to an object (e.g. the original dataframe <code>Name_Data</code> or under a new name), it won’t be saved. We have not saved any of the previous tasks to the <code>Global Environment</code>, so there should still be only one babynames related object, e.g. the tibble named <code>Name_Data</code>.</p>
+<p>Remember, if you don't save this data to an object (e.g. the original dataframe <code>Name_Data</code> or under a new name), it won't be saved. We have not saved any of the previous tasks to the <code>Global Environment</code>, so there should still be only one babynames related object, e.g. the tibble named <code>Name_Data</code>.</p>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
 <div class="task">
 <p>
@@ -655,10 +656,10 @@ Name_Arr</code></pre></div>
 ## # ... with 1,924,655 more rows</code></pre>
 <div class="warning">
 <p>
-If you were to assign this code to the same object as before (i.e. Name_Data), the previous version of <code>Name_Data</code> would be overwritten.
+If you were to assign this code to the same object as before (i.e. Name_Data), the previous version of <code>Name_Data</code> would be overwritten.
 </p>
 </div>
-<p>Notice how the <code>n</code> column is now organised in alphabetical order i.e. smallest number to largest. Suppose you wanted to reverse this order, displaying largest, you would need to wrap the name of the variable in the <code>desc()</code> function (i.e. for <strong>descending</strong>).</p>
+<p>Notice how the <code>n</code> column is now organised in alphabetical order i.e. smallest number to largest. Suppose you wanted to reverse this order, displaying largest, you would need to wrap the name of the variable in the <code>desc()</code> function (i.e. for <strong>descending</strong>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Arr2 &lt;-<span class="st"> </span><span class="kw">arrange</span>(Name_Data, <span class="kw">desc</span>(n))
 Name_Arr2</code></pre></div>
 <pre><code>## # A tibble: 1,924,665 x 5
@@ -701,8 +702,8 @@ Name_Arr3</code></pre></div>
 <p>In order to include or exclude certain observations (rows), use the <code>filter()</code> function. The first argument to this function is an object (in this case the tibble <code>Name_Data</code>) and the subsequent argument is the criteria you wish to filter on. For example, if you want only those observations from the year of your birth:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_MyYear &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, year <span class="op">==</span><span class="st"> </span><span class="dv">1988</span>)
 <span class="kw">glimpse</span>(Name_MyYear)</code></pre></div>
-<pre><code>## Observations: 22,364
-## Variables: 5
+<pre><code>## Rows: 22,364
+## Columns: 5
 ## $ year &lt;dbl&gt; 1988, 1988, 1988, 1988, 1988, 1988, 1988, 1988, 1988, 1988, 19...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F...
 ## $ name &lt;chr&gt; &quot;Jessica&quot;, &quot;Ashley&quot;, &quot;Amanda&quot;, &quot;Sarah&quot;, &quot;Jennifer&quot;, &quot;Brittany&quot;...
@@ -711,8 +712,8 @@ Name_Arr3</code></pre></div>
 <p>or keep observations of only popular names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Pop &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, prop <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.07</span>)
 <span class="kw">glimpse</span>(Name_Pop)</code></pre></div>
-<pre><code>## Observations: 19
-## Variables: 5
+<pre><code>## Rows: 19
+## Columns: 5
 ## $ year &lt;dbl&gt; 1880, 1880, 1880, 1881, 1881, 1882, 1882, 1882, 1883, 1883, 18...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;Mary&quot;, &quot;John&quot;, &quot;William&quot;, &quot;John&quot;, &quot;William&quot;, &quot;Mary&quot;, &quot;John&quot;, ...
@@ -738,7 +739,7 @@ Answers
 </button>
 <div class="solved">
 <p>
-Consequences: You could potentially lose some data. Nothing is ever completely lost though (unless you are overwriting the original .csv file) but it could result in more work for you to restore everything from the beginning. Especially when your data scripts are very long and analysis is complex (i.e. taking up a lot of computing power), that could easily turn into a nightmare.
+Consequences: You could potentially lose some data. Nothing is ever completely lost though (unless you are overwriting the original .csv file) but it could result in more work for you to restore everything from the beginning. Especially when your data scripts are very long and analysis is complex (i.e. taking up a lot of computing power), that could easily turn into a nightmare.
 </p>
 <p>
 Remember the relational operators that returned logical values of either <code>TRUE</code> or <code>FALSE</code>?
@@ -749,30 +750,30 @@ Remember the relational operators that returned logical values of either <code>T
 <p>This works as well for columns of the data type <code>character</code>. If you want only those observations for a specific name, you could use the equivalence operator <code>==</code>. Be aware that a single equals sign (<code>=</code>) is used to assign a value to a variable whereas a double equals sign (<code>==</code>) is used to check whether two values are equal.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Me &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, name <span class="op">==</span><span class="st"> &quot;Jaimie&quot;</span>)
 <span class="kw">glimpse</span>(Name_Me)</code></pre></div>
-<pre><code>## Observations: 118
-## Variables: 5
+<pre><code>## Rows: 118
+## Columns: 5
 ## $ year &lt;dbl&gt; 1946, 1948, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 19...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;J...
 ## $ n    &lt;int&gt; 7, 5, 8, 8, 6, 8, 12, 16, 9, 28, 12, 30, 13, 19, 10, 20, 7, 23...
 ## $ prop &lt;dbl&gt; 4.340e-06, 2.870e-06, 4.330e-06, 4.210e-06, 3.110e-06, 4.020e-...</code></pre>
-<p>Here, the <code>filter()</code> function compares every single value in the column <code>name</code> of the data object <code>Name_Data</code> with the character string written on the right-hand side of the equation (“Jaimie”).</p>
+<p>Here, the <code>filter()</code> function compares every single value in the column <code>name</code> of the data object <code>Name_Data</code> with the character string written on the right-hand side of the equation (&quot;Jaimie&quot;).</p>
 <p>You can also use <code>filter()</code> to keep data from multiple options of the same variable using the <code>%in%</code> operator. In this case we want to filter several different names:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_J &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, name <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Jaimie&quot;</span>, <span class="st">&quot;Jamie&quot;</span>, <span class="st">&quot;Jaime&quot;</span>, <span class="st">&quot;James&quot;</span>, <span class="st">&quot;Jayme&quot;</span>))
 <span class="kw">glimpse</span>(Name_J)</code></pre></div>
-<pre><code>## Observations: 963
-## Variables: 5
+<pre><code>## Rows: 963
+## Columns: 5
 ## $ year &lt;dbl&gt; 1880, 1880, 1881, 1881, 1882, 1882, 1883, 1883, 1884, 1884, 18...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;James&quot;, &quot;James&quot;, &quot;James&quot;, &quot;James&quot;, &quot;James&quot;, &quot;James&quot;, &quot;James&quot;,...
 ## $ n    &lt;int&gt; 22, 5927, 24, 5441, 18, 5892, 25, 5223, 33, 5, 5693, 26, 5175,...
 ## $ prop &lt;dbl&gt; 0.00022540, 0.05005912, 0.00024278, 0.05024843, 0.00015558, 0....</code></pre>
-<p>Because <code>filter()</code> evalutes variables against your criteria and keeps observations that are <code>TRUE</code>, in essence the function defaults to “filter-in” certain observations. You can however also use it to “filter-out” specific observations, by using the ‘not equals’ operator <code>!=</code>. Here <code>filter()</code> keeps every row in which the value DOES NOT read what you have specificed.</p>
+<p>Because <code>filter()</code> evalutes variables against your criteria and keeps observations that are <code>TRUE</code>, in essence the function defaults to &quot;filter-in&quot; certain observations. You can however also use it to &quot;filter-out&quot; specific observations, by using the 'not equals' operator <code>!=</code>. Here <code>filter()</code> keeps every row in which the value DOES NOT read what you have specificed.</p>
 <p>Using <code>filter()</code> to exclude certain observations.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_J_Short &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_J, name <span class="op">!=</span><span class="st">&quot;James&quot;</span>)
 <span class="kw">glimpse</span>(Name_J_Short)</code></pre></div>
-<pre><code>## Observations: 687
-## Variables: 5
+<pre><code>## Rows: 687
+## Columns: 5
 ## $ year &lt;dbl&gt; 1884, 1887, 1888, 1890, 1891, 1892, 1893, 1894, 1895, 1896, 18...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;Jamie&quot;, &quot;Jamie&quot;, &quot;Jamie&quot;, &quot;Jamie&quot;, &quot;Jamie&quot;, &quot;Jamie&quot;, &quot;Jamie&quot;,...
@@ -802,8 +803,8 @@ Remember the relational operators that returned logical values of either <code>T
 <p>For example, to filter rows containing only your name, of one sex, since your year of birth, you would code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Specific &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, name <span class="op">==</span><span class="st"> &quot;Jaimie&quot;</span>, year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1988</span>, sex <span class="op">==</span><span class="st"> &quot;M&quot;</span>)
 <span class="kw">glimpse</span>(Name_Specific)</code></pre></div>
-<pre><code>## Observations: 19
-## Variables: 5
+<pre><code>## Rows: 19
+## Columns: 5
 ## $ year &lt;dbl&gt; 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 19...
 ## $ sex  &lt;chr&gt; &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;Jaimie&quot;, &quot;J...
@@ -811,14 +812,14 @@ Remember the relational operators that returned logical values of either <code>T
 ## $ prop &lt;dbl&gt; 1.099e-05, 7.160e-06, 1.302e-05, 9.910e-06, 9.050e-06, 6.780e-...</code></pre>
 <div class="funfact">
 <p>
-You could have also used the logical operator <code>&amp;</code> (AND) instead of the comma. <code>filter(Name_Data, name == “Jaimie” &amp; year &gt;= 1988 &amp; sex == “M”)</code> would have given you the same result as above.
+You could have also used the logical operator <code>&amp;</code> (AND) instead of the comma. <code>filter(Name_Data, name == &quot;Jaimie&quot; &amp; year &gt;= 1988 &amp; sex == &quot;M&quot;)</code> would have given you the same result as above.
 </p>
 </div>
 <p>If we wanted to filter the data <code>Name_Data</code> for either names with a very high count <strong>OR</strong> names that account for a very low proportion, we could use the logical operator <code>|</code> (OR).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Or &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, n <span class="op">&gt;</span><span class="st"> </span><span class="dv">90000</span> <span class="op">|</span><span class="st"> </span>prop <span class="op">&lt;</span><span class="st"> </span><span class="fl">2.27e-06</span>)
 <span class="kw">glimpse</span>(Data_Or)</code></pre></div>
-<pre><code>## Observations: 2,041
-## Variables: 5
+<pre><code>## Rows: 2,041
+## Columns: 5
 ## $ year &lt;dbl&gt; 1947, 1947, 1947, 1948, 1949, 1956, 1957, 1958, 2007, 2007, 20...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;Linda&quot;, &quot;James&quot;, &quot;Robert&quot;, &quot;Linda&quot;, &quot;Linda&quot;, &quot;Michael&quot;, &quot;Mich...
@@ -827,8 +828,8 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 <p>As you will have noticed, <code>Data_Or</code> has now observations for names that either have a count over 90,000 in a year, or account for a very small proportion in a year. In this instance these are very distinct groups, and no observation would meet both criteria, check for yourself:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Or2 &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, n <span class="op">&gt;</span><span class="st"> </span><span class="dv">90000</span> <span class="op">&amp;</span><span class="st"> </span>prop <span class="op">&lt;</span><span class="st"> </span><span class="fl">2.27e-06</span>)
 <span class="kw">glimpse</span>(Data_Or2)</code></pre></div>
-<pre><code>## Observations: 0
-## Variables: 5
+<pre><code>## Rows: 0
+## Columns: 5
 ## $ year &lt;dbl&gt; 
 ## $ sex  &lt;chr&gt; 
 ## $ name &lt;chr&gt; 
@@ -837,8 +838,8 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 <p>Here we see <code>Data_Or2</code>, returns no observations. However sometimes, you might select multiple criteria, where some observations will only meet one, but other observations may meet both criteria (see below). So always keep in mind what exactly you want to find, and choose the best way to filter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Or3 &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, n <span class="op">&gt;</span><span class="st"> </span><span class="dv">90000</span> <span class="op">|</span><span class="st"> </span>prop <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.05</span>)
 <span class="kw">glimpse</span>(Data_Or3)</code></pre></div>
-<pre><code>## Observations: 172
-## Variables: 5
+<pre><code>## Rows: 172
+## Columns: 5
 ## $ year &lt;dbl&gt; 1880, 1880, 1880, 1880, 1881, 1881, 1881, 1881, 1882, 1882, 18...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M...
 ## $ name &lt;chr&gt; &quot;Mary&quot;, &quot;John&quot;, &quot;William&quot;, &quot;James&quot;, &quot;Mary&quot;, &quot;John&quot;, &quot;William&quot;,...
@@ -846,8 +847,8 @@ You could have also used the logical operator <code>&amp;</code> (AND) instead o
 ## $ prop &lt;dbl&gt; 0.07238359, 0.08154561, 0.08050676, 0.05005912, 0.06999140, 0....</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Data_Or4 &lt;-<span class="st"> </span><span class="kw">filter</span>(Name_Data, n <span class="op">&gt;</span><span class="st"> </span><span class="dv">90000</span> <span class="op">&amp;</span><span class="st"> </span>prop <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.05</span>)
 <span class="kw">glimpse</span>(Data_Or4)</code></pre></div>
-<pre><code>## Observations: 4
-## Variables: 5
+<pre><code>## Rows: 4
+## Columns: 5
 ## $ year &lt;dbl&gt; 1947, 1947, 1948, 1949
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;
 ## $ name &lt;chr&gt; &quot;Linda&quot;, &quot;James&quot;, &quot;Linda&quot;, &quot;Linda&quot;
@@ -883,11 +884,11 @@ Solution
 <center>
 <img src="images/mutate.png" height= "350">
 </center>
-<p>Let’s apply this to this to our <code>Name_Data</code> data tibble. Say we wanted to create a new column <code>Decade</code> that shows us the relative decade each observation is taken from. Save this as a new object <code>Name_Ext</code> to the <code>Global Environment</code> rather than overwriting <code>Name_Data</code> so that we can compare <code>Name_Data</code> with the extended <code>Name_Ext</code> later on.</p>
+<p>Let's apply this to this to our <code>Name_Data</code> data tibble. Say we wanted to create a new column <code>Decade</code> that shows us the relative decade each observation is taken from. Save this as a new object <code>Name_Ext</code> to the <code>Global Environment</code> rather than overwriting <code>Name_Data</code> so that we can compare <code>Name_Data</code> with the extended <code>Name_Ext</code> later on.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Ext &lt;-<span class="st"> </span><span class="kw">mutate</span>(Name_Data, <span class="dt">Decade =</span> <span class="kw">floor</span>(year<span class="op">/</span><span class="dv">10</span>)<span class="op">*</span><span class="dv">10</span>)
 <span class="kw">glimpse</span>(Name_Ext)</code></pre></div>
-<pre><code>## Observations: 1,924,665
-## Variables: 6
+<pre><code>## Rows: 1,924,665
+## Columns: 6
 ## $ year   &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, ...
 ## $ sex    &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, ...
 ## $ name   &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret&quot;, &quot;...
@@ -898,8 +899,8 @@ Solution
 <p>Importantly, new variables will overwrite existing variables if column headings are identical. So if we wanted to halve the values in column <code>Decade</code> and store them in a column <code>Decade</code>, the original <code>Decade</code> would be overwritten. To demonstrate we will try doing this and stroring the output in a new object called <code>Name_Ext2</code>and save that to our <code>Global Environment</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Ext2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(Name_Ext, <span class="dt">Decade =</span> Decade<span class="op">/</span><span class="dv">2</span>)
 <span class="kw">glimpse</span>(Name_Ext2)</code></pre></div>
-<pre><code>## Observations: 1,924,665
-## Variables: 6
+<pre><code>## Rows: 1,924,665
+## Columns: 6
 ## $ year   &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, ...
 ## $ sex    &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, ...
 ## $ name   &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret&quot;, &quot;...
@@ -909,14 +910,14 @@ Solution
 <p>So now, <code>Name_Ext2</code> did not gain a column (it still contains 6 variables), and <code>Decade</code> now has (unhelpfully) half the numeric value of the decade. (As an aside you could prevent yourself from accidentally doing something like this by converting <code>Decade</code> from numeric double type data to character type data, if you had no intention of carrying out any calculations on that variable)</p>
 <div class="info">
 <p>
-The main take-away message here is to always check your data after manipulation if the outcome is really what you would expected. If you don’t inspect and accidentally overwrite columns, you would not notice any difference.
+The main take-away message here is to always check your data after manipulation if the outcome is really what you would expected. If you don't inspect and accidentally overwrite columns, you would not notice any difference.
 </p>
 </div>
 <p>You can also use <code>mutate()</code> to drop columns you no longer need, as an alternative to the <code>select()</code> function. This would mean that <code>Name_Ext2</code> is now identical to <code>Name_Data</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Ext2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(Name_Ext2, <span class="dt">Decade =</span> <span class="ot">NULL</span>)
 <span class="kw">glimpse</span>(Name_Ext2)</code></pre></div>
-<pre><code>## Observations: 1,924,665
-## Variables: 5
+<pre><code>## Rows: 1,924,665
+## Columns: 5
 ## $ year &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 18...
 ## $ sex  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F...
 ## $ name &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret&quot;, &quot;Id...
@@ -930,8 +931,8 @@ The main take-away message here is to always check your data after manipulation 
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Ext3 &lt;-<span class="st"> </span><span class="kw">mutate</span>(Name_Ext, <span class="dt">MinName =</span> n <span class="op">==</span><span class="st"> </span><span class="dv">5</span>, <span class="st">&quot;20thCent&quot;</span> =<span class="st"> </span>year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1900</span> <span class="op">&amp;</span><span class="st"> </span>year <span class="op">&lt;=</span><span class="st"> </span><span class="dv">1999</span>)
 <span class="kw">glimpse</span>(Name_Ext3)</code></pre></div>
-<pre><code>## Observations: 1,924,665
-## Variables: 8
+<pre><code>## Rows: 1,924,665
+## Columns: 8
 ## $ year       &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 18...
 ## $ sex        &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;...
 ## $ name       &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret...
@@ -942,7 +943,7 @@ The main take-away message here is to always check your data after manipulation 
 ## $ `20thCent` &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, ...</code></pre>
 <div class="solved">
 <p>
-You may have noticed we needed to put the name of our new column <code>“20thCent”</code> inside quotation marks. This is because that name would begin with numeric values which R will interpret as numeric values to be evaluated as code by default, which will then break our code. By placeing the name within quotation marks this tells R to treat this as a standard character string instead. It is always best to avoid creating variables with names that start with a number for this reason, but if it is necessary this is how you can work around it.
+You may have noticed we needed to put the name of our new column <code>&quot;20thCent&quot;</code> inside quotation marks. This is because that name would begin with numeric values which R will interpret as numeric values to be evaluated as code by default, which will then break our code. By placeing the name within quotation marks this tells R to treat this as a standard character string instead. It is always best to avoid creating variables with names that start with a number for this reason, but if it is necessary this is how you can work around it.
 </p>
 </div>
 <div class="task">
@@ -961,8 +962,8 @@ Solution
 </button>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Name_Ext4 &lt;-<span class="st"> </span><span class="kw">mutate</span>(Name_Ext3, <span class="dt">Prcnt =</span> prop <span class="op">*</span><span class="st"> </span><span class="dv">100</span>)
 <span class="kw">glimpse</span>(Name_Ext4)</code></pre></div>
-<pre><code>## Observations: 1,924,665
-## Variables: 9
+<pre><code>## Rows: 1,924,665
+## Columns: 9
 ## $ year       &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 18...
 ## $ sex        &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;...
 ## $ name       &lt;chr&gt; &quot;Mary&quot;, &quot;Anna&quot;, &quot;Emma&quot;, &quot;Elizabeth&quot;, &quot;Minnie&quot;, &quot;Margaret...
@@ -978,7 +979,8 @@ Solution
 <p>At this point we are reaching the end of the usefulness of the Babynames dataset (there is only so much you can do with 5 basic variables), and this is a good time to bring in the second dataset we mentioned.</p>
 <p>The second dataset, is a set of career and performance statistics of MMA athletes. You need to read the file <code>CareerStats.csv</code> containing your data into your <code>Global Environment</code> using the function <code>read_csv()</code>. Remember to store your data in an appropriately named object (e.g. <code>MMA_Data</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_Data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;CareerStats.csv&quot;</span>)</code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   ID = col_character(),
@@ -986,8 +988,8 @@ Solution
 ##   ReachClass = col_character(),
 ##   Stance = col_character(),
 ##   WeightClass = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+## )
+## i Use `spec()` for the full column specifications.</code></pre>
 <div class="info">
 <p>
 As you can see this dataset has a lot more variables, which should make for more interesting ways of manipulating the data.
@@ -1013,7 +1015,7 @@ Some of the most useful however are: <code>sum()</code> - sum total <code>n()</c
 ##      &lt;dbl&gt; &lt;dbl&gt;
 ## 1     23.0  9.80</code></pre>
 <p>Therefore, the average number of total fights for all the athletes in our sample is 22.98, with a standard deviation of 9.8.</p>
-<p>Let’s try another. what is the maximum and minimum hights for the entire sample?</p>
+<p>Let's try another. what is the maximum and minimum hights for the entire sample?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(MMA_Data, <span class="dt">Minimum =</span> <span class="kw">min</span>(Height), <span class="dt">Maximum =</span> <span class="kw">max</span>(Height))</code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   Minimum Maximum
@@ -1029,13 +1031,13 @@ Some of the most useful however are: <code>sum()</code> - sum total <code>n()</c
 </div>
 <div id="adding-group_by" class="section level2">
 <h2><span class="header-section-number">3.8</span> Adding group_by()</h2>
-<p>Now that’s all well and good, but in research we are most often interested in drawing comparisons and analysing differences (Between different groups of people, between different treatment types, between different countries etc.).</p>
-<p>This is where the <code>group_by()</code> function comes in handy. It can organise observations (rows) by variables (columns), thereby spliting the data up into subsets that can be analysed independently. The first argument to this function is the data you wish to organise, in this case <code>MMA_Data</code> and the subsequent argument is your chosen grouping variable you want to organise by (e.g. group by). Here we are grouping by weightclass, and saving this as a new object <code>MMA_G_Weight</code>;</p>
+<p>Now that's all well and good, but in research we are most often interested in drawing comparisons and analysing differences (Between different groups of people, between different treatment types, between different countries etc.).</p>
+<p>This is where the <code>group_by()</code> function comes in handy. It can organise observations (rows) by variables (columns), thereby spliting the data up into subsets that can be analysed independently. The first argument to this function is the data you wish to organise, in this case <code>MMA_Data</code> and the subsequent argument is your chosen grouping variable you want to organise by (e.g. group by). Here we are grouping by weightclass, and saving this as a new object <code>MMA_G_Weight</code>;</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_G_Weight &lt;-<span class="st"> </span><span class="kw">group_by</span>(MMA_Data, WeightClass)</code></pre></div>
 <p>If you view the object <code>MMA_G_Class</code>, it will not look any different to the original dataset (<code>MMA_Data</code>). However, be aware that the underlying structure has changed. In fact, you could use <code>glimpse()</code> to double check this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(MMA_G_Weight)</code></pre></div>
-<pre><code>## Observations: 199
-## Variables: 32
+<pre><code>## Rows: 199
+## Columns: 32
 ## Groups: WeightClass [8]
 ## $ ID            &lt;chr&gt; &quot;056c493bbd76a918&quot;, &quot;b102c26727306ab6&quot;, &quot;80eacd4da061...
 ## $ Age           &lt;dbl&gt; 31.88, 33.70, 34.41, 25.39, 31.02, 34.77, 33.97, 28.7...
@@ -1071,6 +1073,7 @@ Some of the most useful however are: <code>sum()</code> - sum total <code>n()</c
 ## $ SubAtt_Avg    &lt;dbl&gt; 0.122, 0.657, 0.700, 1.454, 3.864, 1.069, 0.618, 1.75...</code></pre>
 <p>You can now feed this grouped dataset (<code>MMA_G_Weight</code>) into the previous code line to obtain summary statistics by <code>WeightClass</code>, the code for finding summary statistics of average number of total fights, has been provided.:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Sum_Fights &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Weight, <span class="dt">Avg_Mean =</span> <span class="kw">mean</span>(T_Fights), <span class="dt">SD =</span> <span class="kw">sd</span>(T_Fights))</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
 <p>Which weightclass has the highest maximum height? <input class='solveme nospaces' size='11' data-answer='["Heavyweight"]'/></p>
 <div class="task">
@@ -1088,23 +1091,25 @@ Try to fill out the code for finding summary stats of minimum and maximum height
 Solution
 </button>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Sum_Height &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Weight, <span class="dt">Minimum =</span> <span class="kw">min</span>(Height), <span class="dt">Maximum =</span> <span class="kw">max</span>(Height))</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 </div>
 <div class="info">
 <p>
 You can technically group by any variable! For example, there is nothing stopping you from grouping by a continuous variable like age or height. R will allow you to group by a numerical variable that is type double, the code will run.
 </p>
 <p>
-However you probably want to be more careful in choosing a categorical variable as grouping criteria. These will usually be character, or interger or even logical data types. However interger data type might also actually represent a continuous variable (but might have only been recorded in whole numbers), and a variable that is character type may not represent a useful category (like idividual ID’s for example).
+However you probably want to be more careful in choosing a categorical variable as grouping criteria. These will usually be character, or interger or even logical data types. However interger data type might also actually represent a continuous variable (but might have only been recorded in whole numbers), and a variable that is character type may not represent a useful category (like idividual ID's for example).
 </p>
 <p>
-The point is R does not know what your dataset is actually about, and what your variables are meant to represent… R has no idea if your variable <em>should</em> be categorical or not. So it’s up to you to know what are sensible variables to use in the <code>group_by()</code> function.
+The point is R does not know what your dataset is actually about, and what your variables are meant to represent... R has no idea if your variable <em>should</em> be categorical or not. So it's up to you to know what are sensible variables to use in the <code>group_by()</code> function.
 </p>
 </div>
 <p>You might also want to calculate and display the number of individuals from your dataset that are in different groups. This can be achieved by adding the summary function <code>n()</code> once you have grouped your data. the function <code>n()</code>, simply counts the number of observations and takes no arguments. Here we will group by <code>Stance</code> and count the number of athelets in each category:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_G_Stance &lt;-<span class="st"> </span><span class="kw">group_by</span>(MMA_Data, Stance)
 
-Stance_Ns &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Stance, <span class="dt">N =</span> <span class="kw">n</span>())
-Stance_Ns</code></pre></div>
+Stance_Ns &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Stance, <span class="dt">N =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Stance_Ns</code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   Stance       N
 ##   &lt;chr&gt;    &lt;int&gt;
@@ -1115,8 +1120,9 @@ Stance_Ns</code></pre></div>
 <p>How many athletes in the dataset have a Southpaw stance? <input class='solveme nospaces' size='2' data-answer='["45"]'/> <br> How many athletes in the dataset have an Orthodox stance? <input class='solveme nospaces' size='3' data-answer='["140"]'/></p>
 <p>Finally, it is possible to add multiple grouping variables. For example, the following code groups <code>MMA_Data</code> by <code>ReachClass</code> and <code>Stance</code> and then calculates the mean and standard deviation of average number of strikes landed per minute (<code>TLpM</code>) for each group (6 groups).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_G_RS &lt;-<span class="st"> </span><span class="kw">group_by</span>(MMA_Data, ReachClass, Stance)
-MMA_LpM &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_RS, <span class="dt">Mean =</span> <span class="kw">mean</span>(TLpM), <span class="dt">SD =</span> <span class="kw">sd</span>(TLpM))
-MMA_LpM</code></pre></div>
+MMA_LpM &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_RS, <span class="dt">Mean =</span> <span class="kw">mean</span>(TLpM), <span class="dt">SD =</span> <span class="kw">sd</span>(TLpM))</code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;ReachClass&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_LpM</code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ## # Groups:   ReachClass [2]
 ##   ReachClass Stance    Mean    SD
@@ -1127,9 +1133,10 @@ MMA_LpM</code></pre></div>
 ## 4 Below      Orthodox  5.33  1.60
 ## 5 Below      Southpaw  5.02  1.47
 ## 6 Below      Switch    5.95  3.63</code></pre>
-<p>So far we have not had to calculate any summary statistics with any missing values, denoted by <code>NA</code> in R. Missing values are always a bit of a hassle to deal with. Any computation you do that involves <code>NA</code> returns an <code>NA</code> - which translates as “you will not get a numeric result when your column contains missing values”. Missing values can be removed by adding the argument <code>na.rm = TRUE</code> to calculation functions like <code>mean()</code>, <code>median()</code> or <code>sd()</code>. For example, lets try to calulate a mean where we have some missing values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Weight_Reach &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Weight, <span class="dt">Avg_Reach =</span> <span class="kw">mean</span>(Reach))
-Weight_Reach</code></pre></div>
+<p>So far we have not had to calculate any summary statistics with any missing values, denoted by <code>NA</code> in R. Missing values are always a bit of a hassle to deal with. Any computation you do that involves <code>NA</code> returns an <code>NA</code> - which translates as &quot;you will not get a numeric result when your column contains missing values&quot;. Missing values can be removed by adding the argument <code>na.rm = TRUE</code> to calculation functions like <code>mean()</code>, <code>median()</code> or <code>sd()</code>. For example, lets try to calulate a mean where we have some missing values:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Weight_Reach &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Weight, <span class="dt">Avg_Reach =</span> <span class="kw">mean</span>(Reach))</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Weight_Reach</code></pre></div>
 <pre><code>## # A tibble: 8 x 2
 ##   WeightClass      Avg_Reach
 ##   &lt;chr&gt;                &lt;dbl&gt;
@@ -1142,8 +1149,9 @@ Weight_Reach</code></pre></div>
 ## 7 Middleweight          NA  
 ## 8 Welterweight          74</code></pre>
 <p>The code runs without error, however you will notice we have a few stats missing (<code>NA</code>). Now lets tell R to remove any missing values when making its calculation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Weight_Reach &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Weight, <span class="dt">Avg_Reach =</span> <span class="kw">mean</span>(Reach, <span class="dt">na.rm =</span> T))
-Weight_Reach</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Weight_Reach &lt;-<span class="st"> </span><span class="kw">summarise</span>(MMA_G_Weight, <span class="dt">Avg_Reach =</span> <span class="kw">mean</span>(Reach, <span class="dt">na.rm =</span> T))</code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Weight_Reach</code></pre></div>
 <pre><code>## # A tibble: 8 x 2
 ##   WeightClass      Avg_Reach
 ##   &lt;chr&gt;                &lt;dbl&gt;
@@ -1157,13 +1165,13 @@ Weight_Reach</code></pre></div>
 ## 8 Welterweight          74</code></pre>
 <div class="info">
 <p>
-Finally… If you need to return the data to a non-grouped form, use the <code>ungroup()</code> function.
+Finally... If you need to return the data to a non-grouped form, use the <code>ungroup()</code> function.
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_Data &lt;-<span class="st"> </span><span class="kw">group_by</span>(MMA_Data, BMI)
 <span class="kw">glimpse</span>(MMA_Data)</code></pre></div>
-<pre><code>## Observations: 199
-## Variables: 32
+<pre><code>## Rows: 199
+## Columns: 32
 ## Groups: BMI [70]
 ## $ ID            &lt;chr&gt; &quot;056c493bbd76a918&quot;, &quot;b102c26727306ab6&quot;, &quot;80eacd4da061...
 ## $ Age           &lt;dbl&gt; 31.88, 33.70, 34.41, 25.39, 31.02, 34.77, 33.97, 28.7...
@@ -1199,8 +1207,8 @@ Finally… If you need to return the data to a non-grouped form, use the <code>u
 ## $ SubAtt_Avg    &lt;dbl&gt; 0.122, 0.657, 0.700, 1.454, 3.864, 1.069, 0.618, 1.75...</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MMA_Data &lt;-<span class="st"> </span><span class="kw">ungroup</span>(MMA_Data)
 <span class="kw">glimpse</span>(MMA_Data)</code></pre></div>
-<pre><code>## Observations: 199
-## Variables: 32
+<pre><code>## Rows: 199
+## Columns: 32
 ## $ ID            &lt;chr&gt; &quot;056c493bbd76a918&quot;, &quot;b102c26727306ab6&quot;, &quot;80eacd4da061...
 ## $ Age           &lt;dbl&gt; 31.88, 33.70, 34.41, 25.39, 31.02, 34.77, 33.97, 28.7...
 ## $ Height        &lt;dbl&gt; 64, 65, 64, 64, 65, 66, 64, 65, 65, 66, 67, 65, 68, 6...
@@ -1246,7 +1254,7 @@ Finally… If you need to return the data to a non-grouped form, use the <code>u
 <h3><span class="header-section-number">3.9.1</span> Brief introduction to the homework data</h3>
 <p>For the homework assignments each week, we will be using an open access dataset into how personality is determined from voices. A full version of the paper can be found <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0204991" class="uri">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0204991</a>. All data and sounds are available on OSF (osf.io/s3cxy).</p>
 <p>However, for your assignment this week, all files necessary are compiled in a folder to download from moodle.</p>
-<p>The data in the <code>TraitJudgementData.csv</code> has ratings on 3 different personality traits (Trustworthiness, Dominance, and Attractiveness) for 30 male and 30 female voice stimuli. In total, 181 participants rated either male <em>OR</em> female speakers on <em>ONE</em> personality trait (e.g. Trustworthiness) only. The speakers were judged after saying a socially relevant word (“Hello”), a socially ambiguous word (“Colors”), a socially relevant sentence (“I urge you to submit your essay by the end of the week”), and a socially ambiguous sentence (“Some have accepted it as a miracle without physical explanation”). Socially relevant stimuli were meant to address the listener, whereas socially ambiguous stimuli were intended to not be directed towards the listener. Each participant rated all the voice stimuli twice in all four conditions (socially relevant words (RW), socially relevant sentences (RS), socially ambiguous words (AW), and socially ambiguous sentences (AS)). The experiment was conducted online.</p>
+<p>The data in the <code>TraitJudgementData.csv</code> has ratings on 3 different personality traits (Trustworthiness, Dominance, and Attractiveness) for 30 male and 30 female voice stimuli. In total, 181 participants rated either male <em>OR</em> female speakers on <em>ONE</em> personality trait (e.g. Trustworthiness) only. The speakers were judged after saying a socially relevant word (&quot;Hello&quot;), a socially ambiguous word (&quot;Colors&quot;), a socially relevant sentence (&quot;I urge you to submit your essay by the end of the week&quot;), and a socially ambiguous sentence (&quot;Some have accepted it as a miracle without physical explanation&quot;). Socially relevant stimuli were meant to address the listener, whereas socially ambiguous stimuli were intended to not be directed towards the listener. Each participant rated all the voice stimuli twice in all four conditions (socially relevant words (RW), socially relevant sentences (RS), socially ambiguous words (AW), and socially ambiguous sentences (AS)). The experiment was conducted online.</p>
 <p>Here is a brief summary overview of the columns in the <code>TraitJudgementData.csv</code>.</p>
 <table>
 <colgroup>
@@ -1262,47 +1270,47 @@ Finally… If you need to return the data to a non-grouped form, use the <code>u
 <tbody>
 <tr class="odd">
 <td align="left">PP_ID</td>
-<td align="left">Participant’s ID</td>
+<td align="left">Participant's ID</td>
 </tr>
 <tr class="even">
 <td align="left">PP_Age</td>
-<td align="left">Participant’s Age</td>
+<td align="left">Participant's Age</td>
 </tr>
 <tr class="odd">
 <td align="left">PP_Sex</td>
-<td align="left">Participant’s Sex (“female”, “male”)</td>
+<td align="left">Participant's Sex (&quot;female&quot;, &quot;male&quot;)</td>
 </tr>
 <tr class="even">
 <td align="left">Nationality</td>
-<td align="left">Participant’s Nationality</td>
+<td align="left">Participant's Nationality</td>
 </tr>
 <tr class="odd">
 <td align="left">Trait</td>
-<td align="left">Personality Trait participant judged the vocal stimuli on (“Trustworthiness”, “Dominance”, “Attractiveness”)</td>
+<td align="left">Personality Trait participant judged the vocal stimuli on (&quot;Trustworthiness&quot;, &quot;Dominance&quot;, &quot;Attractiveness&quot;)</td>
 </tr>
 <tr class="even">
 <td align="left">Voice</td>
-<td align="left">Speaker’s ID</td>
+<td align="left">Speaker's ID</td>
 </tr>
 <tr class="odd">
 <td align="left">Voice_Sex</td>
-<td align="left">Speaker’s Sex (“Female”, “Male”)</td>
+<td align="left">Speaker's Sex (&quot;Female&quot;, &quot;Male&quot;)</td>
 </tr>
 <tr class="even">
 <td align="left">Condition</td>
-<td align="left">Speaker’s recording of socially relevant words (“RW”), socially relevant sentences (“RS”), socially ambiguous words (“AW”), and socially ambiguous sentences (“AS”)</td>
+<td align="left">Speaker's recording of socially relevant words (&quot;RW&quot;), socially relevant sentences (&quot;RS&quot;), socially ambiguous words (&quot;AW&quot;), and socially ambiguous sentences (&quot;AS&quot;)</td>
 </tr>
 <tr class="odd">
 <td align="left">Rating</td>
-<td align="left">Participants rated each <code>Voice</code> in each <code>Condition</code> twice (“Rating1”, “Rating2”)</td>
+<td align="left">Participants rated each <code>Voice</code> in each <code>Condition</code> twice (&quot;Rating1&quot;, &quot;Rating2&quot;)</td>
 </tr>
 <tr class="even">
 <td align="left">Response</td>
-<td align="left">Participant’s <code>Trait</code> judgements on a scale from 1 - 500</td>
+<td align="left">Participant's <code>Trait</code> judgements on a scale from 1 - 500</td>
 </tr>
 <tr class="odd">
 <td align="left">Reaction</td>
-<td align="left">Participant’s Reaction Time</td>
+<td align="left">Participant's Reaction Time</td>
 </tr>
 </tbody>
 </table>

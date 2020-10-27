@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Introduction to Data | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Introduction to Data | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -402,7 +404,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Before we begin, we need to do some house-keeping.</p>
 <div id="downloading-materials" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Downloading materials</h3>
-<p>First, we need to download the materials we are working with today. You can find them on moodle. It’s a zip folder that contains an Rmd file called <code>L2_stub</code> and a data file in .csv format for later. <code>L2_stub</code> has all the code chunks listed for today’s lesson. You are more than welcome to add notes and comments to the Rmd (white chunks), however there is no need to copy any code.</p>
+<p>First, we need to download the materials we are working with today. You can find them on moodle. It's a zip folder that contains an Rmd file called <code>L2_stub</code> and a data file in .csv format for later. <code>L2_stub</code> has all the code chunks listed for today's lesson. You are more than welcome to add notes and comments to the Rmd (white chunks), however there is no need to copy any code.</p>
 </div>
 <div id="unzipping-the-zip-folder" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Unzipping the zip folder</h3>
@@ -414,14 +416,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">2.1.3</span> Setting the working directory</h3>
 <p>It is always good practice to set your working directory to the folder you are working with. This can be done in 2 ways:</p>
 <ol style="list-style-type: decimal">
-<li><p>In the menu, go to <strong>Session &gt; Set Working Directory &gt; Choose Directory</strong> (Ctrl + Shift + H also works as key short cut in a Windows environment). Then select the folder containing the data file and click ‘open’. You might not see any files in the folder you are selecting - that is fine.</p></li>
-<li><p>In the <code>Files pane</code>, you could navigate to today’s folder, and once there click on <strong>More &gt; Set As Working Directory</strong>.</p></li>
+<li><p>In the menu, go to <strong>Session &gt; Set Working Directory &gt; Choose Directory</strong> (Ctrl + Shift + H also works as key short cut in a Windows environment). Then select the folder containing the data file and click 'open'. You might not see any files in the folder you are selecting - that is fine.</p></li>
+<li><p>In the <code>Files pane</code>, you could navigate to today's folder, and once there click on <strong>More &gt; Set As Working Directory</strong>.</p></li>
 </ol>
 <p>Whichever way you prefer is fine. The files <code>L2_stub</code> and <code>MM_data.csv</code> should now be visible in the <code>Files pane</code>.</p>
 </div>
 <div id="load-tidyverse-into-the-library" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Load tidyverse into the library</h3>
-<p>We will be using a few functions today that are part of the <code>tidyverse</code> package compilation. Let’s load tidyverse in the library now, so we do not have to worry about it later on.</p>
+<p>We will be using a few functions today that are part of the <code>tidyverse</code> package compilation. Let's load tidyverse in the library now, so we do not have to worry about it later on.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
 <p>Yay, with that out of the way, we can begin Lesson 2.</p>
 </div>
@@ -477,7 +479,7 @@ You can check the data type using the <code>typeof()</code> function. If you wan
 </div>
 <div id="numeric" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Numeric</h3>
-<p><code>double</code> and <code>integer</code> are both class numeric. Double is a number with decimal places whereas integer is a number that’s a full number. Any number will be stored as a <code>double</code> unless you specify <code>integer</code> by adding an L as a suffix.</p>
+<p><code>double</code> and <code>integer</code> are both class numeric. Double is a number with decimal places whereas integer is a number that's a full number. Any number will be stored as a <code>double</code> unless you specify <code>integer</code> by adding an L as a suffix.</p>
 <p>Example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(<span class="fl">359.1</span>)</code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -493,16 +495,16 @@ You can check the data type using the <code>typeof()</code> function. If you wan
 <img src="images/Logical_operators.png">
 </center>
 <p>More information on logical comparison operators can be found on <a href="https://bookdown.org/ndphillips/YaRrr/logical-indexing.html" class="uri">https://bookdown.org/ndphillips/YaRrr/logical-indexing.html</a> (from which the above image was modified).</p>
-<p>You could compare if two values are equal…</p>
+<p>You could compare if two values are equal...</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">100</span> <span class="op">==</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p>… or if they are not equal.</p>
+<p>... or if they are not equal.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">100</span> <span class="op">!=</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<p>We can test if one value is smaller or equal than the other…</p>
+<p>We can test if one value is smaller or equal than the other...</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">9</span><span class="op">-</span><span class="dv">4</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p>… or if one value is larger than another.</p>
+<p>... or if one value is larger than another.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">101</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">111</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Note that it works with character strings as well. (Not really important for this class though)</p>
@@ -521,10 +523,10 @@ You can check the data type using the <code>typeof()</code> function. If you wan
 <li>class(1): <select class='solveme' data-answer='["double"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
 <li>class(1L): <select class='solveme' data-answer='["integer"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
 <li>class(1.0): <select class='solveme' data-answer='["double"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
-<li>class(“1”): <select class='solveme' data-answer='["character"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(&quot;1&quot;): <select class='solveme' data-answer='["character"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
 <li>class(1L == 2L): <select class='solveme' data-answer='["logical"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
 <li>class(1L &lt;= 2L): <select class='solveme' data-answer='["logical"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
-<li>class(1L &lt;= 2L, “1”): <select class='solveme' data-answer='["Error message"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
+<li>class(1L &lt;= 2L, &quot;1&quot;): <select class='solveme' data-answer='["Error message"]'> <option></option> <option>character</option> <option>double</option> <option>integer</option> <option>logical</option> <option>Error message</option></select></li>
 </ul>
 <div class="solution">
 <button>
@@ -540,10 +542,10 @@ Any number will be stored as a <code>double</code> unless you specify <code>inte
 </div>
 <div id="vectors" class="section level2">
 <h2><span class="header-section-number">2.3</span> Vectors</h2>
-<p>Vectors are one of the very simple data structure in R. You could define them as “a single entity consisting of a collection of things”.</p>
+<p>Vectors are one of the very simple data structure in R. You could define them as &quot;a single entity consisting of a collection of things&quot;.</p>
 <div id="creating-vectors" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Creating vectors</h3>
-<p>If you want to combine more than one element into one vector, you can do that by using the <code>c()</code> function. c stands for combine or as my colleague once said, it’s hugging multiple elements together. All elements in the vector have to be of the same data type.</p>
+<p>If you want to combine more than one element into one vector, you can do that by using the <code>c()</code> function. c stands for combine or as my colleague once said, it's hugging multiple elements together. All elements in the vector have to be of the same data type.</p>
 <p><strong>Examples:</strong></p>
 <p>This is a vector of datatype <code>double</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.7</span>)</code></pre></div>
@@ -565,7 +567,7 @@ Any number will be stored as a <code>double</code> unless you specify <code>inte
 <pre><code>## [1]  TRUE FALSE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>))</code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
-<p>We have seen what vectors look like. If you want to store these vectors in your global environment, all you need is the <code>assignment operator &lt;-</code> and a <code>meaingful name</code> for “the thing” you want to store. Here the first example reads like: “Take a vector of 3 elements (namely 1, 2.5, 4.7) and store it in your <code>Global Environment</code> under the name <code>vec_double</code>.” You can then use the name you assigned to the vector within the <code>typeof()</code> function, rather than the vector itself.</p>
+<p>We have seen what vectors look like. If you want to store these vectors in your global environment, all you need is the <code>assignment operator &lt;-</code> and a <code>meaingful name</code> for &quot;the thing&quot; you want to store. Here the first example reads like: &quot;Take a vector of 3 elements (namely 1, 2.5, 4.7) and store it in your <code>Global Environment</code> under the name <code>vec_double</code>.&quot; You can then use the name you assigned to the vector within the <code>typeof()</code> function, rather than the vector itself.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_double &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.7</span>)
 <span class="kw">typeof</span>(vec_double)</code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -583,7 +585,7 @@ Any number will be stored as a <code>double</code> unless you specify <code>inte
 Funnily enough, a vector <code>i &lt;- c(1,3,4,6)</code> would be stored as a <code>double</code>. However, when coded as <code>i &lt;- 1:10</code> would be stored as an <code>integer</code>.
 </p>
 <p>
-Don’t believe it? Try it out in your Console!
+Don't believe it? Try it out in your Console!
 </p>
 </div>
 <p><span style="font-size: 22px; font-weight: bold; color: hsl(24, 100%, 50%);">Question Time</span></p>
@@ -648,7 +650,7 @@ R has Built-in Constants:
 </li>
 </ul>
 <p>
-Of course, the task could have been solved typing alph &lt;- c(“a”, “b”, “c”, “d”, “e”, “f”, “g”, “h”, “i”, “j”, “k”, “l”, “m”, “n”, “o”, “p”, “q”, “r”, “s”, “t”, “u”, “v”, “w”, “x”, “y”, “z”)
+Of course, the task could have been solved typing alph &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;, &quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;u&quot;, &quot;v&quot;, &quot;w&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;)
 </p>
 <p>
 <code>this_is_me</code> would be stored as a <code>character</code> vector despite having text as well as numeric elements. Remember how we said earlier that all elements have to be of the same data type? After the next section, you will understand why they are stored as a character and not as a numeric vector.
@@ -673,7 +675,7 @@ Of course, the task could have been solved typing alph &lt;- c(“a”, “b”,
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">typeof</span>(vec_char_as_int)</code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<p>R would still compute “something” but it would be accompanied by the above warning message. As you can see in your Global Environment, <code>vec_char_as_int</code> does indeed exist as a numeric vector with 2 elements, but <code>NA</code> tells us they are classified as missing values.</p>
+<p>R would still compute &quot;something&quot; but it would be accompanied by the above warning message. As you can see in your Global Environment, <code>vec_char_as_int</code> does indeed exist as a numeric vector with 2 elements, but <code>NA</code> tells us they are classified as missing values.</p>
 <p>A logical vector can be converted into all other basic data types.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec_logic_as_int &lt;-<span class="st"> </span><span class="kw">as.integer</span>(vec_logic)
 vec_logic_as_int</code></pre></div>
@@ -686,7 +688,7 @@ vec_logic_as_char</code></pre></div>
 <p>Remember the vector <code>this_is_me</code>? Can you explain now why it was stored as <code>character</code>?</p>
 <div class="solution">
 <button>
-Nope, I don’t get it!
+Nope, I don't get it!
 </button>
 <div class="info">
 <p>
@@ -697,10 +699,10 @@ Nope, I don’t get it!
 <p><br></p>
 <p>With this in mind, what data type would the vector be stored as if you combined the following elements?</p>
 <ol style="list-style-type: decimal">
-<li>logical and double - i.e. c(TRUE, 45)</li>
-<li>character and logical - i.e. c(“Sarah”, “Marc”, FALSE)</li>
-<li>integer and logical - i.e. c(1:3, TRUE)</li>
-<li>logical, double, and integer - i.e. c(FALSE, 99.5, 3L)</li>
+<li>logical and double - i.e. c(TRUE, 45)</li>
+<li>character and logical - i.e. c(&quot;Sarah&quot;, &quot;Marc&quot;, FALSE)</li>
+<li>integer and logical - i.e. c(1:3, TRUE)</li>
+<li>logical, double, and integer - i.e. c(FALSE, 99.5, 3L)</li>
 </ol>
 <div class="solution">
 <button>
@@ -726,18 +728,18 @@ double
 </div>
 <div id="adding-elements-to-existing-vectors" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Adding elements to existing vectors</h3>
-<p>Let’s start with a vector called <code>friends</code> that has three names in it.</p>
+<p>Let's start with a vector called <code>friends</code> that has three names in it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">friends &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Gaby&quot;</span>, <span class="st">&quot;Wil&quot;</span>, <span class="st">&quot;Greta&quot;</span>)
 friends</code></pre></div>
 <pre><code>## [1] &quot;Gaby&quot;  &quot;Wil&quot;   &quot;Greta&quot;</code></pre>
-<p>We can now add more <code>friends</code> to our little group of <code>friends</code> by adding them either at the end, or the beginning of the vector. <code>friends</code> will now have four, and five values respectively, since we are “overwriting” our existing vector with the new one of the same name.</p>
+<p>We can now add more <code>friends</code> to our little group of <code>friends</code> by adding them either at the end, or the beginning of the vector. <code>friends</code> will now have four, and five values respectively, since we are &quot;overwriting&quot; our existing vector with the new one of the same name.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">friends &lt;-<span class="st"> </span><span class="kw">c</span>(friends, <span class="st">&quot;Kate&quot;</span>)
 friends</code></pre></div>
 <pre><code>## [1] &quot;Gaby&quot;  &quot;Wil&quot;   &quot;Greta&quot; &quot;Kate&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">friends &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rebecca&quot;</span>, friends)
 friends</code></pre></div>
 <pre><code>## [1] &quot;Rebecca&quot; &quot;Gaby&quot;    &quot;Wil&quot;     &quot;Greta&quot;   &quot;Kate&quot;</code></pre>
-<p>Vectors also support missing data. If we wanted to add “another friend” whose name we do not know yet, we can just simply add <code>NA</code> to <code>friends</code>.</p>
+<p>Vectors also support missing data. If we wanted to add &quot;another friend&quot; whose name we do not know yet, we can just simply add <code>NA</code> to <code>friends</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">friends &lt;-<span class="st"> </span><span class="kw">c</span>(friends, <span class="ot">NA</span>)
 friends</code></pre></div>
 <pre><code>## [1] &quot;Rebecca&quot; &quot;Gaby&quot;    &quot;Wil&quot;     &quot;Greta&quot;   &quot;Kate&quot;    NA</code></pre>
@@ -746,14 +748,14 @@ friends</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(friends)</code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<p>Well, now we decided that 5 friends in our little group of friends is sufficient, and we did not want anyone else to join, we could remove the “placeholder friend NA” by coding</p>
+<p>Well, now we decided that 5 friends in our little group of friends is sufficient, and we did not want anyone else to join, we could remove the &quot;placeholder friend NA&quot; by coding</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">friends &lt;-<span class="st"> </span>friends[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]
 friends</code></pre></div>
 <pre><code>## [1] &quot;Rebecca&quot; &quot;Gaby&quot;    &quot;Wil&quot;     &quot;Greta&quot;   &quot;Kate&quot;</code></pre>
 <p>You can see that the length of the vector <code>friends</code> is now back to 5 again.</p>
 <div class="funfact">
 <p>
-<code>1:5</code> uses the colon operator<code>:</code> which is read as in “access the vector elements 1, 5, and everything in between”. An alternative way of writing out the above without using a colon operator would be <code>friends[c(1,2,3,4,5)]</code>. Notice that you need the <code>c()</code> function again.
+<code>1:5</code> uses the colon operator<code>:</code> which is read as in &quot;access the vector elements 1, 5, and everything in between&quot;. An alternative way of writing out the above without using a colon operator would be <code>friends[c(1,2,3,4,5)]</code>. Notice that you need the <code>c()</code> function again.
 </p>
 </div>
 <p>Just as easily, we can create vectors for numeric sequences. The function <code>seq()</code> is a neat way of doing this, or you can use the colon operator<code>:</code> again. Just with the elements in the vector above, the same logic applies here. For example <code>1:10</code> means, you want to list number 1, number 10, and all numbers in between.</p>
@@ -781,7 +783,7 @@ sequence1 <span class="op">==</span><span class="st"> </span>sequence2</code></p
 <h2><span class="header-section-number">2.4</span> Tibble - the new way of creating a dataframe</h2>
 <div id="what-the-heck-is-a-tibble-do-you-mean-table" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> What the heck is a tibble? Do you mean table?</h3>
-<p>First of all, tibble is not a spelling error; it’s the way r refers to its newest form of data table or dataframe. Strictly speaking, a tibble is a list of vectors.</p>
+<p>First of all, tibble is not a spelling error; it's the way r refers to its newest form of data table or dataframe. Strictly speaking, a tibble is a list of vectors.</p>
 <div class="figure">
 <img src="images/tibble.png" alt="Source: https://dcl-prog.stanford.edu/data-structure-basics.html#tibbles" />
 <p class="caption">Source: <a href="https://dcl-prog.stanford.edu/data-structure-basics.html#tibbles" class="uri">https://dcl-prog.stanford.edu/data-structure-basics.html#tibbles</a></p>
@@ -796,11 +798,11 @@ sequence1 <span class="op">==</span><span class="st"> </span>sequence2</code></p
 </div>
 <div id="how-to-make-a-tibble-from-scratch" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> How to make a tibble from scratch</h3>
-<p>Now that you have learnt how to create vectors, we can try and combine them into a tibble. The easiest way is to use the <code>tibble()</code> function. Let’s say we want to create a tibble that is called <code>tibble_year</code> with 4 columns:</p>
+<p>Now that you have learnt how to create vectors, we can try and combine them into a tibble. The easiest way is to use the <code>tibble()</code> function. Let's say we want to create a tibble that is called <code>tibble_year</code> with 4 columns:</p>
 <ul>
 <li>The first column <code>month</code> lists all months of the year</li>
 <li>The second column <code>abb_month</code> gives us the three-letter abbreviation of each year.</li>
-<li>The third column <code>month_num</code> tells which number of the year is which month (e.g. January would be the first month of the year; December would be number 12).</li>
+<li>The third column <code>month_num</code> tells which number of the year is which month (e.g. January would be the first month of the year; December would be number 12).</li>
 <li>The fourth column <code>season</code> would tell us in which season the month is (Northern hemisphere).</li>
 </ul>
 <p>Remember the Built-in Constants we were talking about earlier?</p>
@@ -831,13 +833,13 @@ tibble_year</code></pre></div>
 <p>The generic structure of each of these columns we are creating is <code>column header name</code> <code>=</code> <code>values to fill in the rows</code>.</p>
 <div class="info">
 <p>
-Here, we used the built-in replication function <code>rep()</code> to build the column <code>season</code> which is a more time-efficient approach than typing out 4 seasons 3 times. Of course, we could have written season = c(“Winter”, “Winter”, “Spring”, “Spring”, “Spring”, “Summer”, “Summer”, “Summer”, “Autumn”, “Autumn”, “Autumn”, “Winter”) instead.
+Here, we used the built-in replication function <code>rep()</code> to build the column <code>season</code> which is a more time-efficient approach than typing out 4 seasons 3 times. Of course, we could have written season = c(&quot;Winter&quot;, &quot;Winter&quot;, &quot;Spring&quot;, &quot;Spring&quot;, &quot;Spring&quot;, &quot;Summer&quot;, &quot;Summer&quot;, &quot;Summer&quot;, &quot;Autumn&quot;, &quot;Autumn&quot;, &quot;Autumn&quot;, &quot;Winter&quot;) instead.
 </p>
 </div>
 <p>We can now use the function <code>glimpse()</code> to see which data types our columns are. This is a very handy function to keep in mind for later!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(tibble_year)</code></pre></div>
-<pre><code>## Observations: 12
-## Variables: 4
+<pre><code>## Rows: 12
+## Columns: 4
 ## $ month     &lt;chr&gt; &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;, &quot;...
 ## $ abb_month &lt;chr&gt; &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;, &quot;Jul&quot;, &quot;Aug&quot;, &quot;...
 ## $ month_num &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -906,10 +908,10 @@ PP_ID = as.integer(c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) <br>
 PP_Age = as.double(22:31) <br>
 </li>
 <li>
-PP_Sex = c(“Female”, “Male”, “Female”, “Male”, “Female”, “Male”, “Female”, “Male”, “Female”, “Male”) <br>
+PP_Sex = c(&quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Male&quot;) <br>
 </li>
 <li>
-PP_Country = rep(“Scotland”, 10) <br>
+PP_Country = rep(&quot;Scotland&quot;, 10) <br>
 </li>
 <li>
 PP_Consent = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE)
@@ -924,7 +926,7 @@ PP_Consent = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE)
 <div id="from-pre-existing-databases" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> from pre-existing databases</h3>
 <p>R comes with pre-installed datasets available for you to use and practice your skills on. If you want have an overview over all databases available type <code>data()</code> into your Console.</p>
-<p>One of those datasets is called “Motor Trend Car Road Tests” or in short <code>mtcars</code>. If you type <code>mtcars</code> into your Console, you can see what the dataset looks like.</p>
+<p>One of those datasets is called &quot;Motor Trend Car Road Tests&quot; or in short <code>mtcars</code>. If you type <code>mtcars</code> into your Console, you can see what the dataset looks like.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars</code></pre></div>
 <pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
@@ -975,7 +977,7 @@ When we called <code>mtcars</code> it printed the whole dataframe rather than ju
 </p>
 </div>
 </div>
-<p>However, we have seen what the data in <code>mtcars</code> looks now, but we would be able to work with it better if put it into our <code>Global Environment</code>. Let’s save <code>mtcars</code> as a dataframe called <code>data_mtcars</code>, and look at the first few rows which can be achieved using the <code>head()</code> function.</p>
+<p>However, we have seen what the data in <code>mtcars</code> looks now, but we would be able to work with it better if put it into our <code>Global Environment</code>. Let's save <code>mtcars</code> as a dataframe called <code>data_mtcars</code>, and look at the first few rows which can be achieved using the <code>head()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_mtcars &lt;-<span class="st"> </span>mtcars <span class="co"># read in as a dataframe</span>
 <span class="kw">head</span>(data_mtcars)</code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
@@ -994,22 +996,22 @@ Adding the rownames as a separate column would be rather tricky at this stage in
 <p>Another interesting dataset is called <code>starwars</code>. It can be found in the package <code>dplyr</code> which is part of <code>tidyverse</code>. So, as long as you have <code>tidyverse</code> loaded into your library, <code>starwars</code> should be available to you.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse) <span class="co"># if you have already done this in your Rmd, this step is superfluous</span>
 starwars</code></pre></div>
-<pre><code>## # A tibble: 87 x 13
-##    name  height  mass hair_color skin_color eye_color birth_year gender
-##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; 
-##  1 Luke~    172    77 blond      fair       blue            19   male  
-##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   &lt;NA&gt;  
-##  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   &lt;NA&gt;  
-##  4 Dart~    202   136 none       white      yellow          41.9 male  
-##  5 Leia~    150    49 brown      light      brown           19   female
-##  6 Owen~    178   120 brown, gr~ light      blue            52   male  
-##  7 Beru~    165    75 brown      light      blue            47   female
-##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   &lt;NA&gt;  
-##  9 Bigg~    183    84 black      light      brown           24   male  
-## 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  
+<pre><code>## # A tibble: 87 x 14
+##    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+##    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 Luke~    172    77 blond      fair       blue            19   male  mascu~
+##  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~
+##  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~
+##  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~
+##  5 Leia~    150    49 brown      light      brown           19   fema~ femin~
+##  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~
+##  7 Beru~    165    75 brown      light      blue            47   fema~ femin~
+##  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu~
+##  9 Bigg~    183    84 black      light      brown           24   male  mascu~
+## 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
 ## # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,
 ## #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
-<p>In comparison to <code>mtcars</code>, <code>starwars</code> is already a tibble (which you can see in the first line of the printout). It gives you the number of observations (87) and variables (13), the column headers, the data type of each column, and the first 10 rows of data. Again, it would be neater to work with the data if we saved the data tibble to our <code>Global Environment</code>. Let’s do that and call it <code>data_SW</code>.</p>
+<p>In comparison to <code>mtcars</code>, <code>starwars</code> is already a tibble (which you can see in the first line of the printout). It gives you the number of observations (87) and variables (13), the column headers, the data type of each column, and the first 10 rows of data. Again, it would be neater to work with the data if we saved the data tibble to our <code>Global Environment</code>. Let's do that and call it <code>data_SW</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_SW &lt;-<span class="st"> </span>starwars</code></pre></div>
 <p>Again, you could use the very handy <code>glimpse()</code> function to see what data types the columns are.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(data_SW)</code></pre></div>
@@ -1024,10 +1026,10 @@ Hint
 </button>
 <div class="solved">
 <p>
-install.packages(“babynames”) <br> library(babynames)
+install.packages(&quot;babynames&quot;) <br> library(babynames)
 </p>
 <p>
-Remember that you only have to do the <code>install.packages(“babynames”)</code> once - before you want to use <code>babynames</code> for the very first time. Once you have installed it, you can use it whenever you feel like by just loading it into the library.
+Remember that you only have to do the <code>install.packages(&quot;babynames&quot;)</code> once - before you want to use <code>babynames</code> for the very first time. Once you have installed it, you can use it whenever you feel like by just loading it into the library.
 </p>
 </div>
 </div>
@@ -1043,10 +1045,11 @@ Remember that you only have to do the <code>install.packages(“babynames”)</c
 There are other file types out there, apart from csv, like tsv (tab-separated values), excel, SAS, or SPSS. However, these would go beyond the scope of this class. All of our data will be in a .csv format.
 </p>
 </div>
-<p>Getting the data from the csv file into your <code>Global Environment</code> in R is by using a function called <code>read_csv()</code> from the package <code>tidyverse</code>. Since we did the house-keeping (i.e. loading in the package tidyverse into the library) at the very beginning, there is no need for us to do that again.</p>
-<p>The data you just saw in the screenshot above are from <code>M&amp;Ms colours by bag</code> (<a href="http://www.randomservices.org/random/data/index.html" class="uri">http://www.randomservices.org/random/data/index.html</a>). The data table gives the color counts and net weight (in grams) for a sample of 30 bags of M&amp;M’s. The advertised net weight is 47.9 grams.</p>
+<p>Getting the data from the csv file into your <code>Global Environment</code> in R is by using a function called <code>read_csv()</code> from the package <code>tidyverse</code>. Since we did the house-keeping (i.e. loading in the package tidyverse into the library) at the very beginning, there is no need for us to do that again.</p>
+<p>The data you just saw in the screenshot above are from <code>M&amp;Ms colours by bag</code> (<a href="http://www.randomservices.org/random/data/index.html" class="uri">http://www.randomservices.org/random/data/index.html</a>). The data table gives the color counts and net weight (in grams) for a sample of 30 bags of M&amp;M's. The advertised net weight is 47.9 grams.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MM_data &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;MM_data.csv&quot;</span>)</code></pre></div>
-<pre><code>## Parsed with column specification:
+<pre><code>## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   Red = col_double(),
 ##   Green = col_double(),
@@ -1073,8 +1076,8 @@ There are other file types out there, apart from csv, like tsv (tab-separated va
 ## 10     9     9     3      9      8    15   46.2
 ## # ... with 20 more rows</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(MM_data)</code></pre></div>
-<pre><code>## Observations: 30
-## Variables: 7
+<pre><code>## Rows: 30
+## Columns: 7
 ## $ Red    &lt;dbl&gt; 15, 9, 14, 15, 10, 12, 6, 14, 4, 9, 9, 8, 12, 9, 6, 4, 3, 14...
 ## $ Green  &lt;dbl&gt; 9, 17, 8, 7, 3, 7, 7, 11, 2, 9, 11, 8, 9, 7, 6, 6, 5, 5, 5, ...
 ## $ Blue   &lt;dbl&gt; 3, 19, 6, 3, 7, 6, 3, 4, 10, 3, 13, 6, 13, 7, 6, 9, 11, 6, 1...

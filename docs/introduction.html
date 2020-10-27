@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Introduction | Introduction to R</title>
   <meta name="description" content="This is the course handbook for the Glasgow University Open Studies course Introduction to R, academic session 2019-2020." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Introduction | Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Gaby Mahrholz, Greta Todorova, Wilhelmiina Toivo, and Jaimie Torrance" />
 
 
-<meta name="date" content="2020-10-18" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -290,7 +292,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6.3" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#types-of-plots"><i class="fa fa-check"></i><b>7.6.3</b> Types of plots</a></li>
 <li class="chapter" data-level="7.6.4" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#groupings"><i class="fa fa-check"></i><b>7.6.4</b> Groupings</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let’s have a look at different plots with more complexity</a></li>
+<li class="chapter" data-level="7.7" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#now-lets-have-a-look-at-different-plots-with-more-complexity"><i class="fa fa-check"></i><b>7.7</b> Now let's have a look at different plots with more complexity</a></li>
 <li class="chapter" data-level="7.8" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#other-plots"><i class="fa fa-check"></i><b>7.8</b> Other plots</a></li>
 <li class="chapter" data-level="7.9" data-path="data-visualisation-1.html"><a href="data-visualisation-1.html#formative-homework-3"><i class="fa fa-check"></i><b>7.9</b> Formative Homework</a></li>
 </ul></li>
@@ -399,9 +401,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="computer-literacy-basics" class="section level2">
 <h2><span class="header-section-number">1.1</span> Computer Literacy Basics</h2>
 <p>In order to successfully navigate this course there are a number of things that you need to know about computers more generally. This section includes everything that you are <em>required</em> to know or learn.</p>
-<p>We are aware that many people will have been using computers for many years, and in some cases many people will have grown up with them in their household. We have noticed, however, that a number of our incoming students are not familiar with many of the basic concepts that are required to be a successful coder. There is an assumption that “digital native” automatically equates to “computer literate” but in many cases we have found this assumption to be incorrect.</p>
+<p>We are aware that many people will have been using computers for many years, and in some cases many people will have grown up with them in their household. We have noticed, however, that a number of our incoming students are not familiar with many of the basic concepts that are required to be a successful coder. There is an assumption that &quot;digital native&quot; automatically equates to &quot;computer literate&quot; but in many cases we have found this assumption to be incorrect.</p>
 <p>More people than ever before are using some sort of personal computing device, but the type of use differs greatly from what we are going to be doing over the next 10 weeks. Many mobile phones, tablets and (increasingly) PC operating systems hide many of their operations from users. This can create a feeling of competency with computers that can quickly dissolve when asked to engage with anything slightly more complex.</p>
-<p>If you already know most of this then we apologise, but there may be people with us who don’t. This is a beginner class, so we thought it prudent to start us all off on the same footing.</p>
+<p>If you already know most of this then we apologise, but there may be people with us who don't. This is a beginner class, so we thought it prudent to start us all off on the same footing.</p>
 </div>
 <div id="r-and-r-studio" class="section level2">
 <h2><span class="header-section-number">1.2</span> R and R Studio</h2>
@@ -409,7 +411,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="r" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> R</h3>
 <p><img src="images/Rlogo.png" height="50" width="50" alt="R Commander Logo" align="right" style="margin:10px 10px"></p>
-<p>R is a programming language and completely free software, and it is widely used for data analysis. It is a stand-alone program and can be run on it’s own without R Studio, but it’s not particularly user friendly.</p>
+<p>R is a programming language and completely free software, and it is widely used for data analysis. It is a stand-alone program and can be run on it's own without R Studio, but it's not particularly user friendly.</p>
 <center>
 <img src="images/commander.png" alt="R Commander" style="margin:10px 10px">
 </center>
@@ -424,7 +426,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </center>
 <div id="console" class="section level4">
 <h4><span class="header-section-number">1.2.2.1</span> Console</h4>
-<p>This is essentially the same thing as R commander. You can run code in here, and it can be a useful playground to try out new things and do things that you don’t necessarily want saved into a script because <strong>it’s not permanent- anything typed here will be lost when you close R</strong>!</p>
+<p>This is essentially the same thing as R commander. You can run code in here, and it can be a useful playground to try out new things and do things that you don't necessarily want saved into a script because <strong>it's not permanent- anything typed here will be lost when you close R</strong>!</p>
 <p>Examples of things you might want to run in the console include, but are not limited to, running new functions and seeing what they do, or installing packages (never EVER done in a script).</p>
 <p>This is what the console looks like before you have run any code:</p>
 <center>
@@ -435,21 +437,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4><span class="header-section-number">1.2.2.2</span> Environment/History/Connections</h4>
 <p>This panel is tabbed, with 2 tabs that you need to pay particular attention to right now:</p>
 <ul>
-<li><p><strong>Environment</strong>: this contains all of the virtual “objects” that you have created. These include, but are not limited to, variables containing data that you have read in, lists, individual values, custom-written functions.</p>
+<li><p><strong>Environment</strong>: this contains all of the virtual &quot;objects&quot; that you have created. These include, but are not limited to, variables containing data that you have read in, lists, individual values, custom-written functions.</p>
 <p>Objects can and should be created in your scripts. When you close R you might lose some of the objects, but as long as you have the script containing the instructions to re-create these objects you can re-run it and make them again.</p></li>
-<li><p><strong>History</strong>: this is a list of all of the commands that you have run in the past “session”, which can be useful to go back to some times if you did run some code in the console that you want to look at again. To scroll through you can put the cursor in the console window and use up and down keys.</p></li>
+<li><p><strong>History</strong>: this is a list of all of the commands that you have run in the past &quot;session&quot;, which can be useful to go back to some times if you did run some code in the console that you want to look at again. To scroll through you can put the cursor in the console window and use up and down keys.</p></li>
 </ul>
-<p>At this point you don’t really need to worry about the one called connections (it lets you connect to things like online data sources).</p>
-<p>This is what that panel looks like for me right now… it’s empty!</p>
+<p>At this point you don't really need to worry about the one called connections (it lets you connect to things like online data sources).</p>
+<p>This is what that panel looks like for me right now... it's empty!</p>
 <center>
 <img src="images/environment.png" alt="The Environment" style="margin:10px 10px">
 </center>
 </div>
 <div id="filesplotspackageshelpviewer" class="section level4">
 <h4><span class="header-section-number">1.2.2.3</span> Files/Plots/Packages/Help/Viewer</h4>
-<p>This panel set is going to be extremely useful to you throughout the duration of your career as an R user. Viewer is not immediately required, so we’ll just cover Files, Plots, Packages and Help.</p>
+<p>This panel set is going to be extremely useful to you throughout the duration of your career as an R user. Viewer is not immediately required, so we'll just cover Files, Plots, Packages and Help.</p>
 <ul>
-<li><p><strong>Files</strong>: Shows a file browser that lets you look around in your file structure. helpful hint: click on the more button and “Go to working directory” to see the same files that R can see. <strong>You <em>can</em> load files in through this tab, but you should always strive to do it in the script!</strong></p></li>
+<li><p><strong>Files</strong>: Shows a file browser that lets you look around in your file structure. helpful hint: click on the more button and &quot;Go to working directory&quot; to see the same files that R can see. <strong>You <em>can</em> load files in through this tab, but you should always strive to do it in the script!</strong></p></li>
 <li><p><strong>Plots</strong>: A tab that displays plots that you have made. You can navigate backwards and forwards between multiple plots- allowing you to test out new things and see the changes in comparison to each other.</p></li>
 <li><p><strong>Packages</strong>: This allows you to look at the R packages that are installed on the machine that you are using, and the check box next to it indicates if it is loaded in from the library. <strong>You <em>can</em> click the box to load a package, but you should always strive to do it in the script!</strong></p></li>
 <li><p><strong>Help</strong>: this window displays the built in help information, much the same as Microsoft Word or Powerpoint has. You can search using the search box, but you can also type into the console. For example, if I wanted to find the help file for the <code>library()</code> function I would type <code>?library</code>. the result is displayed in the help tab to the right.</p></li>
@@ -461,25 +463,25 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <center>
 <img src="images/using_help.png" alt="Using the Help panel for help" style="margin:10px 10px">
 </center>
-<p>Sometimes these files are not exactly written in a manner that could be considered accessible to novice users. You get the hang of reading them over time. In this case you might want to try Googling it… we <strong>all</strong> do it, no matter our level of experience!</p>
+<p>Sometimes these files are not exactly written in a manner that could be considered accessible to novice users. You get the hang of reading them over time. In this case you might want to try Googling it... we <strong>all</strong> do it, no matter our level of experience!</p>
 <p>Even Googling can be difficult, but you will eventually get a better idea of the types of search terms most likely to direct you to the information that you are after.</p>
 </div>
 </div>
 </div>
 <div id="r-r-studio-and-associated-file-types" class="section level2">
 <h2><span class="header-section-number">1.3</span> R, R Studio and Associated File Types</h2>
-<p>When you open a program, such as Microsoft Word, you haven’t actually created a Word document you’ve just started the program. Opening RStudio is much the same. Even though it can function without opening a file, there is much utility to be added by opening a file.</p>
+<p>When you open a program, such as Microsoft Word, you haven't actually created a Word document you've just started the program. Opening RStudio is much the same. Even though it can function without opening a file, there is much utility to be added by opening a file.</p>
 <p>When you open a file, the console will shrink and the space taken away in the window will be taken up by the new file.</p>
 <p>Opening a new file allows you to write code that can be saved, amended, shared etc. Code sharing is an important aspect of reproducibility!</p>
 <p>R can handle a lot of different files types, we will only focus on the two types. These are .r and .Rmd files. Both are saved as plain text files. Many of the files R uses are plain text files at their core. What changes is how R interprets the files, and the types of outputs that you can get from them.</p>
 <div id="file-structuredirectories" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> File Structure/Directories</h3>
-<p>Your files should be stored in something called <strong>“directories”</strong>. This is the technical name for a folder. It is a storage space on your computer. Here you can see all of the files contained within the folder for this course document in the <strong>“File Explorer”</strong>, the program used to view files and folders in Windows:</p>
+<p>Your files should be stored in something called <strong>&quot;directories&quot;</strong>. This is the technical name for a folder. It is a storage space on your computer. Here you can see all of the files contained within the folder for this course document in the <strong>&quot;File Explorer&quot;</strong>, the program used to view files and folders in Windows:</p>
 <center>
 <img src="images/folder.png">
 </center>
 <p><br></p>
-<p>Each folder and the files within will have a specific <strong>“file path”</strong>, an address within your file storage system that allows you and the computer to pinpoint the location of the information that you and it need to perform tasks involving that file. In windows you can get the file path of a folder by clicking on the bar at the top of the folder when you are looking in it in the file explorer:</p>
+<p>Each folder and the files within will have a specific <strong>&quot;file path&quot;</strong>, an address within your file storage system that allows you and the computer to pinpoint the location of the information that you and it need to perform tasks involving that file. In windows you can get the file path of a folder by clicking on the bar at the top of the folder when you are looking in it in the file explorer:</p>
 <center>
 <img src="images/path.png">
 </center>
@@ -502,8 +504,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>In this course we will often ask you to download a folder with multiple files and this will be stored on Moodle as a zip file. A zip file is a folder that contains files that have been compressed to make the file size smaller and enables you to download multiple files at once, however, before you use the files from a zip folder you first need to extract them.</p>
 <ol style="list-style-type: decimal">
 <li>Click on the link to download the compressed folder.</li>
-<li>Navigate to the zip file (probably in your downloads folder) and open it. You will see all the files it contains but don’t use these - click “Extract all” on the top ribbon.</li>
-<li>You will be asked to select a location to save the unzipped files. Normally the default location it suggests will be the same folder and so you can just click “Extract”. If you want to unzip these files to a different place click browse and select the folder you want to keep it in. I like to keep all the files for one project in the same folder.</li>
+<li>Navigate to the zip file (probably in your downloads folder) and open it. You will see all the files it contains but don't use these - click &quot;Extract all&quot; on the top ribbon.</li>
+<li>You will be asked to select a location to save the unzipped files. Normally the default location it suggests will be the same folder and so you can just click &quot;Extract&quot;. If you want to unzip these files to a different place click browse and select the folder you want to keep it in. I like to keep all the files for one project in the same folder.</li>
 <li>You can now delete the zip file and use the unzipped files. This is a really important step - if you use the compressed files your code may not work properly. This usually causes error messages relating to temporary files.</li>
 </ol>
 <center>
@@ -518,7 +520,7 @@ Adapted from Level 1 Data Skills, <span class="citation">(Nordmann and Woods <a 
 </div>
 <div id="rstudio-specific-files" class="section level3">
 <h3><span class="header-section-number">1.3.4</span> RStudio Specific Files</h3>
-<p>RStudio uses many different types of files, but each is a variation on a <strong>“plain text” file</strong>. This means that all files we will be using in class will be able to be opened in Notepad or other similar text programs. The three main ones we will be working with will be:</p>
+<p>RStudio uses many different types of files, but each is a variation on a <strong>&quot;plain text&quot; file</strong>. This means that all files we will be using in class will be able to be opened in Notepad or other similar text programs. The three main ones we will be working with will be:</p>
 <ul>
 <li>.r: an R script</li>
 <li>.Rmd: an RMarkdown document</li>
@@ -529,7 +531,7 @@ Adapted from Level 1 Data Skills, <span class="citation">(Nordmann and Woods <a 
 If the file extension on a file is incorrect it may not be recognised as a file to be opened with a specific program and might not work.
 </p>
 <p>
-This is particularly an issue when you are downloading your files for class. As they are technically “plain text” files, some internet browsers will download them with the extension “.txt”, or even add it on as a second one which doesn’t work! Changing the extension to “.Rmd” or removing the extra added one will solve this issue.
+This is particularly an issue when you are downloading your files for class. As they are technically &quot;plain text&quot; files, some internet browsers will download them with the extension &quot;.txt&quot;, or even add it on as a second one which doesn't work! Changing the extension to &quot;.Rmd&quot; or removing the extra added one will solve this issue.
 </p>
 </div>
 </div>
@@ -545,34 +547,34 @@ This is particularly an issue when you are downloading your files for class. As 
 <div id="rmd-files" class="section level3">
 <h3><span class="header-section-number">1.3.6</span> .Rmd files</h3>
 <p>These are the types of files that you will mostly be using during this class. You will also be given some pre-formatted ones to complete your assessments on.</p>
-<p>When you go to File &gt; New file &gt; R Markdown… you will be prompted to supply some information. You can do this, but don’t have to as you can change many of these parameters later:</p>
+<p>When you go to File &gt; New file &gt; R Markdown... you will be prompted to supply some information. You can do this, but don't have to as you can change many of these parameters later:</p>
 <center>
 <img src="images/new_markdown_dialogue.png">
 </center>
 <p><br></p>
-<p>When a new RMarkdown file is opened the file isn’t empty. What you actually get is an example with a YAML header (at the top bordered with the dashes), some code chunks (in the shaded sections, more on these in a minute), text and some headers (the hashtagged blue text <strong>outside</strong> of chunks).</p>
-<p>I like to think of the way this file type is interpreted as being <em>like a script, but flipped</em>- the default interpretation of text aimed at humans. If we want <strong>executable code</strong> we need to prompt R to read the text in this way. This is done using “code chunks”, or sometimes just called “chunks”.</p>
+<p>When a new RMarkdown file is opened the file isn't empty. What you actually get is an example with a YAML header (at the top bordered with the dashes), some code chunks (in the shaded sections, more on these in a minute), text and some headers (the hashtagged blue text <strong>outside</strong> of chunks).</p>
+<p>I like to think of the way this file type is interpreted as being <em>like a script, but flipped</em>- the default interpretation of text aimed at humans. If we want <strong>executable code</strong> we need to prompt R to read the text in this way. This is done using &quot;code chunks&quot;, or sometimes just called &quot;chunks&quot;.</p>
 <center>
 <img src="images/new_markdown.png">
 </center>
 <p><br></p>
 <div id="code-chunks" class="section level4">
 <h4><span class="header-section-number">1.3.6.1</span> Code Chunks</h4>
-<p>Code chunks are bordered by “backticks”, which look an awful lot like apostrophes but they are different! These are important as they tell R where it needs to start and stop reading.</p>
-<p>Chunks also contain “curly brackets” at the start which contains various bits of information necessary to how the computer reads it. This includes what programming language you are writing in there (yes! R can understand other programming languages!), name of the chunk (used for a variety of reasons, such as our marking software and document indexing) and other attributes which are not necessary to learn about right now.</p>
+<p>Code chunks are bordered by &quot;backticks&quot;, which look an awful lot like apostrophes but they are different! These are important as they tell R where it needs to start and stop reading.</p>
+<p>Chunks also contain &quot;curly brackets&quot; at the start which contains various bits of information necessary to how the computer reads it. This includes what programming language you are writing in there (yes! R can understand other programming languages!), name of the chunk (used for a variety of reasons, such as our marking software and document indexing) and other attributes which are not necessary to learn about right now.</p>
 <center>
 <img src="images/chunk.png">
 </center>
 <p><br></p>
 <div class="danger">
 <p>
-The chunk <strong>must</strong> have the backticks to show the beginning and end of the executable code, otherwise the code doesn’t run.
+The chunk <strong>must</strong> have the backticks to show the beginning and end of the executable code, otherwise the code doesn't run.
 </p>
 <p>
 You must not add any code or text to the lines which contain backticks other than the code to alter the attributes of the chunk within the curly brackets (and only if you know how to do so). If you do this the code will not run and other chunks in the document might also be affected.
 </p>
 </div>
-<p>Hashtags used inside of code chunks don’t result in headers, but rather are ignored as the comments discussed in the section about .r files.</p>
+<p>Hashtags used inside of code chunks don't result in headers, but rather are ignored as the comments discussed in the section about .r files.</p>
 </div>
 </div>
 </div>
@@ -609,8 +611,8 @@ You must not add any code or text to the lines which contain backticks other tha
 <div id="what-is-a-session-in-r" class="section level3">
 <h3><span class="header-section-number">1.6.1</span> What is a session in R?</h3>
 <p>A session in R is a segment of time/workspace/processor time that is dedicated to performing a specific processing or analysis task. It can be difficult to wrap your head around at first, but it helps to draw comparisons with software that we are already familiar with.</p>
-<p>Let’s go back to Microsoft Word. We can have an essay open in one window and class notes opened up in another window. Both are instances of Word, but they are dedicated to two different tasks which just so happen to be running concurrently.</p>
-<p>You can have multiple sessions open in R, but we wouldn’t recommend it, because it can become confusing. We can start a new session by going to Session &gt; new session. We are much more interested in a task which is closely linked to this idea- restarting your current session.</p>
+<p>Let's go back to Microsoft Word. We can have an essay open in one window and class notes opened up in another window. Both are instances of Word, but they are dedicated to two different tasks which just so happen to be running concurrently.</p>
+<p>You can have multiple sessions open in R, but we wouldn't recommend it, because it can become confusing. We can start a new session by going to Session &gt; new session. We are much more interested in a task which is closely linked to this idea- restarting your current session.</p>
 <center>
 <img src="images/session_menu.png">
 </center>
@@ -622,19 +624,19 @@ You must not add any code or text to the lines which contain backticks other tha
 <p>Restarting your R session does some important things:</p>
 <ul>
 <li>it clears the environment of objects if R is set up in a maximally reproducible way- so make sure your script is saved so that you keep the instructions for making them again</li>
-<li>it “unloads” packages that you have called from the library using the <code>library()</code> function</li>
+<li>it &quot;unloads&quot; packages that you have called from the library using the <code>library()</code> function</li>
 <li>If you encounter an error with an unknown source sometimes restarting the session can clear the problem</li>
-<li>It allows you to test the reproducibility of the script that you are writing by clearing the environment and starting over with only the instructions you have provided, without the possibility of “contamination” of objects inadvertently created in other ways, such as playing in the console</li>
+<li>It allows you to test the reproducibility of the script that you are writing by clearing the environment and starting over with only the instructions you have provided, without the possibility of &quot;contamination&quot; of objects inadvertently created in other ways, such as playing in the console</li>
 </ul>
 </div>
 </div>
 <div id="packages" class="section level2">
 <h2><span class="header-section-number">1.7</span> Packages</h2>
 <p>R is a programming language which is primarily used for data processing and analysis. As the software is open source a number of people have created extensions to the software to adapt it to their needs.</p>
-<p>These software extensions are referred to as “packages”.</p>
+<p>These software extensions are referred to as &quot;packages&quot;.</p>
 <div id="installing-packages" class="section level3">
 <h3><span class="header-section-number">1.7.1</span> Installing Packages</h3>
-<p>There are a number of functions that we will be using in this course that are not part of the original programming language. The most common package we will be using will be one called “tidyverse”.</p>
+<p>There are a number of functions that we will be using in this course that are not part of the original programming language. The most common package we will be using will be one called &quot;tidyverse&quot;.</p>
 <p>We will use the example of tidyverse to show you how to install packages that you might need.</p>
 <div id="install-tidyverse" class="section level4">
 <h4><span class="header-section-number">1.7.1.1</span> What is Tidyverse?</h4>
@@ -649,7 +651,7 @@ You must also never place <code>install.packages()</code> in any r script or RMa
 This is at best rude and at worst it can break their installation.
 </p>
 </div>
-<p>Tidyverse is a “metapackage”- a package that is actually a collection of packages that have been bundled together. It was developed by Hadley Wickham. You can read more abut the package <a href="https://www.tidyverse.org/">here</a>.</p>
+<p>Tidyverse is a &quot;metapackage&quot;- a package that is actually a collection of packages that have been bundled together. It was developed by Hadley Wickham. You can read more abut the package <a href="https://www.tidyverse.org/">here</a>.</p>
 </div>
 <div id="install.packages" class="section level4">
 <h4><span class="header-section-number">1.7.1.2</span> <code>install.packages()</code></h4>
@@ -657,7 +659,7 @@ This is at best rude and at worst it can break their installation.
 <center>
 <img src="images/console.png" alt="The Console" style="margin:10px 10px">
 </center>
-<p>Types the following in and then hit “enter”:</p>
+<p>Types the following in and then hit &quot;enter&quot;:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">&gt;</span><span class="st"> </span><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</code></pre></div>
 <p>Note that the name of the package is in quotation marks when used here. This is not always the case!</p>
 <p>The console will then fill with a lot of text showing you what is being done. It is not necessary to understand all of this.</p>
@@ -665,9 +667,9 @@ This is at best rude and at worst it can break their installation.
 <center>
 <img src="images/tidyverse_installed.png" style="border:1px solid #000000">
 </center>
-<p>This indicates that the package has been installed successfully. There will be many of these messages for different packages. There may even be parts after this message if the computer determines that other “dependencies” (additional software that tidyverse requires to run) are required.</p>
-<p>Once R has stopped working (doing it’s current task) the <code>&gt;</code> will reappear in the console. This symbol reappearing means that R is ready for further code.</p>
-<p>To install other packages you would reuse the <strong>function</strong> <code>install.packages()</code>, replacing the name “tidyverse” with the name of the package you want to install.</p>
+<p>This indicates that the package has been installed successfully. There will be many of these messages for different packages. There may even be parts after this message if the computer determines that other &quot;dependencies&quot; (additional software that tidyverse requires to run) are required.</p>
+<p>Once R has stopped working (doing it's current task) the <code>&gt;</code> will reappear in the console. This symbol reappearing means that R is ready for further code.</p>
+<p>To install other packages you would reuse the <strong>function</strong> <code>install.packages()</code>, replacing the name &quot;tidyverse&quot; with the name of the package you want to install.</p>
 <p>We will cover functions shortly.</p>
 </div>
 </div>
@@ -675,31 +677,31 @@ This is at best rude and at worst it can break their installation.
 <h3><span class="header-section-number">1.7.2</span> Loading Packages</h3>
 <p>Now that we have installed tidyverse it is on our machine but it is not ready to use yet!</p>
 <p>It is easier to understand if you think about it like this: if you install Instagram on your phone you only do it once and you have to open the app each time you want to use it.</p>
-<p>Similarly, once tidyverse is installed it is on your computer until you remove it. If you want to use it you need to “open it”. This is done by using another <strong>function</strong>, <code>library()</code>.</p>
+<p>Similarly, once tidyverse is installed it is on your computer until you remove it. If you want to use it you need to &quot;open it&quot;. This is done by using another <strong>function</strong>, <code>library()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
 <p>This must be done before you use tidyverse. We normally do this in the first chunk in the document, essentially gathering our tools before we start working.</p>
-<p>If you want to load other packages you would reuse the <strong>function</strong> <code>library()</code>, replacing “tidyverse” with the name of the package you want to load.</p>
+<p>If you want to load other packages you would reuse the <strong>function</strong> <code>library()</code>, replacing &quot;tidyverse&quot; with the name of the package you want to load.</p>
 </div>
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">1.8</span> Functions</h2>
-<p>“Function” is a word that you will hear a lot in this class. But what are they? What do they look like? what are they made up of?</p>
+<p>&quot;Function&quot; is a word that you will hear a lot in this class. But what are they? What do they look like? what are they made up of?</p>
 <div id="what-is-a-function" class="section level3">
 <h3><span class="header-section-number">1.8.1</span> What is a function?</h3>
-<p>If I were to tell you to jump, you would understand the action I was asking you to perform wouldn’t you? But before you carry it out you might ask me a question in return: how high?</p>
-<p>This is what a function is for R… it’s a command that tells R to do something. It just does it in a way that R understands.</p>
+<p>If I were to tell you to jump, you would understand the action I was asking you to perform wouldn't you? But before you carry it out you might ask me a question in return: how high?</p>
+<p>This is what a function is for R... it's a command that tells R to do something. It just does it in a way that R understands.</p>
 </div>
 <div id="the-anatomy-of-a-function-names-and-arguments" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> The Anatomy of a Function: names and arguments</h3>
 <p>Functions are made up of elements. See the code chunk below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">function_name</span>(argument1, argument2, etc...)</code></pre></div>
-<p>The part outside of the brackets is the <strong>name of the function</strong>. This tells R exactly what to do- the action to be performed. The parts inside the brackets are called <strong>arguments</strong>… these provide information to R on what to perform the actions on (and input) and can provide information on slight changes to the actions.</p>
+<p>The part outside of the brackets is the <strong>name of the function</strong>. This tells R exactly what to do- the action to be performed. The parts inside the brackets are called <strong>arguments</strong>... these provide information to R on what to perform the actions on (and input) and can provide information on slight changes to the actions.</p>
 <div class="info">
 <p>
 Essentially the function name is the action to perform (jump) and the arguments give information on how to perform the action (how high).
 </p>
 <p>
-Think about <code>install.packages(“tidyverse”)</code> and <code>library(tidyverse)</code>: what are the function names and what are the arguments? Which part changes when you want to install and load a different package?
+Think about <code>install.packages(&quot;tidyverse&quot;)</code> and <code>library(tidyverse)</code>: what are the function names and what are the arguments? Which part changes when you want to install and load a different package?
 </p>
 </div>
 <p>Once your function has taken the input and run the command on it, it will produce an output.</p>
@@ -710,7 +712,7 @@ Think about <code>install.packages(“tidyverse”)</code> and <code>library(tid
 <h2><span class="header-section-number">1.9</span> Formative Homework</h2>
 <div id="install-r-and-rstudio-on-your-personal-computer" class="section level3">
 <h3><span class="header-section-number">1.9.1</span> Install R and RStudio on your personal computer</h3>
-<p>If you haven’t done so, please read the chapter <a href="@ref(#before)">Assignment before starting the course</a> and either install R and RStudio on your own computer, or familiarise yourself with the RStudio Cloud.</p>
+<p>If you haven't done so, please read the chapter <a href="@ref(#before)">Assignment before starting the course</a> and either install R and RStudio on your own computer, or familiarise yourself with the RStudio Cloud.</p>
 </div>
 <div id="installing-and-loading-tidyverse" class="section level3">
 <h3><span class="header-section-number">1.9.2</span> Installing and Loading tidyverse</h3>
@@ -725,7 +727,7 @@ If you are using RStudio Cloud you are provided with a completely self-contained
 <center>
 <img src="images/tidyverse_success.png">
 </center>
-<p>You will be using the tidyverse package in the next lesson, so don’t worry if you struggle with this at the moment.</p>
+<p>You will be using the tidyverse package in the next lesson, so don't worry if you struggle with this at the moment.</p>
 
 </div>
 </div>
