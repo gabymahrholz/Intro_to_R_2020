@@ -142,6 +142,7 @@ question-4
 question-5
 summative-homework-2
 data-visualisation-1
+pre-class-activities
 pre-steps-5
 introduction-to-the-data
 some-warm-up-tasks
@@ -161,6 +162,7 @@ now-lets-have-a-look-at-different-plots-with-more-complexity
 other-plots
 formative-homework-3
 data-visualisation-2
+additional-resources
 pre-steps-6
 re-introduction-to-the-data
 create-multiple-plots-in-one

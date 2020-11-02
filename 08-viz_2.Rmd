@@ -1,5 +1,13 @@
 # Data Visualisation 2
 
+Today, we will continue working with `ggplot2` which is part of `tidyverse`. We will continue working with the data from the Scottish Government saved in the file `free_movement_uk.csv`. 
+
+## Additional Resources
+* [Cookbook for R - Graphs](http://www.cookbook-r.com/Graphs/)
+* Hadley Wickham et al.'s [Elegant graphics for Data Analysis](https://ggplot2-book.org/index.html)
+* [ggplot2 cheatsheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+* [ggplot2 functions reference](https://ggplot2.tidyverse.org/reference/#section-plot-basics)
+
 
 ## Intended Learning Outcomes {-}
 
@@ -14,7 +22,7 @@ This lesson is led by [Greta Todorova](https://www.psy.gla.ac.uk/otherstaff/?id=
 
 ## Pre-steps
 
-Today, we will continue working with `ggplot2` which is part of `tidyverse`. We will continue working with the data from the Scottish Government saved in the file `free_movement_uk.csv`. 
+
 
 Firstly, load `tidyverse`, and read the data into your `Global Environment` as `migration_scot`. 
 
@@ -126,7 +134,7 @@ ggplot(overseas, aes(x = Sex, y = Value,
 ```
 `r unhide()`
 
-This becomes very cumbersome when we have more than one variable. Imagine you have data for 10 different countries. Can you imagine doing these plots by hand. Moreover, when you have to arrange them on a page to show how things differ you will loose a lot of time. Instead we can use _facets_.
+This becomes very cumbersome when we have more than one variable. Imagine you have data for 10 different countries. Can you imagine doing these plots by hand. Moreover, when you have to arrange them on a page to show how things differ you will loose a lot of time. Instead we can use **facets**.
  
 ### Facets
 
@@ -160,7 +168,7 @@ Let's look at these plots.
 
 ## Global and Local aesthetics
 
-So far, we have been working with a *Global* definition of the aesthetics. This allows us to specify the axes and the groupings only once. 
+So far, we have been working with a **Global** definition of the aesthetics. This allows us to specify the axes and the groupings only once. 
 
 Sometimes, we want to use multiple data and put multiple plots on top of each other. For these occasions we can specify the aesthetics at a local level - i.e. in the geoms.
 
@@ -193,7 +201,6 @@ Because `alpha` (the transparency argument) and `fill` are arguments for both bo
 Let's see how it would have looked like if we had specified the two arguments globally. 
 
 ```{r}
-
 #make violins and box plots 
 
 ggplot(boxes, aes(x = `Migration Type`, y = Value, fill = `Migration Type`, alpha = 0.5)) + 
@@ -222,8 +229,8 @@ The great thing about making your own plots in R is that you can make them look 
 
 ggplot2 comes with several ready made themes. Some of them are: 
 
- * theme_bw(): a white background with major axes and border.
- * theme_minimal(): a white background with major axes
+ * `theme_bw()`: a white background with major axes and border.
+ * `theme_minimal()`: a white background with major axes
 and  more. Just use the cheetsheet for visualisations with ggplot for some more examples.
 
 Themes are just like any other layer for ggplot. You just add them at the end of your plot with `+`. Let's add one of these theme formats to our plot above. 
@@ -309,7 +316,7 @@ ggplot(boxes, aes(x = `Migration Type`, y = Value)) +
 ```
 
 ```{block, type = 'info'}
-R really likes order, so it will put everything in alphabetical order. This is why the first colour in the `scale_fill_manual()` layer - `#127d69`, is associated with migration category *In* and the second colour - `#cedc00` is associated with migration category *Out*.
+R really likes order, so it will put everything in alphabetical order. This is why the first colour in the `scale_fill_manual()` layer - `#127d69`, is associated with migration category **In** and the second colour - `#cedc00` is associated with migration category **Out**.
 ```
 
 

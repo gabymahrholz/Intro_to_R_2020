@@ -1,5 +1,19 @@
 # Data Visualisation 1
 
+This week we are moving on to plots. You have learned how to get your data into a usable format, so now it is time for you to learn how to visualise your data. Visualisations are important as they tell us how our data looks like; help us discover outlier variables, tells us about distribution abnormalities etc. Plots also help your reader to better understand the data that you are working with.
+
+## Pre-class Activities
+
+Before you start this week's class, here are some pre-class readings:
+
+* [Five Ways to Lie with Charts](https://getpocket.com/explore/item/five-ways-to-lie-with-charts?utm_source=pocket-newtab-global-en-GB)
+* [Datasaurus Dosen](https://www.autodeskresearch.com/publications/samestats) - How a T-Rex convinced people to plot their data (and a fun visualisation of the principle in this [thread](https://twitter.com/ameisen_strasse/status/1316133566972125186) )
+* [Anscombe's Quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet) - Old school version of datasaurus
+* [Tips on Graph making](https://medium.com/information-visualization/5-things-you-should-focus-on-when-designing-graphs-693a16421040)
+* Here is a webspace with a large compilation of graphs that will help you develop a better understanding of what style you can use for the data you have and for the message you are trying to convey. The graphs also come with R code for you to adapt to data you might have. - [The R Graph Gallery](https://www.r-graph-gallery.com/index.html)
+* Pre-class [video](https://youtu.be/vP9hgPOvU1s)
+  ![](https://youtu.be/vP9hgPOvU1s){width="600" height="600"}
+
 ## Intended Learning Outcomes {-}
 
 1. Develop an understanding of the basics of ggplot2 and how layering works
@@ -46,7 +60,7 @@ The data is a bit messy, so let's clean it a little bit before we can work with 
 
 ## Some warm-up tasks 
 
-Use pipes `%>%` for the following 4 tasks and save your data into the *trafic_scot* variable so that it appears in your `Global Environment`.
+Use pipes `%>%` for the following 4 tasks and save your data into the **trafic_scot** variable so that it appears in your `Global Environment`.
 
 1. Select only the necessary variable - `DateCode`, `Value`, `Sex`, `Age`, `Migration Source` & `Migration Type` (notice that some variable names include spaces)
 2. Filter the data in column `DateCode`, and keep only observations from 2016
@@ -84,7 +98,7 @@ We use the `ggplot2` package due to its ease of layering and variety. With `ggpl
 Plots created with `ggplot2` work in a layering format. In the simplest form we have two layers. 
 
 * Layer 1: what data are we going to use
-  * *+*
+  * **+**
 * Layer 2: how do we want it to look
 
 
@@ -172,7 +186,7 @@ Categorical that can be used as continuous: Sometimes you have questions where p
 
 ### Number of variables
 
-Next we need to know the relationship between how many variables we want to show. In a 2D plot, we can usually graphically show between 1 and 3 variables with ease. After that, _usually_ more than 2 dimensions are necessary. 
+Next we need to know the relationship between how many variables we want to show. In a 2D plot, we can usually graphically show between 1 and 3 variables with ease. After that, **usually*_** more than 2 dimensions are necessary. 
 
 
 
@@ -193,7 +207,7 @@ ggplot(diamonds, aes(depth, colour = cut)) +
 `r hide("Solution")`
 ```{block, type = "solved"}
 3 variables: 2 continuous (depth & density), 1 categorical (cut)
- _In reality R only needs depth and cut, as it will calculate density for us._
+ **In reality R only needs depth and cut, as it will calculate density for us.**
 ```
 `r unhide()`
 
@@ -250,7 +264,7 @@ df <- data.frame(
  group = rep(c("A","B"),
  each = 100)
 )
-ggplot(df, aes(x=x, y=y, group=group)) + geom_line(aes(colour = group), linetype = 1) +
+ggplot(df, aes(x=x, y=y, group=group)) + geom_line(aes(colour = group), linetype = 1, size = 2) +
   theme_bw() +
   labs(y = 'Bank balance\n(pos=debit, neg=credit)', 
        x = 'Probability of being happy')
@@ -294,7 +308,7 @@ We are using both continuous (value i.e. count of people) and categorical (sex).
 
 ### Types of plots
 
-There is variety of plots that we can create using ggplot2. We select the plot by adding on `geom_???()`. Instead of the *???* we specify the type of plot we want to make. Below are some examples, but you can see more here: ggplot2 layers.
+There is variety of plots that we can create using ggplot2. We select the plot by adding on `geom_???()`. Instead of the **???** we specify the type of plot we want to make. Below are some examples, but you can see more here: ggplot2 layers.
 
 | Geom | Plot type  |
 |:-----------------|:---------------------------------------------------------|
@@ -340,7 +354,7 @@ When we want to group data to provide a better representation, we can usually us
 
 Let's first look at colour.
 
-Depending on the type of graph, colouring in can be done either with `colour` or with `fill`. For our column plots we use `fill.` If we used `colour`, then we would get different colours for the outlines. You can find out whether to use colour or fill by typing the name of the geom in the Help search bar or typing `?geom_col()` in the console and looking at the *Aesthetics* section.
+Depending on the type of graph, colouring in can be done either with `colour` or with `fill`. For our column plots we use `fill.` If we used `colour`, then we would get different colours for the outlines. You can find out whether to use colour or fill by typing the name of the geom in the Help search bar or typing `?geom_col()` in the console and looking at the **Aesthetics** section.
 
 ```{r}
 ggplot(traffic_scot, aes(x = Sex, y = Value, fill = `Migration Type`)) +
@@ -385,12 +399,12 @@ What are the differences between 'dodge', 'fill' and no position argument? (Use 
 
 `r hide('Explanation')`
 ```{block, type = 'solved'}
-If we use `position = 'fill'` it stacks our data and it also gives us proportions: check the y-axis between the plot with `position = 'fill'` and the one without any position arguments. Whereas the plot without the position argument just stacks information on top of one another, `position = 'fill'` shows relative proportions. Use the Help menu or put *?* in the console in front of the function you want to know more about, for example `?geom_col()`. 
+If we use `position = 'fill'` it stacks our data and it also gives us proportions: check the y-axis between the plot with `position = 'fill'` and the one without any position arguments. Whereas the plot without the position argument just stacks information on top of one another, `position = 'fill'` shows relative proportions. Use the Help menu or put **?** in the console in front of the function you want to know more about, for example `?geom_col()`. 
 ```
 `r unhide()`
 
 
-The argument `position` is an argument specific for the `geom_col`. It is just one example of an additional argument that helps us to represent the data better. These types of arguments allow for better control over the plots that we create. To find what arguments each geom has, look for it in the Help section or put *?* in the `Console` in front of the function.
+The argument `position` is an argument specific for the `geom_col`. It is just one example of an additional argument that helps us to represent the data better. These types of arguments allow for better control over the plots that we create. To find what arguments each geom has, look for it in the Help section or put **?** in the `Console` in front of the function.
 
 Geoms in `ggplot2` have a large selection of arguments to allow you to adjust your visualisations. This is what makes it one of the most preferred visualisation packages by the R community. 
 
@@ -427,7 +441,7 @@ DateCode, Migration Type, Migration Source, Value
 ```
 `r unhide()`
 
-First, let's get the data we will need. We want our selected variables from above, and the overall data for the rest of the variables i.e. the 'all' categories for `Age`, and `Sex`. Remember we want to look at people moving in and out, so we do not want the net `Migration Type`. Save the output into the variable *trafic_scot2* so that it appears in your `Global Environment`.
+First, let's get the data we will need. We want our selected variables from above, and the overall data for the rest of the variables i.e. the 'all' categories for `Age`, and `Sex`. Remember we want to look at people moving in and out, so we do not want the net `Migration Type`. Save the output into the variable **trafic_scot2** so that it appears in your `Global Environment`.
 
 ```{r}
 
@@ -474,7 +488,7 @@ ggplot(traffic_scot2, aes(DateCode, Value,
   geom_point() 
 ```
 
-This seems difficult to look at. Let's make it easier by adding a line that connects the data. We can do this by adding another *Layer*.
+This seems difficult to look at. Let's make it easier by adding a line that connects the data. We can do this by adding another **Layer**.
 
 
 ```{r}
@@ -507,10 +521,10 @@ Scatter and dot plots are excellent representations of the data as they show us 
 
 Let's make some more plots. 
 
-*Violin plots and Box plots*
+**Violin plots and Box plots**
 We need a continuous variable and a categorical variable for both of them. In both of these the categorical variable usually goes on the x-axis and the continuous on the y axis.
 
-Let's get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas, from all ages. For this, we need to tidy the data into what we need and store it into the variable `female_migration`
+Let's get back to the original data and plot the distribution of all females entering and leaving Scotland from overseas, from all ages. For this, we need to tidy the data into what we need and store it into the variable `female_migration`.
 
 ```{r}
 female_migration <- migration_scot %>% 
@@ -520,12 +534,12 @@ female_migration <- migration_scot %>%
          `Migration Type` != 'Net')
 
 # make box plots
-ggplot(female_migration, aes(x = `Migration Type`, y = Value)) + 
+ggplot(female_migration, aes(x = `Migration Type`, y = Value, fill = `Migration Type`)) + 
   geom_boxplot()
 
 
 #make violin plots
-ggplot(female_migration, aes(x = `Migration Type`, y = Value)) + 
+ggplot(female_migration, aes(x = `Migration Type`, y = Value, fill = `Migration Type`)) + 
   geom_violin()
 
 ```
