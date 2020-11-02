@@ -12,7 +12,8 @@ Before you start this week's class, here are some pre-class readings:
 * [Tips on Graph making](https://medium.com/information-visualization/5-things-you-should-focus-on-when-designing-graphs-693a16421040)
 * Here is a webspace with a large compilation of graphs that will help you develop a better understanding of what style you can use for the data you have and for the message you are trying to convey. The graphs also come with R code for you to adapt to data you might have. - [The R Graph Gallery](https://www.r-graph-gallery.com/index.html)
 * Pre-class [video](https://youtu.be/vP9hgPOvU1s)
-  ![](https://youtu.be/vP9hgPOvU1s){width="600" height="600"}
+
+
 
 ## Intended Learning Outcomes {-}
 
