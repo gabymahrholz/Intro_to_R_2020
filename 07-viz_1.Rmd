@@ -60,7 +60,7 @@ The data is a bit messy, so let's clean it a little bit before we can work with 
 
 ## Some warm-up tasks 
 
-Use pipes `%>%` for the following 4 tasks and save your data into the **trafic_scot** variable so that it appears in your `Global Environment`.
+Use pipes `%>%` for the following 4 tasks and save your data into the **traffic_scot** variable so that it appears in your `Global Environment`.
 
 1. Select only the necessary variable - `DateCode`, `Value`, `Sex`, `Age`, `Migration Source` & `Migration Type` (notice that some variable names include spaces)
 2. Filter the data in column `DateCode`, and keep only observations from 2016
