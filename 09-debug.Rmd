@@ -90,7 +90,7 @@ demonstration <- read_csv("cars_for_sale.csv")
 
 # We tried to run the function read_cvs()- this doesn't 
 # exist! Again, it might seem trivial, but R really 
-# wont know what this means.
+# won't know what this means.
 ```
 `r unhide()`
 
